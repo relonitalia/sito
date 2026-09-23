@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RelON — Il CRM per agenti immobiliari</title>
+<meta name="description" content="RelON riunisce lead catastali, immobili, documenti, clienti e trattative in un'unica app per agenti immobiliari.">
+<link rel="icon" href="assets/relon_icon.png">
+<style>
+@font-face { font-family: Manrope; src: url(assets/fonts/Manrope-Bold.ttf); font-weight: 700; font-display: swap; }
+@font-face { font-family: Manrope; src: url(assets/fonts/Manrope-ExtraBold.ttf); font-weight: 800; font-display: swap; }
+@font-face { font-family: Inter; src: url(assets/fonts/Inter-Regular.ttf); font-weight: 400; font-display: swap; }
+@font-face { font-family: Inter; src: url(assets/fonts/Inter-Medium.ttf); font-weight: 500; font-display: swap; }
+
+/* Palette dall'app: lib/core/theme/app_colors.dart */
+:root {
+  --navy: #16233F;
+  --gold: #F2A93C;
+  --porcelain: #F7F6F3;
+  --stone: #6B7280;
+  --hairline: #E4E2DC;
+  --wrap: min(1160px, 100% - 32px);
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body { font: 400 17px/1.6 Inter, system-ui, sans-serif; color: var(--navy); background: var(--porcelain); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, .wordmark { font-family: Manrope, Inter, sans-serif; letter-spacing: -0.02em; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: var(--wrap); margin-inline: auto; }
+
+/* Nav */
+nav { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--porcelain) 85%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--hairline); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand img { width: 34px; height: 34px; clip-path: inset(6% round 22%); transform: scale(1.12); }
+.wordmark { font-weight: 800; font-size: 22px; }
+.wordmark span { color: var(--gold); }
+nav .links { display: flex; gap: 28px; align-items: center; font-size: 15px; font-weight: 500; }
+nav .links a:not(.pill) { color: var(--stone); transition: color .2s; }
+nav .links a:not(.pill):hover { color: var(--navy); }
+.pill { background: var(--navy); color: #fff; padding: 9px 18px; border-radius: 999px; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 24px; min-height: calc(100svh - 68px); padding-block: 48px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: .12em; color: var(--stone); }
+.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 2px; background: var(--gold); }
+h1 { font-size: clamp(40px, 6vw, 76px); line-height: 1.02; font-weight: 800; margin: 20px 0 22px; }
+h1 em { font-style: normal; color: var(--gold); }
+.lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--stone); max-width: 30em; }
+.stage { position: relative; aspect-ratio: 1; width: 100%; }
+.stage canvas { width: 100% !important; height: 100% !important; display: block; }
+.stage::after { content: ""; position: absolute; left: 22%; right: 22%; bottom: 6%; height: 7%; background: radial-gradient(closest-side, rgba(22,35,63,.22), transparent); z-index: -1; }
+
+/* Store buttons */
+.stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.store { display: inline-flex; align-items: center; gap: 12px; background: #000; color: #fff; padding: 10px 22px 10px 16px; border-radius: 12px; min-width: 176px; transition: transform .2s, box-shadow .2s; }
+.store:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(0,0,0,.5); }
+.store:focus-visible, .pill:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.store svg { width: 26px; height: 26px; fill: currentColor; flex: none; }
+.store small { display: block; font-size: 11px; line-height: 1.2; opacity: .8; }
+.store b { display: block; font: 700 18px/1.15 Manrope, sans-serif; }
+
+/* Features */
+section { padding-block: clamp(80px, 12vw, 140px); }
+.section-head { max-width: 640px; margin-bottom: 56px; }
+h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; margin-top: 16px; }
+.features { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); }
+.feature { padding: 32px 28px 0 0; }
+.feature + .feature { padding-left: 28px; border-left: 1px solid var(--hairline); }
+.feature .n { font: 700 14px Manrope, sans-serif; color: var(--gold); }
+.feature h3 { font-size: 21px; margin: 14px 0 10px; }
+.feature p { font-size: 15px; color: var(--stone); }
+
+/* Portfolio */
+.portfolio { background: var(--navy); color: #fff; }
+.portfolio .wrap { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 48px; }
+.portfolio .eyebrow, .portfolio .lead { color: #AAB3C5; }
+.portfolio .stage { aspect-ratio: 4 / 3; }
+.portfolio .stage::after { display: none; }
+.stats { display: flex; gap: 40px; margin-top: 40px; }
+.stats b { display: block; font: 800 36px Manrope, sans-serif; color: var(--gold); }
+.stats span { font-size: 14px; color: #AAB3C5; }
+
+/* CTA */
+.cta { text-align: center; }
+.cta img { width: 96px; height: 96px; clip-path: inset(6% round 22%); transform: scale(1.12); margin-bottom: 28px; }
+.cta .lead { margin-inline: auto; margin-top: 16px; }
+.cta .stores { justify-content: center; }
+footer { border-top: 1px solid var(--hairline); padding-block: 28px; font-size: 14px; color: var(--stone); }
+footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 900px) {
+  .hero, .portfolio .wrap { grid-template-columns: 1fr; }
+  .hero { min-height: 0; padding-top: 32px; }
+  .hero .stage { max-width: 440px; margin-inline: auto; order: -1; }
+  .features { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .feature:nth-child(3) { padding-left: 0; border-left: 0; }
+}
+@media (max-width: 560px) {
+  nav .links a:not(.pill) { display: none; }
+  .features { grid-template-columns: 1fr; }
+  .feature, .feature + .feature { padding: 28px 0 0; border-left: 0; }
+  .feature + .feature { border-top: 1px solid var(--hairline); }
+  .store { flex: 1; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand" aria-label="RelON home">
+      <img src="assets/relon_icon.png" alt="">
+      <span class="wordmark">Rel<span>ON</span></span>
+    </a>
+    <div class="links">
+      <a href="#funzionalita">Funzionalità</a>
+      <a href="#portafoglio">Portafoglio</a>
+      <a href="#scarica" class="pill">Scarica</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+  <header class="wrap hero">
+    <div>
+      <span class="eyebrow">CRM per agenti immobiliari</span>
+      <h1>Ogni immobile.<br>Ogni cliente.<br><em>In tasca.</em></h1>
+      <p class="lead">RelON riunisce lead catastali, immobili, documenti, clienti e trattative in un'unica app pensata per chi lavora sul campo.</p>
+      <div class="stores" data-stores></div>
+    </div>
+    <div class="stage" id="hero-3d" role="img" aria-label="Logo RelON in 3D"></div>
+  </header>
+
+  <section id="funzionalita">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Funzionalità</span>
+        <h2>Tutto il lavoro dell'agente, in un solo posto.</h2>
+      </div>
+      <div class="features">
+        <div class="feature"><span class="n">01</span><h3>Lead dal catasto</h3><p>Trova il proprietario di un immobile per indirizzo e segui ogni lead dal primo contatto al mandato.</p></div>
+        <div class="feature"><span class="n">02</span><h3>Immobili e documenti</h3><p>Schede complete, foto e checklist documenti per vendita e affitto, con la percentuale di completezza sempre visibile.</p></div>
+        <div class="feature"><span class="n">03</span><h3>Clienti</h3><p>Profili, temperatura del contatto e consenso GDPR con timestamp digitale al primo inserimento.</p></div>
+        <div class="feature"><span class="n">04</span><h3>Trattative</h3><p>Dalla proposta al rogito, con valore della pipeline e commissioni previste sotto controllo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="portfolio" id="portafoglio">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Portafoglio</span>
+        <h2>Il tuo portafoglio, a colpo d'occhio.</h2>
+        <p class="lead" style="margin-top:20px">Ogni agente vede e gestisce solo i propri clienti, immobili e trattative. Scadenze dei mandati e documenti mancanti emergono da soli.</p>
+        <div class="stats">
+          <div><b>4</b><span>stati del lead</span></div>
+          <div><b>5</b><span>fasi della trattativa</span></div>
+          <div><b>30 gg</b><span>avviso scadenza mandato</span></div>
+        </div>
+      </div>
+      <div class="stage" id="city-3d" role="img" aria-label="Quartiere 3D con un immobile evidenziato"></div>
+    </div>
+  </section>
+
+  <section class="cta" id="scarica">
+    <div class="wrap">
+      <img src="assets/relon_icon.png" alt="Icona app RelON">
+      <h2>Scarica RelON.</h2>
+      <p class="lead">Disponibile per iPhone e Android.</p>
+      <div class="stores" data-stores></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 RelON</span>
+    <a href="mailto:info@relon.it">info@relon.it</a>
+  </div>
+</footer>
+
+<template id="stores-tpl">
+  <!-- TODO: sostituire con i link reali degli store dopo la pubblicazione -->
+  <a class="store" href="https://apps.apple.com/" target="_blank" rel="noopener" aria-label="Scarica su App Store">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+    <span><small>Scarica su</small><b>App Store</b></span>
+  </a>
+  <a class="store" href="https://play.google.com/store" target="_blank" rel="noopener" aria-label="Disponibile su Google Play">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
+    <span><small>Disponibile su</small><b>Google Play</b></span>
+  </a>
+</template>
+
+<script>
+  for (const el of document.querySelectorAll('[data-stores]'))
+    el.append(document.getElementById('stores-tpl').content.cloneNode(true));
+</script>
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const NAVY = 0x16233F, GOLD = 0xF2A93C, WHITE = 0xFFFFFF;
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Renderer legato a un contenitore: resize automatico, render solo quando visibile.
+function mount(el, camera, scene, tick) {
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  el.append(renderer.domElement);
+  scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+
+  new ResizeObserver(() => {
+    const { clientWidth: w, clientHeight: h } = el;
+    renderer.setSize(w, h, false);
+    if (camera.isPerspectiveCamera) camera.aspect = w / h;
+    else { const a = w / h, s = camera.userData.size; Object.assign(camera, { left: -s * a, right: s * a, top: s, bottom: -s }); }
+    camera.updateProjectionMatrix();
+    renderer.render(scene, camera);
+  }).observe(el);
+
+  let visible = false;
+  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(el);
+  renderer.setAnimationLoop(t => { if (visible && !still) { tick(t / 1000); renderer.render(scene, camera); } });
+}
+
+// Percorso a linee con angoli arrotondati (come i tratti del logo). pts: [x, y, raggio] in pixel dell'icona 400x400.
+function strokePath(pts) {
+  const v = pts.map(([x, y]) => new THREE.Vector3((x - 200) / 100, (200 - y) / 100, 0));
+  const path = new THREE.CurvePath();
+  let first, last;
+  v.forEach((p, i) => {
+    const prev = v[(i - 1 + v.length) % v.length], next = v[(i + 1) % v.length], r = pts[i][2] / 100;
+    const a = p.clone().add(prev.clone().sub(p).setLength(r));
+    const b = p.clone().add(next.clone().sub(p).setLength(r));
+    if (last) path.add(new THREE.LineCurve3(last, a)); else first = a;
+    path.add(new THREE.QuadraticBezierCurve3(a, p, b));
+    last = b;
+  });
+  path.add(new THREE.LineCurve3(last, first));
+  return path;
+}
+
+/* ---------- Hero: icona dell'app in 3D ---------- */
+{
+  const el = document.getElementById('hero-3d');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+  camera.position.set(0, 0, 11.5);
+  scene.environmentIntensity = 0.3;
+
+  const icon = new THREE.Group();
+  scene.add(icon);
+
+  // Tessera navy arrotondata
+  const s = 1.75, r = 0.62, tile = new THREE.Shape();
+  tile.moveTo(-s + r, -s); tile.lineTo(s - r, -s); tile.quadraticCurveTo(s, -s, s, -s + r);
+  tile.lineTo(s, s - r); tile.quadraticCurveTo(s, s, s - r, s); tile.lineTo(-s + r, s);
+  tile.quadraticCurveTo(-s, s, -s, s - r); tile.lineTo(-s, -s + r); tile.quadraticCurveTo(-s, -s, -s + r, -s);
+  const depth = 0.35, bevel = 0.1;
+  const tileGeo = new THREE.ExtrudeGeometry(tile, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 6, curveSegments: 24 });
+  tileGeo.translate(0, 0, -depth / 2);
+  icon.add(new THREE.Mesh(tileGeo, new THREE.MeshPhysicalMaterial({ color: NAVY, roughness: 0.35, clearcoat: 1, clearcoatRoughness: 0.15 })));
+
+  // Tratti bianchi del logo, in rilievo sulla faccia frontale
+  const face = depth / 2 + bevel;
+  const lineMat = new THREE.MeshStandardMaterial({ color: WHITE, roughness: 0.3, metalness: 0.05 });
+  const roof = [[200, 64, 8], [302, 182, 6], [98, 182, 6]];
+  const body = [[105, 213, 6], [300, 213, 6], [300, 260, 6], [168, 260, 15], [168, 290, 15], [300, 290, 6],
+                [300, 345, 6], [226, 345, 4], [226, 320, 16], [186, 320, 16], [186, 345, 4], [105, 345, 6]];
+  for (const pts of [roof, body]) {
+    const tube = new THREE.Mesh(new THREE.TubeGeometry(strokePath(pts), 600, 0.065, 12, true), lineMat);
+    tube.position.z = face + 0.02;
+    icon.add(tube);
+  }
+
+  // Finestra oro 2x2
+  const goldMat = new THREE.MeshStandardMaterial({ color: GOLD, emissive: GOLD, emissiveIntensity: 0.35, roughness: 0.4 });
+  const pane = new THREE.BoxGeometry(0.13, 0.13, 0.08);
+  for (const [dx, dy] of [[-1, 1], [1, 1], [-1, -1], [1, -1]]) {
+    const m = new THREE.Mesh(pane, goldMat);
+    m.position.set(dx * 0.08, 0.58 + dy * 0.08, face + 0.04);
+    icon.add(m);
+  }
+
+  scene.add(new THREE.HemisphereLight(WHITE, 0xC9CED8, 0.9));
+  const key = new THREE.DirectionalLight(WHITE, 2.2);
+  key.position.set(4, 5, 6);
+  scene.add(key);
+
+  const target = { x: 0, y: 0 };
+  addEventListener('pointermove', e => {
+    target.x = (e.clientX / innerWidth - 0.5) * 0.6;
+    target.y = (e.clientY / innerHeight - 0.5) * 0.4;
+  }, { passive: true });
+
+  icon.rotation.set(-0.12, -0.35, 0);
+  mount(el, camera, scene, t => {
+    icon.rotation.y += (target.x - 0.25 + Math.sin(t * 0.5) * 0.18 - icon.rotation.y) * 0.05;
+    icon.rotation.x += (target.y - 0.08 - icon.rotation.x) * 0.05;
+    icon.position.y = Math.sin(t * 1.1) * 0.08;
+  });
+}
+
+/* ---------- Portafoglio: quartiere isometrico ---------- */
+{
+  const el = document.getElementById('city-3d');
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
+  camera.userData.size = 4.6;
+  camera.position.set(10, 9, 10);
+  camera.lookAt(0, 0.4, 0);
+  scene.environmentIntensity = 0.25;
+
+  const city = new THREE.Group();
+  scene.add(city);
+
+  const ground = new THREE.Mesh(new THREE.CylinderGeometry(5.6, 5.6, 0.2, 64), new THREE.MeshStandardMaterial({ color: 0x1D2D50, roughness: 0.9 }));
+  ground.position.y = -0.1;
+  ground.receiveShadow = true;
+  city.add(ground);
+
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xF7F6F3, roughness: 0.7 });
+  const roofMat = new THREE.MeshStandardMaterial({ color: 0x2A3A5E, roughness: 0.6 });
+  const goldMat = new THREE.MeshStandardMaterial({ color: GOLD, emissive: GOLD, emissiveIntensity: 0.25, roughness: 0.5 });
+  const box = new THREE.BoxGeometry(1, 1, 1);
+  const pyramid = new THREE.ConeGeometry(0.72, 0.55, 4);
+  pyramid.rotateY(Math.PI / 4);
+
+  let seed = 7; // deterministico: stesso quartiere a ogni caricamento
+  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  let mine;
+  for (let x = -3; x <= 3; x++) for (let z = -3; z <= 3; z++) {
+    if (Math.hypot(x, z) > 3.6 || rand() < 0.3) continue;
+    const isMine = x === 0 && z === 0;
+    const h = isMine ? 1.9 : 0.5 + rand() * (rand() < 0.2 ? 1.8 : 0.8);
+    const house = new THREE.Group();
+    const walls = new THREE.Mesh(box, isMine ? goldMat : wallMat);
+    walls.scale.set(0.9, h, 0.9);
+    walls.position.y = h / 2;
+    const roof = new THREE.Mesh(pyramid, isMine ? goldMat : roofMat);
+    roof.position.y = h + 0.27;
+    for (const m of [walls, roof]) { m.castShadow = m.receiveShadow = true; house.add(m); }
+    house.position.set(x * 1.3, 0, z * 1.3);
+    city.add(house);
+    if (isMine) mine = house;
+  }
+
+  scene.add(new THREE.HemisphereLight(0xDDE3F0, NAVY, 0.8));
+  const sun = new THREE.DirectionalLight(WHITE, 2.4);
+  sun.position.set(6, 10, 3);
+  sun.castShadow = true;
+  sun.shadow.mapSize.set(1024, 1024);
+  Object.assign(sun.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7 });
+  sun.shadow.radius = 4;
+  scene.add(sun);
+
+  city.rotation.y = 0.3;
+  mount(el, camera, scene, t => {
+    city.rotation.y = 0.3 + t * 0.08;
+    mine.position.y = 0.15 + Math.sin(t * 2) * 0.12;
+  });
+}
+</script>
+</body>
+</html>
