@@ -1,0 +1,34 @@
+@font-face { font-family: Manrope; src: url(fonts/Manrope-Bold.ttf); font-weight: 700; font-display: swap; }
+@font-face { font-family: Manrope; src: url(fonts/Manrope-ExtraBold.ttf); font-weight: 800; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400; font-display: swap; }
+@font-face { font-family: Inter; src: url(fonts/Inter-Medium.ttf); font-weight: 500; font-display: swap; }
+
+:root { --ink: #232328; --indigo: #393270; --violet: #7A68C6; --porcelain: #F8F7FB; --stone: #6B6A78; --hairline: #E6E3EE; }
+* { box-sizing: border-box; margin: 0; }
+body { font: 400 16px/1.7 Inter, system-ui, sans-serif; color: var(--ink); background: var(--porcelain); -webkit-font-smoothing: antialiased; }
+a { color: var(--indigo); text-underline-offset: 2px; }
+.wrap { width: min(760px, 100% - 32px); margin-inline: auto; }
+
+nav { border-bottom: 1px solid var(--hairline); }
+nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; font-size: 15px; font-weight: 500; }
+nav img { height: 30px; display: block; }
+nav .wrap > a:last-child { color: var(--stone); text-decoration: none; }
+
+main { padding-block: 56px 96px; }
+h1, h2 { font-family: Manrope, Inter, sans-serif; letter-spacing: -0.02em; line-height: 1.15; }
+h1 { font-size: clamp(32px, 5vw, 44px); font-weight: 800; }
+.updated { color: var(--stone); font-size: 14px; margin: 12px 0 40px; }
+h2 { font-size: 21px; font-weight: 700; margin: 44px 0 12px; }
+h3 { font-size: 16px; margin: 24px 0 6px; }
+p, ul { margin-bottom: 12px; }
+ul { padding-left: 22px; }
+li { margin-bottom: 6px; }
+.box { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 18px 20px; margin-block: 20px; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; margin-block: 12px 20px; }
+th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+th { font-weight: 500; color: var(--stone); }
+.table-scroll { overflow-x: auto; }
+
+footer { border-top: 1px solid var(--hairline); padding-block: 28px; font-size: 14px; color: var(--stone); }
+footer .wrap { display: flex; gap: 20px; flex-wrap: wrap; }
+footer a { color: inherit; }

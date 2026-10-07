@@ -112,6 +112,7 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .cta .stores { justify-content: center; }
 footer { border-top: 1px solid var(--hairline); padding-block: 28px; font-size: 14px; color: var(--stone); }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 
 @media (max-width: 900px) {
   .hero, .portfolio .wrap { grid-template-columns: 1fr; }
@@ -197,7 +198,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 <footer>
   <div class="wrap">
     <span>© 2026 Relon</span>
-    <a href="mailto:info@relon.it">info@relon.it</a>
+    <span class="legal"><a href="/privacy">Privacy</a><a href="/tos">Termini</a><a href="mailto:info@relon.it">info@relon.it</a></span>
   </div>
 </footer>
 
