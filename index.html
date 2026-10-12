@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Relon — App CRM per agenti immobiliari</title>
-<meta name="description" content="Relon è l'app CRM per agenti immobiliari: immobili, documenti, clienti, trattative e news di mercato in un unico posto. In arrivo per iPhone e Android.">
+<meta name="description" content="Relon è l'app CRM per agenti immobiliari: immobili, documenti, contatti, trattative, agenda, note e follow-up in un unico posto. In arrivo per iPhone e Android.">
 <meta name="theme-color" content="#393270">
 <link rel="canonical" href="https://relon.it/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relon">
 <meta property="og:url" content="https://relon.it/">
 <meta property="og:title" content="Relon — App CRM per agenti immobiliari">
-<meta property="og:description" content="Immobili, documenti, clienti, trattative e news di mercato in un'unica app per agenti immobiliari.">
+<meta property="og:description" content="Immobili, documenti, contatti, trattative, agenda, note e follow-up in un'unica app per agenti immobiliari.">
 <meta property="og:image" content="https://relon.it/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 {"@context":"https://schema.org","@graph":[
   {"@type":"Organization","@id":"https://relon.it/#org","name":"Relon","url":"https://relon.it/","logo":"https://relon.it/assets/app-icon-1024.png","email":"info@relon.it"},
   {"@type":"WebSite","@id":"https://relon.it/#website","name":"Relon","url":"https://relon.it/","inLanguage":"it-IT","publisher":{"@id":"https://relon.it/#org"}},
-  {"@type":"MobileApplication","name":"Relon","operatingSystem":"iOS, Android","applicationCategory":"BusinessApplication","description":"App CRM per agenti immobiliari: immobili, documenti, clienti, trattative e news di mercato.","image":"https://relon.it/assets/app-icon-1024.png","publisher":{"@id":"https://relon.it/#org"}}
+  {"@type":"MobileApplication","name":"Relon","operatingSystem":"iOS, Android","applicationCategory":"BusinessApplication","description":"App CRM per agenti immobiliari: immobili, documenti, contatti, trattative, agenda, note e follow-up.","image":"https://relon.it/assets/app-icon-1024.png","publisher":{"@id":"https://relon.it/#org"}}
 ]}
 </script>
 <link rel="icon" href="assets/favicon.png">
@@ -87,12 +87,29 @@ a.store:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(
 section { padding-block: clamp(80px, 12vw, 140px); }
 .section-head { max-width: 640px; margin-bottom: 56px; }
 h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; margin-top: 16px; }
-.features { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); }
 .feature { padding: 32px 28px 0 0; }
 .feature + .feature { padding-left: 28px; border-left: 1px solid var(--hairline); }
-.feature .n { font: 700 14px Manrope, sans-serif; color: var(--violet); }
 .feature h3 { font-size: 21px; margin: 14px 0 10px; }
 .feature p { font-size: 15px; color: var(--stone); }
+
+/* Schermate */
+.rows { display: grid; gap: clamp(72px, 10vw, 128px); }
+.row { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(32px, 6vw, 88px); }
+.row:nth-child(even) .phones { order: -1; }
+.row h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.12; font-weight: 800; margin: 14px 0 14px; }
+.row p { color: var(--stone); max-width: 30em; }
+.row ul { list-style: none; padding: 0; margin-top: 22px; border-top: 1px solid var(--hairline); }
+.row li { padding: 12px 0; border-bottom: 1px solid var(--hairline); font-size: 15px; color: var(--stone); }
+.row li b { font-weight: 500; color: var(--ink); }
+.n { font: 700 14px Manrope, sans-serif; color: var(--violet); }
+.phones { display: flex; justify-content: center; align-items: flex-start; gap: clamp(12px, 2vw, 24px); }
+.phones img { display: block; width: min(264px, 100%); height: auto; min-width: 0; flex: 0 1 264px; border: 6px solid var(--ink); border-radius: 34px; background: #fff; box-shadow: 0 28px 56px -28px rgba(57,50,112,.45); }
+.phones img + img { margin-top: 56px; }
+.desktop { margin-top: clamp(72px, 10vw, 128px); }
+.desktop .section-head { margin-bottom: 36px; }
+.desktop .lead { margin-top: 18px; max-width: 36em; }
+.desktop img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 32px 64px -36px rgba(57,50,112,.45); }
+.more { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); margin-top: clamp(72px, 10vw, 128px); }
 
 /* Portfolio */
 .portfolio { background: #1C1838; color: #fff; }
@@ -118,12 +135,14 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   .hero, .portfolio .wrap { grid-template-columns: 1fr; }
   .hero { min-height: 0; padding-top: 32px; }
   .hero .stage { max-width: 440px; margin-inline: auto; order: -1; }
-  .features { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .row { grid-template-columns: 1fr; }
+  .row .phones { order: -1; }
+  .more { grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .feature:nth-child(3) { padding-left: 0; border-left: 0; }
 }
 @media (max-width: 560px) {
   nav .links a:not(.pill) { display: none; }
-  .features { grid-template-columns: 1fr; }
+  .more { grid-template-columns: 1fr; }
   .feature, .feature + .feature { padding: 28px 0 0; border-left: 0; }
   .feature + .feature { border-top: 1px solid var(--hairline); }
   .store { flex: 1; }
@@ -137,6 +156,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <a href="#" class="brand"><img src="assets/logo.png" alt="Relon"></a>
     <div class="links">
       <a href="#funzionalita">Funzionalità</a>
+      <a href="#computer">Computer</a>
       <a href="#portafoglio">Portafoglio</a>
       <a href="#scarica" class="pill">Scarica</a>
     </div>
@@ -148,7 +168,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div>
       <span class="eyebrow">CRM per agenti immobiliari</span>
       <h1>Ogni immobile.<br>Ogni cliente.<br><em>In tasca.</em></h1>
-      <p class="lead">Relon riunisce news, immobili, documenti, clienti e trattative in un'unica app pensata per chi lavora sul campo.</p>
+      <p class="lead">Relon riunisce immobili, documenti, contatti, trattative, agenda e note in un'unica app pensata per chi lavora sul campo. E ti ricorda quello che rischi di dimenticare.</p>
       <div class="stores" data-stores></div>
     </div>
     <div class="stage" id="hero-3d" role="img" aria-label="Una casa in 3D che si trasforma in un grafo di dati"></div>
@@ -160,11 +180,51 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
         <span class="eyebrow">Funzionalità</span>
         <h2>Tutto il lavoro dell'agente, in un solo posto.</h2>
       </div>
-      <div class="features">
-        <div class="feature"><span class="n">01</span><h3>News</h3><p>Le notizie sul mercato immobiliare da Il Sole 24 Ore, Casa&amp;Clima e Wall Street Italia, da salvare e condividere.</p></div>
-        <div class="feature"><span class="n">02</span><h3>Immobili e documenti</h3><p>Schede complete, foto e checklist documenti per vendita e affitto, con la percentuale di completezza sempre visibile.</p></div>
-        <div class="feature"><span class="n">03</span><h3>Clienti</h3><p>Profili, temperatura del contatto e consenso GDPR con timestamp digitale al primo inserimento.</p></div>
-        <div class="feature"><span class="n">04</span><h3>Trattative</h3><p>Dalla proposta al rogito, con valore della pipeline e commissioni previste sotto controllo.</p></div>
+      <div class="rows">
+        <div class="row">
+          <div><span class="n">01 · Home</span><h3>La giornata, appena apri l'app.</h3><p>Numeri del portafoglio, agenda di oggi, ultime note e follow-up da valutare in una sola schermata. Ogni sezione è a un tocco.</p><ul><li><b>Crea nuovo</b> — contatto, immobile, trattativa, appuntamento, attività o nota dal pulsante +</li><li><b>Ricerca globale</b> — tra contatti, immobili, trattative e note</li><li><b>Meteo</b> — della zona, per organizzare le visite</li></ul></div>
+          <div class="phones"><img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Schermata Home di Relon con riepilogo, agenda e note"><img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Elenco delle sezioni di Relon"></div>
+        </div>
+        <div class="row">
+          <div><span class="n">02 · Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Scheda completa con dati, impianti e classe energetica, galleria foto con copertina, mandato e commissioni. Filtri per vendita, affitto e stato.</p><ul><li><b>Checklist documenti</b> — distinte per vendita e affitto, con la completezza sempre visibile</li><li><b>Mandato</b> — tipo, date e avviso quando mancano 30 giorni alla scadenza</li><li><b>Prenotazione visite</b> — scegli giorni e fasce orarie, condividi il link: il cliente prenota da solo e la visita arriva in agenda</li></ul></div>
+          <div class="phones"><img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato del mandato"><img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con dati principali e suggerimento"></div>
+        </div>
+        <div class="row">
+          <div><span class="n">03 · Contatti</span><h3>Tutte le persone con cui lavori.</h3><p>Acquirenti, proprietari, lead, notai, commercialisti: ogni contatto ha le sue etichette, la temperatura e la data dell'ultima volta che l'hai sentito.</p><ul><li><b>Esigenza dell'acquirente</b> — budget, zone, tipologia, superficie, accessori e urgenza</li><li><b>Consenso GDPR</b> — obbligatorio al primo inserimento, con data e ora</li><li><b>Importazione</b> — dalla rubrica del telefono o da un file CSV</li><li><b>Documenti</b> — carta d'identità, codice fiscale e gli altri documenti richiesti, per tipo di contatto</li></ul></div>
+          <div class="phones"><img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura"><img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza"></div>
+        </div>
+        <div class="row">
+          <div><span class="n">04 · Trattative</span><h3>Dal primo interesse al rogito.</h3><p>Cinque fasi: attiva, proposta, compromesso, rogito, chiusa. In testa trovi quante trattative sono aperte, il valore della pipeline e i giorni medi.</p><ul><li><b>Scadenze</b> — validità della proposta, caparra, compromesso, rogito e sospensiva mutuo</li><li><b>Diario attività</b> — chiamate, visite, WhatsApp, email, proposte e documenti in ordine di tempo</li><li><b>Documenti del compromesso</b> — checklist dedicata, con ciò che manca in evidenza</li></ul></div>
+          <div class="phones"><img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline"><img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con fasi e riepilogo"></div>
+        </div>
+        <div class="row">
+          <div><span class="n">05 · Note</span><h3>Scrivi una volta. Relon smista.</h3><p>Scrivi o detta una nota come ti viene. Relon riconosce contatto, immobile e data, e la collega alle schede giuste.</p><ul><li><b>Dettatura</b> — per quando sei in macchina o in visita</li><li><b>Dalla nota all'agenda</b> — «ricontattarlo venerdì pomeriggio» diventa un follow-up da confermare</li><li><b>Allegati, importanti, archivio</b> — e ricerca nel testo di tutte le note</li></ul></div>
+          <div class="phones"><img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare"><img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa"></div>
+        </div>
+        <div class="row">
+          <div><span class="n">06 · Follow-up</span><h3>Quello che rischia di essere dimenticato.</h3><p>Relon controlla note, visite, mandati, proposte e documenti, e ti propone la prossima azione spiegando sempre il perché.</p><ul><li><b>Sette tipi di suggerimento</b> — impegno da una nota, riscontro dopo la visita, incarico o proposta in scadenza, trattativa ferma, contatto da risentire, documenti mancanti</li><li><b>Messaggio già pronto</b> — per WhatsApp, SMS o email: lo modifichi e lo invii tu, nulla parte in automatico</li><li><b>Decidi tu</b> — crea un task o un appuntamento, rimanda o ignora</li></ul></div>
+          <div class="phones"><img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up suggerito con azioni rapide"><img src="assets/screens/agenda.webp" width="780" height="1688" loading="lazy" alt="Agenda con appuntamenti, task e scadenze"></div>
+        </div>
+        <div class="row">
+          <div><span class="n">07 · Agenda e statistiche</span><h3>Cosa fare oggi, e come sta andando.</h3><p>Appuntamenti, task e scadenze delle trattative in un unico calendario, in vista elenco o oraria. Le statistiche mostrano i numeri del mese e cosa richiede attenzione.</p><ul><li><b>In ritardo</b> — i task scaduti restano in cima finché non li chiudi</li><li><b>Opportunità a rischio</b> — mandati in scadenza, trattative ferme, contatti da risentire</li><li><b>Andamento</b> — trattative chiuse, nuovi contatti e immobili, tempo medio di vendita negli ultimi 6 mesi</li></ul></div>
+          <div class="phones"><img src="assets/screens/statistiche.webp" width="780" height="1688" loading="lazy" alt="Statistiche con opportunità a rischio e Relon Insight"></div>
+        </div>
+      </div>
+
+      <div class="desktop" id="computer">
+        <div class="section-head">
+          <span class="eyebrow">Anche da computer</span>
+          <h2>In ufficio sullo schermo grande, fuori sul telefono.</h2>
+          <p class="lead">La stessa app, con barra laterale, schede affiancate e trattative da trascinare da una fase all'altra. Quello che salvi su un dispositivo compare da solo sugli altri.</p>
+        </div>
+        <img src="assets/screens/desktop-trattative.webp" width="1440" height="900" loading="lazy" alt="Relon su computer: trattative in colonne per fase">
+      </div>
+
+      <div class="more">
+        <div class="feature"><span class="n">News</span><h3>Mercato immobiliare</h3><p>Le notizie da Il Sole 24 Ore, Casa&amp;Clima e Wall Street Italia, da salvare e condividere.</p></div>
+        <div class="feature"><span class="n">Accesso</span><h3>Email o Google</h3><p>Entri con email e password oppure con il tuo account Google.</p></div>
+        <div class="feature"><span class="n">Scorciatoie</span><h3>Cerca con Ctrl+K</h3><p>Su computer trovi contatti, immobili, trattative e note da qualsiasi schermata.</p></div>
+        <div class="feature"><span class="n">Lingua</span><h3>Italiano e inglese</h3><p>Cambi lingua dalle impostazioni quando vuoi.</p></div>
       </div>
     </div>
   </section>
@@ -176,7 +236,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
         <h2>Il tuo portafoglio, a colpo d'occhio.</h2>
         <p class="lead" style="margin-top:20px">Ogni agente vede e gestisce solo i propri clienti, immobili e trattative. Scadenze dei mandati e documenti mancanti emergono da soli.</p>
         <div class="stats">
-          <div><b>4</b><span>stati del lead</span></div>
+          <div><b>7</b><span>tipi di follow-up</span></div>
           <div><b>5</b><span>fasi della trattativa</span></div>
           <div><b>30 gg</b><span>avviso scadenza mandato</span></div>
         </div>
