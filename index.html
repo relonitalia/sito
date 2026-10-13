@@ -92,24 +92,94 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .feature h3 { font-size: 21px; margin: 14px 0 10px; }
 .feature p { font-size: 15px; color: var(--stone); }
 
+/* Mappa del sistema: le sezioni in cerchio, con i collegamenti di quella scelta */
+.sys { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(32px, 5vw, 64px); margin-bottom: clamp(40px, 6vw, 64px); }
+.sys h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.12; font-weight: 800; }
+.sysmap { position: relative; aspect-ratio: 600 / 560; }
+.sysmap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.sysmap ellipse { fill: none; stroke: var(--hairline); stroke-width: 1.5; }
+.sysmap path { fill: none; stroke: transparent; stroke-width: 2; }
+.sysmap path.on { stroke: var(--violet); stroke-dasharray: 6 6; animation: wire 1s linear infinite; }
+.node { position: absolute; transform: translate(-50%, -50%); font: 500 15px/1 Inter, sans-serif; color: var(--ink); white-space: nowrap; background: #fff; border: 1px solid var(--hairline); border-radius: 999px; padding: 11px 16px; cursor: pointer; box-shadow: 0 8px 20px -14px rgba(57,50,112,.6); transition: background .2s, color .2s, border-color .2s; }
+.node.hub { padding: 16px 22px; font-weight: 700; }
+.node.near { border-color: var(--violet); }
+.node[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.node:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
+#edges { list-style: none; padding: 0; margin-top: 12px; }
+.frow { background: #fff; border: 1px solid var(--hairline); border-radius: 24px; padding: clamp(20px, 4vw, 40px); scroll-margin-block: 96px; }
+.frow .book-grid .fu-card { background: var(--porcelain); }
+.frow .pill { display: inline-block; }
+
 /* Schermate */
 .rows { display: grid; gap: clamp(72px, 10vw, 128px); }
-.row { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(32px, 6vw, 88px); }
-.row:nth-child(even) .phones { order: -1; }
-.row h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.12; font-weight: 800; margin: 14px 0 14px; }
-.row p { color: var(--stone); max-width: 30em; }
-.row ul { list-style: none; padding: 0; margin-top: 22px; border-top: 1px solid var(--hairline); }
-.row li { padding: 12px 0; border-bottom: 1px solid var(--hairline); font-size: 15px; color: var(--stone); }
-.row li b { font-weight: 500; color: var(--ink); }
+.frow h3 { scroll-margin-block: 140px;  font-size: clamp(26px, 3vw, 36px); line-height: 1.12; font-weight: 800; margin: 14px 0; }
+.frow > p { color: var(--stone); max-width: 36em; margin-bottom: 36px; }
 .n { font: 700 14px Manrope, sans-serif; color: var(--violet); }
-.phones { display: flex; justify-content: center; align-items: flex-start; gap: clamp(12px, 2vw, 24px); }
-.phones img { display: block; width: min(264px, 100%); height: auto; min-width: 0; flex: 0 1 264px; border: 6px solid var(--ink); border-radius: 34px; background: #fff; box-shadow: 0 28px 56px -28px rgba(57,50,112,.45); }
-.phones img + img { margin-top: 56px; }
+.gallery { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; margin-top: 36px; padding-bottom: 20px; }
+.gallery img { flex: none; width: 216px; height: auto; border: 6px solid var(--ink); border-radius: 30px; background: #fff; scroll-snap-align: start; }
 .desktop { margin-top: clamp(72px, 10vw, 128px); }
 .desktop .section-head { margin-bottom: 36px; }
 .desktop .lead { margin-top: 18px; max-width: 36em; }
-.desktop img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 32px 64px -36px rgba(57,50,112,.45); }
+.desktop > img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 32px 64px -36px rgba(57,50,112,.45); }
 .more { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); margin-top: clamp(72px, 10vw, 128px); }
+
+/* Follow-up: dal segnale all'agenda */
+.flow { background: #fff; border-block: 1px solid var(--hairline); }
+.flow .lead { margin-top: 18px; max-width: 36em; }
+.flow-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(64px, 10vw, 140px); }
+.flow-grid > div { min-width: 0; }
+.flow-grid svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.flow-grid path { fill: none; stroke: var(--hairline); stroke-width: 1.5; transition: stroke .3s; }
+.flow-grid path.on { stroke: var(--violet); stroke-width: 2; stroke-dasharray: 6 6; animation: wire 1s linear infinite; }
+@keyframes wire { to { stroke-dashoffset: -12; } }
+.step { display: block; margin-bottom: 16px; }
+.signals { position: relative; display: grid; gap: 8px; }
+.signal { font: inherit; color: inherit; text-align: left; background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 14px; padding: 11px 16px; cursor: pointer; transition: border-color .3s, background .3s, box-shadow .3s; }
+.signal b { display: block; font-weight: 500; font-size: 16px; }
+.signal small { display: block; font-size: 14px; line-height: 1.4; color: var(--stone); }
+.signal[aria-pressed="true"] { background: #fff; border-color: var(--violet); box-shadow: 0 12px 24px -16px rgba(57,50,112,.6); }
+.signal:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
+.fu-card { background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 24px; padding: 24px; box-shadow: 0 28px 56px -28px rgba(57,50,112,.45); }
+.fu-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.fu-head b { font: 700 18px/1.2 Manrope, sans-serif; }
+.fu-tag { background: #ECE8FB; color: var(--indigo); font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
+.fu-why { margin: 14px 0; min-height: 6.4em; }
+.fu-src { background: #ECE8FB; color: var(--indigo); font-size: 14px; font-weight: 500; padding: 10px 14px; border-radius: 12px; }
+.fu-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; font-size: 14px; font-weight: 500; text-align: center; }
+.fu-actions span { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 8px; }
+.fu-decide { display: flex; justify-content: space-between; margin-top: 16px; font-size: 14px; font-weight: 500; }
+.fu-decide span:first-child { color: #23875A; }
+.fu-decide span:last-child { color: #B5432F; }
+
+/* Prenotazione visite: agente -> cliente -> agenda */
+.book-grid { display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: clamp(32px, 5vw, 64px); }
+.book-grid > div { position: relative; min-width: 0; }
+.book-grid > div + div::before { content: ""; position: absolute; top: 132px; right: 100%; width: clamp(32px, 5vw, 64px); height: 2px; background: repeating-linear-gradient(90deg, var(--violet) 0 6px, transparent 6px 12px); animation: dash 1s linear infinite; }
+@keyframes dash { to { background-position: 12px 0; } }
+.book-grid .fu-card { background: #fff; }
+.book-grid small { display: block; font-size: 13px; color: var(--stone); margin: 16px 0 8px; }
+.book-grid .fu-head + small, .fu-head + .field, .fu-head + .chips { margin-top: 14px; }
+.book-grid p { font-size: 15px; color: var(--stone); margin-top: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: 500 14px/1 Inter, sans-serif; color: var(--ink); background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 999px; padding: 9px 12px; }
+.chip.on, .chip[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+button.chip { cursor: pointer; transition: background .2s, color .2s; }
+button.chip:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
+.field { background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 10px; padding: 9px 12px; font-size: 14px; margin-top: 6px; }
+.field b { font-weight: 500; color: var(--violet); margin-right: 6px; }
+.field.todo { color: var(--stone); border-style: dashed; }
+.bar { height: 6px; border-radius: 3px; background: var(--hairline); margin-top: 12px; }
+.bar i { display: block; height: 100%; border-radius: 3px; background: var(--violet); }
+mark { background: #ECE8FB; color: var(--indigo); border-radius: 4px; padding: 0 3px; }
+.btn { display: block; background: var(--indigo); color: #fff; text-align: center; font-size: 14px; font-weight: 500; border-radius: 12px; padding: 12px; margin-top: 16px; }
+.visit + .toast, .chips + .toast, .field + .toast { margin-top: 12px; }
+.toast { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 500; border-radius: 12px; padding: 12px 14px; }
+.toast span { color: var(--lilac); }
+.visit { display: flex; gap: 14px; align-items: flex-start; border: 1px solid var(--hairline); border-radius: 14px; padding: 14px; margin: 12px 0; }
+.visit time { font: 700 18px/1.3 Manrope, sans-serif; color: var(--violet); }
+.visit b { display: block; font-weight: 500; font-size: 15px; line-height: 1.4; }
+.visit span { font-size: 13px; color: var(--stone); }
+@media (prefers-reduced-motion: reduce) { .flow-grid path.on, .sysmap path.on, .book-grid > div + div::before { animation: none; } }
 
 /* Portfolio */
 .portfolio { background: #1C1838; color: #fff; }
@@ -135,8 +205,14 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   .hero, .portfolio .wrap { grid-template-columns: 1fr; }
   .hero { min-height: 0; padding-top: 32px; }
   .hero .stage { max-width: 440px; margin-inline: auto; order: -1; }
-  .row { grid-template-columns: 1fr; }
-  .row .phones { order: -1; }
+  .flow-grid { grid-template-columns: 1fr; gap: 40px; }
+  .sys { grid-template-columns: 1fr; gap: 32px; }
+  .node { font-size: 12px; padding: 8px 10px; }
+  .node.hub { padding: 12px 16px; }
+  .book-grid { grid-template-columns: 1fr; gap: 40px; }
+  .book-grid > div + div::before { display: none; }
+  .signals { grid-auto-flow: column; grid-auto-columns: 232px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 4px 16px 12px; }
+  .signal { scroll-snap-align: center; }
   .more { grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .feature:nth-child(3) { padding-left: 0; border-left: 0; }
 }
@@ -157,6 +233,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="links">
       <a href="#funzionalita">Funzionalità</a>
       <a href="#computer">Computer</a>
+      <a href="#follow-up">Follow-up</a>
+      <a href="#prenotazioni">Prenotazioni</a>
       <a href="#portafoglio">Portafoglio</a>
       <a href="#scarica" class="pill">Scarica</a>
     </div>
@@ -179,35 +257,124 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <div class="section-head">
         <span class="eyebrow">Funzionalità</span>
         <h2>Tutto il lavoro dell'agente, in un solo posto.</h2>
+        <p class="lead" style="margin-top:18px;max-width:36em">Quello che inserisci in una sezione alimenta le altre. Tocca una sezione per vedere a cosa è collegata e come funziona.</p>
+      </div>
+      <div class="sys">
+        <div class="sysmap">
+          <svg viewBox="0 0 600 560" aria-hidden="true"><ellipse cx="300" cy="280" rx="215" ry="225"/></svg>
+          <button type="button" class="node hub" data-node="home" aria-pressed="false" style="left:50.0%;top:50.0%">Home</button>
+          <button type="button" class="node" data-node="immobili" aria-pressed="false" style="left:50.0%;top:9.8%">Immobili</button>
+          <button type="button" class="node" data-node="prenotazioni" aria-pressed="false" style="left:78.0%;top:24.9%">Prenotazioni</button>
+          <button type="button" class="node" data-node="agenda" aria-pressed="false" style="left:84.9%;top:58.9%">Agenda</button>
+          <button type="button" class="node" data-node="follow-up" aria-pressed="false" style="left:65.5%;top:86.2%">Follow-up</button>
+          <button type="button" class="node" data-node="note" aria-pressed="false" style="left:34.5%;top:86.2%">Note</button>
+          <button type="button" class="node" data-node="contatti" aria-pressed="false" style="left:15.1%;top:58.9%">Contatti</button>
+          <button type="button" class="node" data-node="trattative" aria-pressed="false" style="left:22.0%;top:24.9%">Trattative</button>
+        </div>
+        <div>
+          <span class="n step">Collegamenti</span>
+          <h3 id="sys-title">Tutto il sistema</h3>
+          <ul id="edges">
+            <li class="field" data-from="note" data-to="contatti"><b>Note → Contatti</b>Relon riconosce il contatto nella nota e la collega alla sua scheda.</li>
+            <li class="field" data-from="note" data-to="immobili"><b>Note → Immobili</b>Riconosce anche l'immobile, e la nota compare nella sua scheda.</li>
+            <li class="field" data-from="note" data-to="follow-up"><b>Note → Follow-up</b>Una data scritta nella nota diventa un follow-up da confermare.</li>
+            <li class="field" data-from="immobili" data-to="trattative"><b>Immobili → Trattative</b>Ogni trattativa nasce su un immobile.</li>
+            <li class="field" data-from="contatti" data-to="trattative"><b>Contatti → Trattative</b>Acquirente e venditore sono tuoi contatti.</li>
+            <li class="field" data-from="immobili" data-to="prenotazioni"><b>Immobili → Prenotazioni</b>Ogni immobile ha il suo link per prenotare le visite.</li>
+            <li class="field" data-from="prenotazioni" data-to="agenda"><b>Prenotazioni → Agenda</b>La visita prenotata dal cliente arriva in agenda.</li>
+            <li class="field" data-from="prenotazioni" data-to="contatti"><b>Prenotazioni → Contatti</b>Se telefono o email corrispondono, la visita è collegata al contatto.</li>
+            <li class="field" data-from="trattative" data-to="agenda"><b>Trattative → Agenda</b>Le scadenze della trattativa compaiono nel calendario.</li>
+            <li class="field" data-from="immobili" data-to="follow-up"><b>Immobili → Follow-up</b>Incarico in scadenza o documenti mancanti generano un suggerimento.</li>
+            <li class="field" data-from="trattative" data-to="follow-up"><b>Trattative → Follow-up</b>Proposta in scadenza, trattativa ferma, visita senza riscontro, documenti del compromesso.</li>
+            <li class="field" data-from="contatti" data-to="follow-up"><b>Contatti → Follow-up</b>Un contatto caldo o tiepido che non senti da troppo tempo.</li>
+            <li class="field" data-from="follow-up" data-to="agenda"><b>Follow-up → Agenda</b>Dal suggerimento crei un task o un appuntamento.</li>
+            <li class="field" data-from="immobili" data-to="home"><b>Immobili → Home</b>Il numero degli immobili in portafoglio.</li>
+            <li class="field" data-from="contatti" data-to="home"><b>Contatti → Home</b>Il numero dei contatti.</li>
+            <li class="field" data-from="trattative" data-to="home"><b>Trattative → Home</b>Le trattative in corso.</li>
+            <li class="field" data-from="agenda" data-to="home"><b>Agenda → Home</b>L'agenda di oggi.</li>
+            <li class="field" data-from="note" data-to="home"><b>Note → Home</b>Le ultime note.</li>
+            <li class="field" data-from="follow-up" data-to="home"><b>Follow-up → Home</b>I suggerimenti da valutare.</li>
+          </ul>
+        </div>
       </div>
       <div class="rows">
-        <div class="row">
-          <div><span class="n">01 · Home</span><h3>La giornata, appena apri l'app.</h3><p>Numeri del portafoglio, agenda di oggi, ultime note e follow-up da valutare in una sola schermata. Ogni sezione è a un tocco.</p><ul><li><b>Crea nuovo</b> — contatto, immobile, trattativa, appuntamento, attività o nota dal pulsante +</li><li><b>Ricerca globale</b> — tra contatti, immobili, trattative e note</li><li><b>Meteo</b> — della zona, per organizzare le visite</li></ul></div>
-          <div class="phones"><img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Schermata Home di Relon con riepilogo, agenda e note"><img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Elenco delle sezioni di Relon"></div>
+        <div class="frow" data-panel="home">
+          <span class="n">Home</span><h3>La giornata, appena apri l'app.</h3><p>Numeri del portafoglio, agenda di oggi, ultime note e follow-up da valutare in una sola schermata. Da lì aggiungi quello che succede e ritrovi tutto.</p>
+          <div class="book-grid">
+            <div><span class="n step">1 · Apri l'app</span><div class="fu-card"><div class="fu-head"><b>Oggi</b><span class="fu-tag">Meteo della zona</span></div><small>Portafoglio</small><div class="chips"><span class="chip">12 immobili</span><span class="chip">34 contatti</span><span class="chip">5 trattative</span></div><small>Agenda di oggi</small><div class="visit"><time>10:30</time><div><b>Visita: Via Solferino 7</b><span>Elena Rossi</span></div></div><div class="toast">3 suggerimenti da valutare <span>Apri</span></div></div></div>
+            <div><span class="n step">2 · Aggiungi con il +</span><div class="fu-card"><div class="fu-head"><b>Crea nuovo</b></div><p>Un tocco sul pulsante +, ed è già nella sezione giusta.</p><small>Cosa puoi creare</small><div class="chips"><span class="chip">Contatto</span><span class="chip">Immobile</span><span class="chip">Trattativa</span><span class="chip">Appuntamento</span><span class="chip">Attività</span><span class="chip">Nota</span></div></div></div>
+            <div><span class="n step">3 · Ritrovi tutto</span><div class="fu-card"><div class="fu-head"><b>Ricerca globale</b></div><div class="field">solferino</div><small>Risultati</small><div class="field"><b>Immobile</b>Via Solferino 7</div><div class="field"><b>Trattativa</b>Via Solferino 7</div><div class="field"><b>Nota</b>«Sentito Marco Bianchi per via Solferino…»</div></div></div>
+          </div>
         </div>
-        <div class="row">
-          <div><span class="n">02 · Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Scheda completa con dati, impianti e classe energetica, galleria foto con copertina, mandato e commissioni. Filtri per vendita, affitto e stato.</p><ul><li><b>Checklist documenti</b> — distinte per vendita e affitto, con la completezza sempre visibile</li><li><b>Mandato</b> — tipo, date e avviso quando mancano 30 giorni alla scadenza</li><li><b>Prenotazione visite</b> — scegli giorni e fasce orarie, condividi il link: il cliente prenota da solo e la visita arriva in agenda</li></ul></div>
-          <div class="phones"><img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato del mandato"><img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con dati principali e suggerimento"></div>
+        <div class="frow" data-panel="immobili">
+          <span class="n">Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Crei la scheda, completi i documenti e Relon tiene d'occhio il mandato. Filtri per vendita, affitto e stato.</p>
+          <div class="book-grid">
+            <div><span class="n step">1 · Crei la scheda</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Vendita</span></div><small>Dati</small><div class="chips"><span class="chip">Dati principali</span><span class="chip">Impianti</span><span class="chip">Classe energetica</span><span class="chip">Foto con copertina</span></div><small>Mandato</small><div class="chips"><span class="chip on">Esclusiva 6 mesi</span><span class="chip">Non esclusiva</span></div><div class="field"><b>Dal</b>2 maggio <b style='margin-left:10px'>al</b>2 novembre</div><div class="field"><b>Commissioni</b>acquirente e venditore</div></div></div>
+            <div><span class="n step">2 · Completi i documenti</span><div class="fu-card"><div class="fu-head"><b>Checklist documenti</b><span class="fu-tag">Vendita</span></div><p>Una checklist per la vendita e una per l'affitto.</p><div class="field"><b>✓</b>Visura catastale aggiornata</div><div class="field"><b>✓</b>Planimetria catastale</div><div class="field todo"><b>○</b>APE</div><div class="bar"><i style="width:66%"></i></div><small>Completezza: 2 su 3</small></div></div>
+            <div><span class="n step">3 · Relon controlla le scadenze</span><div class="fu-card"><div class="toast">Incarico in scadenza tra 20 giorni <span>Apri</span></div><p>L'avviso arriva quando mancano 30 giorni alla fine del mandato.</p><small>Dalla scheda partono anche</small><div class="chips"><span class="chip">Link di prenotazione visite</span><span class="chip">Trattative</span><span class="chip">Follow-up</span></div></div></div>
+          </div>
         </div>
-        <div class="row">
-          <div><span class="n">03 · Contatti</span><h3>Tutte le persone con cui lavori.</h3><p>Acquirenti, proprietari, lead, notai, commercialisti: ogni contatto ha le sue etichette, la temperatura e la data dell'ultima volta che l'hai sentito.</p><ul><li><b>Esigenza dell'acquirente</b> — budget, zone, tipologia, superficie, accessori e urgenza</li><li><b>Consenso GDPR</b> — obbligatorio al primo inserimento, con data e ora</li><li><b>Importazione</b> — dalla rubrica del telefono o da un file CSV</li><li><b>Documenti</b> — carta d'identità, codice fiscale e gli altri documenti richiesti, per tipo di contatto</li></ul></div>
-          <div class="phones"><img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura"><img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza"></div>
+        <div class="frow" data-panel="contatti">
+          <span class="n">Contatti</span><h3>Tutte le persone con cui lavori.</h3><p>Acquirenti, proprietari, lead, notai, commercialisti: ogni contatto entra una volta sola, con il suo consenso, e da lì sai sempre quando l'hai sentito.</p>
+          <div class="book-grid">
+            <div><span class="n step">1 · Lo inserisci o lo importi</span><div class="fu-card"><div class="fu-head"><b>Nuovo contatto</b></div><small>Da dove</small><div class="chips"><span class="chip">A mano</span><span class="chip">Dalla rubrica</span><span class="chip">Da file CSV</span></div><small>Consenso GDPR</small><div class="field"><b>✓</b>13 ottobre 2026, 10:42</div><p>Obbligatorio al primo inserimento, con data e ora.</p></div></div>
+            <div><span class="n step">2 · Lo descrivi</span><div class="fu-card"><div class="fu-head"><b>Giulia Ferrari</b><span class="fu-tag">Caldo</span></div><small>Etichette</small><div class="chips"><span class="chip">Acquirente</span><span class="chip">Lead</span></div><small>Esigenza dell'acquirente</small><div class="chips"><span class="chip">Budget</span><span class="chip">Zone</span><span class="chip">Tipologia</span><span class="chip">Superficie</span><span class="chip">Accessori</span><span class="chip">Urgenza</span></div><small>Documenti</small><div class="chips"><span class="chip">Carta d'identità</span><span class="chip">Codice fiscale</span></div></div></div>
+            <div><span class="n step">3 · Sai quando risentirlo</span><div class="fu-card"><div class="fu-head"><b>Ultimo contatto</b></div><div class="visit"><time>9 gg</time><div><b>Giulia Ferrari</b><span>contatto caldo</span></div></div><div class="toast">Contatto da risentire <span>Apri</span></div><p>Caldo dopo 7 giorni di silenzio, tiepido dopo 21: Relon te lo ricorda.</p></div></div>
+          </div>
         </div>
-        <div class="row">
-          <div><span class="n">04 · Trattative</span><h3>Dal primo interesse al rogito.</h3><p>Cinque fasi: attiva, proposta, compromesso, rogito, chiusa. In testa trovi quante trattative sono aperte, il valore della pipeline e i giorni medi.</p><ul><li><b>Scadenze</b> — validità della proposta, caparra, compromesso, rogito e sospensiva mutuo</li><li><b>Diario attività</b> — chiamate, visite, WhatsApp, email, proposte e documenti in ordine di tempo</li><li><b>Documenti del compromesso</b> — checklist dedicata, con ciò che manca in evidenza</li></ul></div>
-          <div class="phones"><img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline"><img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con fasi e riepilogo"></div>
+        <div class="frow" data-panel="trattative">
+          <span class="n">Trattative</span><h3>Dal primo interesse al rogito.</h3><p>Cinque fasi, con le scadenze e i documenti che servono lungo la strada. In testa trovi quante trattative sono aperte, il valore della pipeline e i giorni medi.</p>
+          <div class="book-grid">
+            <div><span class="n step">1 · Segui le fasi</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Proposta</span></div><small>Fasi</small><div class="chips"><span class="chip">Attiva</span><span class="chip on">Proposta</span><span class="chip">Compromesso</span><span class="chip">Rogito</span><span class="chip">Chiusa</span></div><small>In testa all'elenco</small><div class="chips"><span class="chip">Trattative aperte</span><span class="chip">Valore della pipeline</span><span class="chip">Giorni medi</span></div></div></div>
+            <div><span class="n step">2 · Tieni le scadenze</span><div class="fu-card"><div class="fu-head"><b>Scadenze</b></div><div class="field"><b>15 ott</b>Validità della proposta</div><div class="field todo"><b>—</b>Caparra</div><div class="field todo"><b>—</b>Compromesso</div><div class="field todo"><b>—</b>Rogito</div><div class="field todo"><b>—</b>Sospensiva mutuo</div></div></div>
+            <div><span class="n step">3 · Tutto resta scritto</span><div class="fu-card"><div class="fu-head"><b>Diario attività</b></div><div class="chips"><span class="chip">Chiamata</span><span class="chip">Visita</span><span class="chip">WhatsApp</span><span class="chip">Email</span><span class="chip">Proposta</span><span class="chip">Documento</span></div><p>In ordine di tempo, per sapere sempre cosa è successo.</p><small>Documenti del compromesso</small><div class="field"><b>✓</b>Planimetria catastale aggiornata</div><div class="field todo"><b>○</b>APE definitivo</div><div class="field todo"><b>○</b>Estratto catastale</div></div></div>
+          </div>
         </div>
-        <div class="row">
-          <div><span class="n">05 · Note</span><h3>Scrivi una volta. Relon smista.</h3><p>Scrivi o detta una nota come ti viene. Relon riconosce contatto, immobile e data, e la collega alle schede giuste.</p><ul><li><b>Dettatura</b> — per quando sei in macchina o in visita</li><li><b>Dalla nota all'agenda</b> — «ricontattarlo venerdì pomeriggio» diventa un follow-up da confermare</li><li><b>Allegati, importanti, archivio</b> — e ricerca nel testo di tutte le note</li></ul></div>
-          <div class="phones"><img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare"><img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa"></div>
+        <div class="frow" data-panel="note">
+          <span class="n">Note</span><h3>Scrivi una volta. Relon smista.</h3><p>Scrivi o detta una nota come ti viene. Relon riconosce contatto, immobile e data, e la collega alle schede giuste.</p>
+          <div class="book-grid">
+            <div><span class="n step">1 · Scrivi o detti</span><div class="fu-card"><div class="fu-head"><b>Nuova nota</b><span class="fu-tag">Dettatura</span></div><div class="field">«Sentito Marco Bianchi per via Solferino 7, vuole rivederlo. Ricontattarlo venerdì pomeriggio.»</div><p>Per quando sei in macchina o in visita.</p><small>Sulla nota</small><div class="chips"><span class="chip">Allegati</span><span class="chip">Importante</span><span class="chip">Archivio</span></div></div></div>
+            <div><span class="n step">2 · Relon riconosce</span><div class="fu-card"><div class="fu-head"><b>Nella nota</b></div><div class="field">«Sentito <mark>Marco Bianchi</mark> per <mark>via Solferino 7</mark>, vuole rivederlo. Ricontattarlo <mark>venerdì pomeriggio</mark>.»</div><small>Trovati</small><div class="field"><b>Contatto</b>Marco Bianchi</div><div class="field"><b>Immobile</b>Via Solferino 7</div><div class="field"><b>Data</b>venerdì pomeriggio</div></div></div>
+            <div><span class="n step">3 · La nota arriva dove serve</span><div class="fu-card"><div class="fu-head"><b>Collegata a</b></div><div class="chips"><span class="chip">Scheda di Marco Bianchi</span><span class="chip">Scheda di Via Solferino 7</span></div><div class="toast">Follow-up da confermare <span>Apri</span></div><p>Lo confermi e diventa un impegno in agenda.</p></div></div>
+          </div>
         </div>
-        <div class="row">
-          <div><span class="n">06 · Follow-up</span><h3>Quello che rischia di essere dimenticato.</h3><p>Relon controlla note, visite, mandati, proposte e documenti, e ti propone la prossima azione spiegando sempre il perché.</p><ul><li><b>Sette tipi di suggerimento</b> — impegno da una nota, riscontro dopo la visita, incarico o proposta in scadenza, trattativa ferma, contatto da risentire, documenti mancanti</li><li><b>Messaggio già pronto</b> — per WhatsApp, SMS o email: lo modifichi e lo invii tu, nulla parte in automatico</li><li><b>Decidi tu</b> — crea un task o un appuntamento, rimanda o ignora</li></ul></div>
-          <div class="phones"><img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up suggerito con azioni rapide"><img src="assets/screens/agenda.webp" width="780" height="1688" loading="lazy" alt="Agenda con appuntamenti, task e scadenze"></div>
+        <div class="frow" data-panel="agenda">
+          <span class="n">Agenda e statistiche</span><h3>Cosa fare oggi, e come sta andando.</h3><p>Quello che nasce nelle altre sezioni finisce in un unico calendario. Le statistiche mostrano i numeri del mese e cosa richiede attenzione.</p>
+          <div class="book-grid">
+            <div><span class="n step">1 · Tutto entra in agenda</span><div class="fu-card"><div class="fu-head"><b>Da dove arriva</b></div><div class="field"><b>→</b>Appuntamenti e task che crei tu</div><div class="field"><b>→</b>Scadenze delle trattative</div><div class="field"><b>→</b>Visite prenotate dai clienti</div><div class="field"><b>→</b>Follow-up e note confermati</div></div></div>
+            <div><span class="n step">2 · Un solo calendario</span><div class="fu-card"><div class="fu-head"><b>Oggi</b></div><small>Vista</small><div class="chips"><span class="chip on">Elenco</span><span class="chip">Oraria</span></div><div class="visit"><time>Ieri</time><div><b>Inviare planimetria a Marco Bianchi</b><span>task in ritardo · resta in cima finché non lo chiudi</span></div></div><div class="visit"><time>10:30</time><div><b>Visita: Via Solferino 7</b><span>appuntamento</span></div></div><div class="visit"><time>15 ott</time><div><b>Validità della proposta</b><span>scadenza</span></div></div></div></div>
+            <div><span class="n step">3 · Vedi come sta andando</span><div class="fu-card"><div class="fu-head"><b>Statistiche</b><span class="fu-tag">Ultimi 6 mesi</span></div><small>Andamento</small><div class="chips"><span class="chip">Trattative chiuse</span><span class="chip">Nuovi contatti</span><span class="chip">Nuovi immobili</span><span class="chip">Tempo medio di vendita</span></div><small>Opportunità a rischio</small><div class="chips"><span class="chip">Mandati in scadenza</span><span class="chip">Trattative ferme</span><span class="chip">Contatti da risentire</span></div></div></div>
+          </div>
         </div>
-        <div class="row">
-          <div><span class="n">07 · Agenda e statistiche</span><h3>Cosa fare oggi, e come sta andando.</h3><p>Appuntamenti, task e scadenze delle trattative in un unico calendario, in vista elenco o oraria. Le statistiche mostrano i numeri del mese e cosa richiede attenzione.</p><ul><li><b>In ritardo</b> — i task scaduti restano in cima finché non li chiudi</li><li><b>Opportunità a rischio</b> — mandati in scadenza, trattative ferme, contatti da risentire</li><li><b>Andamento</b> — trattative chiuse, nuovi contatti e immobili, tempo medio di vendita negli ultimi 6 mesi</li></ul></div>
-          <div class="phones"><img src="assets/screens/statistiche.webp" width="780" height="1688" loading="lazy" alt="Statistiche con opportunità a rischio e Relon Insight"></div>
+        <div class="frow" data-panel="follow-up">
+          <span class="n">Follow-up</span><h3>Quello che rischia di essere dimenticato.</h3><p>Relon controlla note, visite, mandati, proposte e documenti, e ti propone la prossima azione spiegando sempre il perché.</p>
+          <a class="pill" href="#follow-up">Guarda come funziona ↓</a>
+        </div>
+        <div class="frow" data-panel="prenotazioni">
+          <span class="n">Prenotazione visite</span><h3>Tu scegli gli orari. Il cliente prenota da solo.</h3><p>Ogni immobile ha il suo link: il cliente sceglie un orario libero e la visita arriva nella tua agenda.</p>
+          <a class="pill" href="#prenotazioni">Guarda come funziona ↓</a>
+        </div>
+      </div>
+
+      <div class="desktop">
+        <div class="section-head">
+          <span class="eyebrow">Le schermate</span>
+          <h2>Com'è fatta l'app.</h2>
+        </div>
+        <div class="gallery">
+          <img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Schermata Home di Relon con riepilogo, agenda e note">
+          <img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Elenco delle sezioni di Relon">
+          <img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato del mandato">
+          <img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con dati principali e suggerimento">
+          <img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura">
+          <img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza">
+          <img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline">
+          <img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con fasi e riepilogo">
+          <img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare">
+          <img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa">
+          <img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up suggerito con azioni rapide">
+          <img src="assets/screens/agenda.webp" width="780" height="1688" loading="lazy" alt="Agenda con appuntamenti, task e scadenze">
+          <img src="assets/screens/statistiche.webp" width="780" height="1688" loading="lazy" alt="Statistiche con opportunità a rischio e Relon Insight">
         </div>
       </div>
 
@@ -225,6 +392,98 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
         <div class="feature"><span class="n">Accesso</span><h3>Email o Google</h3><p>Entri con email e password oppure con il tuo account Google.</p></div>
         <div class="feature"><span class="n">Scorciatoie</span><h3>Cerca con Ctrl+K</h3><p>Su computer trovi contatti, immobili, trattative e note da qualsiasi schermata.</p></div>
         <div class="feature"><span class="n">Lingua</span><h3>Italiano e inglese</h3><p>Cambi lingua dalle impostazioni quando vuoi.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow" id="follow-up">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Come funziona il follow-up</span>
+        <h2>Dal segnale all'agenda, senza perdere nessuno per strada.</h2>
+        <p class="lead">Relon rilegge da solo quello che hai già inserito: note, visite, mandati, proposte, trattative, contatti e documenti. Quando trova qualcosa che rischia di sfuggire, te lo propone. Scegli un segnale per vedere il suggerimento.</p>
+      </div>
+      <div class="flow-grid">
+        <svg aria-hidden="true"></svg>
+        <div>
+          <span class="n step">1 · Relon nota un segnale</span>
+          <div class="signals">
+            <button type="button" class="signal" aria-pressed="true" data-tag="Marco Bianchi" data-why="Nella nota del 6 ottobre hai scritto: «ricontattarlo venerdì pomeriggio». Non è ancora in agenda." data-src="Dalla nota del 6 ottobre"><b>Impegno da una nota</b><small>Una nota con una data, non ancora in agenda</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Via Solferino 7" data-why="Dopo la visita del 9 ottobre a Via Solferino 7 non risulta ancora nessun riscontro." data-src="Dalla visita del 9 ottobre"><b>Riscontro dopo la visita</b><small>Visita di almeno un giorno fa, e dopo nessuna attività o nota</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Corso Garibaldi 12" data-why="L'incarico di Corso Garibaldi 12 scade il 2 novembre, tra 20 giorni. Sarebbe utile ricontattare Sara Colombo." data-src="Dalla scheda di Corso Garibaldi 12"><b>Incarico in scadenza</b><small>Mancano 30 giorni o meno alla fine del mandato</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Via Manzoni 4" data-why="La proposta per Via Manzoni 4 scade il 15 ottobre: verifica con Luca Ferri come procedere." data-src="Dalla trattativa Via Manzoni 4"><b>Proposta in scadenza</b><small>Mancano 3 giorni o meno alla data di validità</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Viale Piave 21" data-why="La trattativa per Viale Piave 21 è ferma da 18 giorni: nessuna attività, nota o appuntamento." data-src="Dalla trattativa Viale Piave 21"><b>Trattativa ferma</b><small>Nessuna attività, nota o appuntamento da più di 14 giorni</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Giulia Ferrari" data-why="Non senti Giulia Ferrari da 9 giorni ed è un contatto caldo." data-src="Dalla scheda di Giulia Ferrari"><b>Contatto da risentire</b><small>Contatto caldo in silenzio da più di 7 giorni, tiepido da più di 21</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Via Roma 3" data-why="Per il compromesso di Via Roma 3 mancano ancora: APE definitivo, Estratto catastale." data-src="Dalla trattativa Via Roma 3"><b>Documenti mancanti</b><small>Trattativa al compromesso o al rogito, oppure immobile con una trattativa aperta</small></button>
+          </div>
+        </div>
+        <div>
+          <span class="n step">2 · Ti propone l'azione e spiega il perché</span>
+          <div class="fu-card">
+            <div class="fu-head"><b data-f="kind">Impegno da una nota</b><span class="fu-tag" data-f="tag">Marco Bianchi</span></div>
+            <p class="fu-why" data-f="why">Nella nota del 6 ottobre hai scritto: «ricontattarlo venerdì pomeriggio». Non è ancora in agenda.</p>
+            <div class="fu-src" data-f="src">Dalla nota del 6 ottobre</div>
+            <div class="fu-actions" aria-hidden="true"><span>Chiama</span><span>Messaggio</span><span>Crea task</span><span>Crea appuntamento</span></div>
+            <div class="fu-decide" aria-hidden="true"><span>← Rimanda</span><span>Ignora →</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="more">
+        <div class="feature"><span class="n">3 · Decidi tu</span><h3>Chiama o scrivi</h3><p>Il messaggio è già pronto per WhatsApp, SMS o email: lo modifichi e lo invii tu. Nulla parte in automatico.</p></div>
+        <div class="feature"><span class="n">Agenda</span><h3>Crea task o appuntamento</h3><p>Finisce in agenda, collegato al suggerimento da cui è nato, e il follow-up esce dalla coda.</p></div>
+        <div class="feature"><span class="n">Più tardi</span><h3>Rimanda</h3><p>A domani, tra 3 giorni o tra una settimana. Poi torna tra i suggerimenti.</p></div>
+        <div class="feature"><span class="n">Non serve</span><h3>Ignora</h3><p>Sparisce. Se la situazione cambia, per esempio con una nuova scadenza o un nuovo silenzio, Relon te lo ripropone.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="prenotazioni">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Prenotazione visite</span>
+        <h2>Tu scegli gli orari. Il cliente prenota da solo.</h2>
+        <p class="lead" style="margin-top:18px;max-width:36em">Ogni immobile ha il suo link di prenotazione. Il cliente lo apre dal telefono, senza app e senza registrarsi, e la visita arriva nella tua agenda. Prova a scegliere un orario.</p>
+      </div>
+      <div class="book-grid">
+        <div>
+          <span class="n step">1 · Tu, dalla scheda dell'immobile</span>
+          <div class="fu-card">
+            <div class="fu-head"><b>Prenotazione visite</b><span class="fu-tag">Via Solferino 7</span></div>
+            <small>Giorni</small>
+            <div class="chips"><span class="chip on">Lun</span><span class="chip on">Mar</span><span class="chip on">Mer</span><span class="chip on">Gio</span><span class="chip on">Ven</span><span class="chip on">Sab</span><span class="chip">Dom</span></div>
+            <small>Fasce orarie</small>
+            <div class="chips"><span class="chip">09:00 – 13:00</span><span class="chip">15:00 – 19:00</span></div>
+            <small>Durata della visita</small>
+            <div class="chips"><span class="chip">15'</span><span class="chip on">30'</span><span class="chip">45'</span><span class="chip">60'</span></div>
+            <span class="btn">Salva e condividi il link</span>
+          </div>
+        </div>
+        <div>
+          <span class="n step">2 · Il cliente, dal link</span>
+          <div class="fu-card">
+            <div class="fu-head"><b>Via Solferino 7, Milano</b></div>
+            <p>Scegli il giorno e l'orario che preferisci. La visita dura 30 minuti.</p>
+            <small>venerdì 16 ottobre</small>
+            <div class="chips" id="slots"><button type="button" class="chip" aria-pressed="false">09:00</button><button type="button" class="chip" aria-pressed="false">09:30</button><button type="button" class="chip" aria-pressed="true">10:30</button><button type="button" class="chip" aria-pressed="false">11:00</button><button type="button" class="chip" aria-pressed="false">11:30</button><button type="button" class="chip" aria-pressed="false">12:00</button><button type="button" class="chip" aria-pressed="false">12:30</button></div>
+            <div class="field" style="margin-top:16px">Elena Rossi</div>
+            <div class="field">333 123 4567</div>
+            <span class="btn">Conferma la visita</span>
+          </div>
+        </div>
+        <div>
+          <span class="n step">3 · La visita è in agenda</span>
+          <div class="fu-card">
+            <div class="toast">Nuova visita prenotata <span>Apri</span></div>
+            <div class="visit"><time id="slot-out">10:30</time><div><b>Visita: Via Solferino 7 — Elena Rossi</b><span>venerdì 16 ottobre · 30 minuti</span></div></div>
+            <div class="chips"><span class="chip">Immobile collegato</span><span class="chip">Contatto collegato</span><span class="chip">Google Calendar</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="more">
+        <div class="feature"><span class="n">Orari</span><h3>Solo quelli liberi</h3><p>Il link mostra i prossimi 14 giorni. Gli orari in cui hai già un appuntamento in agenda non compaiono.</p></div>
+        <div class="feature"><span class="n">Sicurezza</span><h3>Niente doppie prenotazioni</h3><p>Due clienti non possono prendere lo stesso orario: il secondo vede che non è più disponibile.</p></div>
+        <div class="feature"><span class="n">Contatti</span><h3>Riconosce chi conosci già</h3><p>Se telefono o email corrispondono a un tuo contatto, la visita viene collegata alla sua scheda.</p></div>
+        <div class="feature"><span class="n">Controllo</span><h3>Link attivo, finché vuoi</h3><p>Lo disattivi dalla scheda dell'immobile. Se colleghi Google Calendar, le visite vengono copiate anche lì.</p></div>
       </div>
     </div>
   </section>
@@ -278,6 +537,89 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 <script>
   for (const el of document.querySelectorAll('[data-stores]'))
     el.append(document.getElementById('stores-tpl').content.cloneNode(true));
+</script>
+
+<script>
+// Mappa del sistema: gli archi nascono dall'elenco #edges; si vedono solo quelli della sezione scelta.
+{
+  const W = 600, H = 560, map = document.querySelector('.sysmap'), svg = map.querySelector('svg');
+  const nodes = [...map.querySelectorAll('.node')], pos = {};
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  for (const n of nodes) pos[n.dataset.node] = [parseFloat(n.style.left) * W / 100, parseFloat(n.style.top) * H / 100];
+  const edges = [...document.querySelectorAll('#edges li')].map(li => {
+    const { from, to } = li.dataset, a = pos[from], b = pos[to], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
+    const path = svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'path'));
+    path.setAttribute('d', `M${a} Q${mx + (mx - W / 2) * .4} ${my + (my - H / 2) * .4} ${b}`); // curva verso l'esterno, per non passare sopra Home
+    return { li, path, from, to };
+  });
+  const panels = [...document.querySelectorAll('[data-panel]')], title = document.getElementById('sys-title');
+  const pick = (id, byUser) => {
+    const near = new Set();
+    for (const e of edges) {
+      const on = e.from === id || e.to === id;
+      e.li.hidden = !on;
+      e.path.classList.toggle('on', on);
+      if (on) near.add(e.from).add(e.to);
+    }
+    for (const n of nodes) {
+      n.setAttribute('aria-pressed', n.dataset.node === id);
+      n.classList.toggle('near', near.has(n.dataset.node));
+      if (n.dataset.node === id) title.textContent = n.textContent;
+    }
+    for (const p of panels) p.hidden = p.dataset.panel !== id;
+    if (!byUser) return;
+    // Il flusso sotto cambia: lo si fa entrare e, se è fuori schermo, si scorre quel tanto che basta a mostrarne il titolo.
+    const panel = panels.find(p => !p.hidden);
+    if (!still) panel.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
+    panel.querySelector('h3').scrollIntoView({ block: 'nearest', behavior: still ? 'auto' : 'smooth' });
+  };
+  for (const n of nodes) n.addEventListener('click', () => pick(n.dataset.node, true));
+  pick('immobili');
+}
+</script>
+
+<script>
+// Follow-up: il segnale scelto riempie la scheda; i fili collegano i segnali alla scheda.
+{
+  const grid = document.querySelector('.flow-grid'), svg = grid.querySelector('svg'), card = grid.querySelector('.fu-card');
+  const list = grid.querySelector('.signals'), signals = [...list.children];
+  const paths = signals.map(() => svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'path')));
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const draw = () => {
+    const g = grid.getBoundingClientRect(), c = card.getBoundingClientRect();
+    const x2 = c.left - g.left, y2 = c.top - g.top + c.height / 2;
+    signals.forEach((s, i) => {
+      const r = s.getBoundingClientRect(), x1 = r.right - g.left, y1 = r.top - g.top + r.height / 2, m = (x1 + x2) / 2;
+      paths[i].setAttribute('d', `M${x1} ${y1}C${m} ${y1} ${m} ${y2} ${x2} ${y2}`);
+    });
+  };
+  let cur = 0;
+  const show = i => {
+    cur = i;
+    signals.forEach((s, j) => { s.setAttribute('aria-pressed', j === i); paths[j].classList.toggle('on', j === i); });
+    const s = signals[i], set = (f, v) => card.querySelector(`[data-f=${f}]`).textContent = v;
+    set('kind', s.querySelector('b').textContent);
+    for (const f of ['tag', 'why', 'src']) set(f, s.dataset[f]);
+    list.scrollTo({ left: s.offsetLeft - 16, behavior: still ? 'auto' : 'smooth' }); // solo su telefono, dove i segnali scorrono in orizzontale
+    if (!still) card.animate([{ opacity: .35, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 350, easing: 'ease-out' });
+  };
+  new ResizeObserver(draw).observe(grid);
+  show(0);
+  // Scorre da solo finché non lo tocchi.
+  const auto = still ? 0 : setInterval(() => show((cur + 1) % signals.length), 3500);
+  signals.forEach((s, i) => s.addEventListener('click', () => { clearInterval(auto); show(i); }));
+}
+</script>
+
+<script>
+// Prenotazioni: l'orario scelto dal cliente è quello che compare in agenda.
+{
+  const slots = [...document.querySelectorAll('#slots button')];
+  for (const b of slots) b.addEventListener('click', () => {
+    slots.forEach(s => s.setAttribute('aria-pressed', s === b));
+    document.getElementById('slot-out').textContent = b.textContent;
+  });
+}
 </script>
 
 <script type="importmap">
