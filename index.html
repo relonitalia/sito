@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Relon — App CRM per agenti immobiliari</title>
-<meta name="description" content="Relon è l'app CRM per agenti immobiliari: immobili, documenti, contatti, trattative, agenda, note e follow-up in un unico posto. In arrivo per iPhone e Android.">
+<meta name="description" content="Relon è l'app CRM per agenti immobiliari: valutazioni sulle quotazioni OMI, note dettate che diventano appuntamenti, follow-up e ogni mattina la giornata già pronta. In arrivo per iPhone e Android.">
 <meta name="theme-color" content="#393270">
 <link rel="canonical" href="https://relon.it/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relon">
 <meta property="og:url" content="https://relon.it/">
 <meta property="og:title" content="Relon — App CRM per agenti immobiliari">
-<meta property="og:description" content="Immobili, documenti, contatti, trattative, agenda, note e follow-up in un'unica app per agenti immobiliari.">
+<meta property="og:description" content="Valutazioni sulle quotazioni OMI, note dettate che diventano appuntamenti, follow-up e agenda in un'unica app per agenti immobiliari.">
 <meta property="og:image" content="https://relon.it/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 {"@context":"https://schema.org","@graph":[
   {"@type":"Organization","@id":"https://relon.it/#org","name":"Relon","url":"https://relon.it/","logo":"https://relon.it/assets/app-icon-1024.png","email":"info@relon.it"},
   {"@type":"WebSite","@id":"https://relon.it/#website","name":"Relon","url":"https://relon.it/","inLanguage":"it-IT","publisher":{"@id":"https://relon.it/#org"}},
-  {"@type":"MobileApplication","name":"Relon","operatingSystem":"iOS, Android","applicationCategory":"BusinessApplication","description":"App CRM per agenti immobiliari: immobili, documenti, contatti, trattative, agenda, note e follow-up.","image":"https://relon.it/assets/app-icon-1024.png","publisher":{"@id":"https://relon.it/#org"}}
+  {"@type":"MobileApplication","name":"Relon","operatingSystem":"iOS, Android","applicationCategory":"BusinessApplication","description":"App CRM per agenti immobiliari: immobili, contatti, trattative, agenda, note che agiscono, follow-up e valutazioni sulle quotazioni OMI.","image":"https://relon.it/assets/app-icon-1024.png","publisher":{"@id":"https://relon.it/#org"}}
 ]}
 </script>
 <link rel="icon" href="assets/favicon.png">
@@ -148,8 +148,8 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .fu-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; font-size: 14px; font-weight: 500; text-align: center; }
 .fu-actions span { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 8px; }
 .fu-decide { display: flex; justify-content: space-between; margin-top: 16px; font-size: 14px; font-weight: 500; }
-.fu-decide span:first-child { color: #23875A; }
-.fu-decide span:last-child { color: #B5432F; }
+.fu-decide span:first-child { color: var(--stone); }
+.fu-decide span:last-child { color: #23875A; }
 
 /* Prenotazione visite: agente -> cliente -> agenda */
 .book-grid { display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: clamp(32px, 5vw, 64px); }
@@ -176,9 +176,19 @@ mark { background: #ECE8FB; color: var(--indigo); border-radius: 4px; padding: 0
 .toast { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 500; border-radius: 12px; padding: 12px 14px; }
 .toast span { color: var(--lilac); }
 .visit { display: flex; gap: 14px; align-items: flex-start; border: 1px solid var(--hairline); border-radius: 14px; padding: 14px; margin: 12px 0; }
+.visit[hidden] { display: none; }
 .visit time { font: 700 18px/1.3 Manrope, sans-serif; color: var(--violet); }
 .visit b { display: block; font-weight: 500; font-size: 15px; line-height: 1.4; }
 .visit span { font-size: 13px; color: var(--stone); }
+/* Briefing della Home: la card indaco dell'app */
+.fu-card.brief { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.frow .book-grid .fu-card.brief { background: var(--indigo); }
+.brief p, .brief small { color: #C9C2EE; }
+.brief .field { background: rgba(255,255,255,.1); border-color: transparent; color: #fff; }
+.brief .btn { background: #fff; color: var(--indigo); }
+.flow .book-grid .fu-card { background: var(--porcelain); }
+.price { display: block; font: 800 clamp(30px, 3.4vw, 40px)/1.1 Manrope, sans-serif; color: var(--indigo); letter-spacing: -0.02em; margin-top: 14px; }
+.up { color: #23875A; font-weight: 500; }
 @media (prefers-reduced-motion: reduce) { .flow-grid path.on, .sysmap path.on, .book-grid > div + div::before { animation: none; } }
 
 /* Portfolio */
@@ -202,6 +212,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 
 @media (max-width: 900px) {
+  nav .links a[href="#computer"], nav .links a[href="#prenotazioni"], nav .links a[href="#portafoglio"] { display: none; }
   .hero, .portfolio .wrap { grid-template-columns: 1fr; }
   .hero { min-height: 0; padding-top: 32px; }
   .hero .stage { max-width: 440px; margin-inline: auto; order: -1; }
@@ -234,6 +245,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="links">
       <a href="#funzionalita">Funzionalità</a>
       <a href="#computer">Computer</a>
+      <a href="#valutazioni">Valutazioni</a>
       <a href="#follow-up">Follow-up</a>
       <a href="#prenotazioni">Prenotazioni</a>
       <a href="#portafoglio">Portafoglio</a>
@@ -247,7 +259,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div>
       <span class="eyebrow">CRM per agenti immobiliari</span>
       <h1>Ogni immobile.<br>Ogni cliente.<br><em>In tasca.</em></h1>
-      <p class="lead">Relon riunisce immobili, documenti, contatti, trattative, agenda e note in un'unica app pensata per chi lavora sul campo. E ti ricorda quello che rischi di dimenticare.</p>
+      <p class="lead">Relon riunisce immobili, contatti, trattative, agenda e note in un'unica app pensata per chi lavora sul campo. Valuta le case sui dati OMI, trasforma una nota dettata in un appuntamento e ogni mattina ti dice da dove iniziare.</p>
       <div class="stores" data-stores></div>
     </div>
     <div class="stage" id="hero-3d" role="img" aria-label="Una casa in 3D che si trasforma in un grafo di dati"></div>
@@ -262,23 +274,28 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       </div>
       <div class="sys">
         <div class="sysmap">
-          <svg viewBox="0 0 600 560" aria-hidden="true"><ellipse cx="300" cy="280" rx="215" ry="225"/></svg>
+          <svg viewBox="0 0 600 560" aria-hidden="true"><ellipse cx="300" cy="280" rx="200" ry="225"/></svg>
           <button type="button" class="node hub" data-node="home" aria-pressed="false" style="left:50.0%;top:50.0%">Home</button>
           <button type="button" class="node" data-node="immobili" aria-pressed="false" style="left:50.0%;top:9.8%">Immobili</button>
-          <button type="button" class="node" data-node="prenotazioni" aria-pressed="false" style="left:78.0%;top:24.9%">Prenotazioni</button>
-          <button type="button" class="node" data-node="agenda" aria-pressed="false" style="left:84.9%;top:58.9%">Agenda</button>
-          <button type="button" class="node" data-node="follow-up" aria-pressed="false" style="left:65.5%;top:86.2%">Follow-up</button>
-          <button type="button" class="node" data-node="note" aria-pressed="false" style="left:34.5%;top:86.2%">Note</button>
-          <button type="button" class="node" data-node="contatti" aria-pressed="false" style="left:15.1%;top:58.9%">Contatti</button>
-          <button type="button" class="node" data-node="trattative" aria-pressed="false" style="left:22.0%;top:24.9%">Trattative</button>
+          <button type="button" class="node" data-node="valutazioni" aria-pressed="false" style="left:73.6%;top:21.6%">Valutazioni</button>
+          <button type="button" class="node" data-node="prenotazioni" aria-pressed="false" style="left:83.3%;top:50.0%">Prenotazioni</button>
+          <button type="button" class="node" data-node="agenda" aria-pressed="false" style="left:73.6%;top:78.4%">Agenda</button>
+          <button type="button" class="node" data-node="follow-up" aria-pressed="false" style="left:50.0%;top:90.2%">Follow-up</button>
+          <button type="button" class="node" data-node="note" aria-pressed="false" style="left:26.4%;top:78.4%">Note</button>
+          <button type="button" class="node" data-node="contatti" aria-pressed="false" style="left:16.7%;top:50.0%">Contatti</button>
+          <button type="button" class="node" data-node="trattative" aria-pressed="false" style="left:26.4%;top:21.6%">Trattative</button>
         </div>
         <div>
           <span class="n step">Collegamenti</span>
           <h3 id="sys-title">Tutto il sistema</h3>
           <ul id="edges">
-            <li class="field" data-from="note" data-to="contatti"><b>Note → Contatti</b>Relon riconosce il contatto nella nota e la collega alla sua scheda.</li>
-            <li class="field" data-from="note" data-to="immobili"><b>Note → Immobili</b>Riconosce anche l'immobile, e la nota compare nella sua scheda.</li>
+            <li class="field" data-from="note" data-to="agenda"><b>Note → Agenda</b>«Fissare la visita giovedì alle 18»: Relon propone l'appuntamento e lo crea quando salvi.</li>
+            <li class="field" data-from="note" data-to="contatti"><b>Note → Contatti</b>Riconosce il contatto. Un numero o una persona nuova nella nota finiscono in rubrica.</li>
+            <li class="field" data-from="note" data-to="immobili"><b>Note → Immobili</b>Riconosce l'immobile, e un nuovo prezzo scritto nella nota aggiorna la scheda.</li>
+            <li class="field" data-from="note" data-to="trattative"><b>Note → Trattative</b>Una proposta scritta nella nota aggiorna la trattativa, o la crea.</li>
             <li class="field" data-from="note" data-to="follow-up"><b>Note → Follow-up</b>Una data scritta nella nota diventa un follow-up da confermare.</li>
+            <li class="field" data-from="immobili" data-to="valutazioni"><b>Immobili → Valutazioni</b>Valuta parte dai dati della scheda: indirizzo, superficie, piano, stato.</li>
+            <li class="field" data-from="valutazioni" data-to="immobili"><b>Valutazioni → Immobili</b>Una casa valutata al sopralluogo diventa un immobile con un tocco.</li>
             <li class="field" data-from="immobili" data-to="trattative"><b>Immobili → Trattative</b>Ogni trattativa nasce su un immobile.</li>
             <li class="field" data-from="contatti" data-to="trattative"><b>Contatti → Trattative</b>Acquirente e venditore sono tuoi contatti.</li>
             <li class="field" data-from="immobili" data-to="prenotazioni"><b>Immobili → Prenotazioni</b>Ogni immobile ha il suo link per prenotare le visite.</li>
@@ -289,30 +306,29 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
             <li class="field" data-from="trattative" data-to="follow-up"><b>Trattative → Follow-up</b>Proposta in scadenza, trattativa ferma, visita senza riscontro, documenti del compromesso.</li>
             <li class="field" data-from="contatti" data-to="follow-up"><b>Contatti → Follow-up</b>Un contatto caldo o tiepido che non senti da troppo tempo.</li>
             <li class="field" data-from="follow-up" data-to="agenda"><b>Follow-up → Agenda</b>Dal suggerimento crei un task o un appuntamento.</li>
-            <li class="field" data-from="immobili" data-to="home"><b>Immobili → Home</b>Il numero degli immobili in portafoglio.</li>
-            <li class="field" data-from="contatti" data-to="home"><b>Contatti → Home</b>Il numero dei contatti.</li>
-            <li class="field" data-from="trattative" data-to="home"><b>Trattative → Home</b>Le trattative in corso.</li>
-            <li class="field" data-from="agenda" data-to="home"><b>Agenda → Home</b>L'agenda di oggi.</li>
-            <li class="field" data-from="note" data-to="home"><b>Note → Home</b>Le ultime note.</li>
-            <li class="field" data-from="follow-up" data-to="home"><b>Follow-up → Home</b>I suggerimenti da valutare.</li>
+            <li class="field" data-from="agenda" data-to="home"><b>Agenda → Home</b>Gli impegni di oggi e la prima cosa da fare.</li>
+            <li class="field" data-from="follow-up" data-to="home"><b>Follow-up → Home</b>«Relon ti suggerisce»: i follow-up più importanti.</li>
+            <li class="field" data-from="trattative" data-to="home"><b>Trattative → Home</b>Il valore in trattativa.</li>
+            <li class="field" data-from="immobili" data-to="home"><b>Immobili → Home</b>Gli immobili nel tuo portafoglio.</li>
+            <li class="field" data-from="contatti" data-to="home"><b>Contatti → Home</b>I contatti nel tuo portafoglio.</li>
           </ul>
         </div>
       </div>
       <div class="rows">
         <div class="frow" data-panel="home">
-          <span class="n">Home</span><h3>La giornata, appena apri l'app.</h3><p>Numeri del portafoglio, agenda di oggi, ultime note e follow-up da valutare in una sola schermata. Da lì aggiungi quello che succede e ritrovi tutto.</p>
+          <span class="n">Home</span><h3>Apri l'app, e sai da dove iniziare.</h3><p>Ogni mattina Relon ti prepara la giornata: quanti appuntamenti hai, cosa c'è da fare e da cosa conviene partire. Poi i suggerimenti e il tuo portafoglio.</p>
           <div class="book-grid">
-            <div><span class="n step">1 · Apri l'app</span><div class="fu-card"><div class="fu-head"><b>Oggi</b><span class="fu-tag">Meteo della zona</span></div><small>Portafoglio</small><div class="chips"><span class="chip">12 immobili</span><span class="chip">34 contatti</span><span class="chip">5 trattative</span></div><small>Agenda di oggi</small><div class="visit"><time>10:30</time><div><b>Visita: Via Solferino 7</b><span>Elena Rossi</span></div></div><div class="toast">3 suggerimenti da valutare <span>Apri</span></div></div></div>
-            <div><span class="n step">2 · Aggiungi con il +</span><div class="fu-card"><div class="fu-head"><b>Crea nuovo</b></div><p>Un tocco sul pulsante +, ed è già nella sezione giusta.</p><small>Cosa puoi creare</small><div class="chips"><span class="chip">Contatto</span><span class="chip">Immobile</span><span class="chip">Trattativa</span><span class="chip">Appuntamento</span><span class="chip">Attività</span><span class="chip">Nota</span></div></div></div>
-            <div><span class="n step">3 · Ritrovi tutto</span><div class="fu-card"><div class="fu-head"><b>Ricerca globale</b></div><div class="field">solferino</div><small>Risultati</small><div class="field"><b>Immobile</b>Via Solferino 7</div><div class="field"><b>Trattativa</b>Via Solferino 7</div><div class="field"><b>Nota</b>«Sentito Marco Bianchi per via Solferino…»</div></div></div>
+            <div><span class="n step">1 · Il briefing</span><div class="fu-card brief"><div class="fu-head"><b>Buongiorno, Marco</b></div><p>Oggi hai 3 appuntamenti e 2 cose da fare.</p><small>Per prima cosa</small><div class="field">Richiamare Luca Moretti: la proposta scade dopodomani</div><span class="btn">Inizia da qui</span></div></div>
+            <div><span class="n step">2 · Relon ti suggerisce</span><div class="fu-card"><div class="fu-head"><b>Giulia Ferrari</b><span class="fu-tag">Da risentire</span></div><p>Non la senti da 9 giorni ed è un contatto caldo.</p><div class="chips"><span class="chip on">Prepara messaggio</span><span class="chip">Ricordamelo domani</span></div><small>Oggi</small><div class="visit"><time>10:30</time><div><b>Visita: Via Tortona 18</b><span>Marco Bianchi</span></div></div></div></div>
+            <div><span class="n step">3 · Il tuo portafoglio</span><div class="fu-card"><div class="fu-head"><b>Il tuo portafoglio</b></div><small>Valore in trattativa</small><div class="visit"><time>€ 2,2 mln</time><div><b>5 trattative aperte</b><span>dalla proposta al rogito</span></div></div><div class="chips"><span class="chip">8 immobili</span><span class="chip">9 contatti</span></div><p>E con la ricerca in cima trovi qualsiasi contatto, immobile o nota.</p></div></div>
           </div>
         </div>
         <div class="frow" data-panel="immobili">
           <span class="n">Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Crei la scheda, completi i documenti e Relon tiene d'occhio l'incarico. Filtri per vendita, affitto e stato.</p>
           <div class="book-grid">
-            <div><span class="n step">1 · Crei la scheda</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Vendita</span></div><small>Dati</small><div class="chips"><span class="chip">Dati principali</span><span class="chip">Impianti</span><span class="chip">Classe energetica</span><span class="chip">Foto con copertina</span></div><small>Mandato</small><div class="chips"><span class="chip on">Esclusiva 6 mesi</span><span class="chip">Non esclusiva</span></div><div class="field"><b>Dal</b>2 maggio <b style='margin-left:10px'>al</b>2 novembre</div><div class="field"><b>Commissioni</b>acquirente e venditore</div></div></div>
+            <div><span class="n step">1 · Crei la scheda</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Vendita</span></div><small>Dati</small><div class="chips"><span class="chip">Dati principali</span><span class="chip">Impianti</span><span class="chip">Classe energetica</span><span class="chip">Foto con copertina</span></div><small>Incarico</small><div class="chips"><span class="chip on">Esclusiva 6 mesi</span><span class="chip">Non esclusiva</span></div><div class="field"><b>Dal</b>2 maggio <b style='margin-left:10px'>al</b>2 novembre</div><div class="field"><b>Commissioni</b>acquirente e venditore</div></div></div>
             <div><span class="n step">2 · Completi i documenti</span><div class="fu-card"><div class="fu-head"><b>Checklist documenti</b><span class="fu-tag">Vendita</span></div><p>Una checklist per la vendita e una per l'affitto.</p><div class="field"><b>✓</b>Visura catastale aggiornata</div><div class="field"><b>✓</b>Planimetria catastale</div><div class="field todo"><b>○</b>APE</div><div class="bar"><i style="width:66%"></i></div><small>Completezza: 2 su 3</small></div></div>
-            <div><span class="n step">3 · Relon controlla le scadenze</span><div class="fu-card"><div class="toast">Incarico in scadenza tra 20 giorni <span>Apri</span></div><p>L'avviso arriva quando mancano 30 giorni alla fine del mandato.</p><small>Dalla scheda partono anche</small><div class="chips"><span class="chip">Link di prenotazione visite</span><span class="chip">Trattative</span><span class="chip">Follow-up</span></div></div></div>
+            <div><span class="n step">3 · Relon controlla le scadenze</span><div class="fu-card"><div class="toast">Incarico in scadenza tra 20 giorni <span>Apri</span></div><p>L'avviso arriva quando mancano 30 giorni alla fine dell'incarico.</p><small>Dalla scheda partono anche</small><div class="chips"><span class="chip">Valutazione OMI</span><span class="chip">Link di prenotazione visite</span><span class="chip">Trattative</span><span class="chip">Follow-up</span></div></div></div>
           </div>
         </div>
         <div class="frow" data-panel="contatti">
@@ -332,11 +348,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           </div>
         </div>
         <div class="frow" data-panel="note">
-          <span class="n">Note</span><h3>Scrivi una volta. Relon smista.</h3><p>Scrivi o detta una nota come ti viene. Relon riconosce contatto, immobile e data, e la collega alle schede giuste.</p>
-          <div class="book-grid">
-            <div><span class="n step">1 · Scrivi o detti</span><div class="fu-card"><div class="fu-head"><b>Nuova nota</b><span class="fu-tag">Dettatura</span></div><div class="field">«Sentito Marco Bianchi per via Solferino 7, vuole rivederlo. Ricontattarlo venerdì pomeriggio.»</div><p>Per quando sei in macchina o in visita.</p><small>Sulla nota</small><div class="chips"><span class="chip">Allegati</span><span class="chip">Importante</span><span class="chip">Archivio</span></div></div></div>
-            <div><span class="n step">2 · Relon riconosce</span><div class="fu-card"><div class="fu-head"><b>Nella nota</b></div><div class="field">«Sentito <mark>Marco Bianchi</mark> per <mark>via Solferino 7</mark>, vuole rivederlo. Ricontattarlo <mark>venerdì pomeriggio</mark>.»</div><small>Trovati</small><div class="field"><b>Contatto</b>Marco Bianchi</div><div class="field"><b>Immobile</b>Via Solferino 7</div><div class="field"><b>Data</b>venerdì pomeriggio</div></div></div>
-            <div><span class="n step">3 · La nota arriva dove serve</span><div class="fu-card"><div class="fu-head"><b>Collegata a</b></div><div class="chips"><span class="chip">Scheda di Marco Bianchi</span><span class="chip">Scheda di Via Solferino 7</span></div><div class="toast">Follow-up da confermare <span>Apri</span></div><p>Lo confermi e diventa un impegno in agenda.</p></div></div>
+          <span class="n">Note</span><h3>Lo dici a voce. Relon lo fa.</h3><p>Tocca il microfono e parla come faresti con un collega. Relon riconosce contatto, immobile e date, e ti propone di fare lui quello che hai detto. Niente parte da solo: scegli tu cosa fare, e lo fa quando salvi.</p>
+          <div class="book-grid" id="note-demo">
+            <div><span class="n step">1 · Tocca e parla</span><div class="fu-card"><div class="fu-head"><b>Nuova nota</b><span class="fu-tag">Microfono</span></div><div class="field">«Sentito <mark>Marco Bianchi</mark>, fissare la seconda visita in <mark>via Tortona 18</mark> <mark>giovedì alle 18</mark>. Il numero della moglie <mark>Giulia Verdi</mark> è 333 812 4455.»</div><p>Pensata per quando sei in macchina o appena uscito da una visita.</p></div></div>
+            <div><span class="n step">2 · Vuoi che lo faccia io?</span><div class="fu-card"><div class="fu-head"><b>Relon ha capito</b></div><div class="field"><b>Contatto</b>Marco Bianchi</div><div class="field"><b>Immobile</b>Via Tortona 18</div><small>Tocca quello che vuoi</small><div class="chips"><button type="button" class="chip" aria-pressed="true" data-done="appuntamento">Appuntamento giovedì 18:00</button><button type="button" class="chip" aria-pressed="true" data-done="contatto">Nuovo contatto: Giulia Verdi</button></div><span class="btn" data-f="save">Salva nota e 2 azioni</span></div></div>
+            <div><span class="n step">3 · Fatto</span><div class="fu-card"><div class="toast"><em data-f="done" style="font-style:normal">Nota salvata con: appuntamento, contatto</em> <span>Annulla</span></div><div class="visit"><time>18:00</time><div><b>Visita: Via Tortona 18</b><span>giovedì · Marco Bianchi</span></div></div><p>La nota resta collegata alle schede di Marco e di via Tortona 18. Ci ripensi? Annulla riporta tutto com'era.</p><small>Relon capisce anche</small><div class="chips"><span class="chip">Chiamate</span><span class="chip">Promemoria</span><span class="chip">Proposte</span><span class="chip">Nuovo prezzo</span><span class="chip">Budget</span><span class="chip">Interessato o no</span></div></div></div>
           </div>
         </div>
         <div class="frow" data-panel="agenda">
@@ -344,11 +360,15 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           <div class="book-grid">
             <div><span class="n step">1 · Tutto entra in agenda</span><div class="fu-card"><div class="fu-head"><b>Da dove arriva</b></div><div class="field"><b>→</b>Appuntamenti e task che crei tu</div><div class="field"><b>→</b>Scadenze delle trattative</div><div class="field"><b>→</b>Visite prenotate dai clienti</div><div class="field"><b>→</b>Follow-up e note confermati</div></div></div>
             <div><span class="n step">2 · Un solo calendario</span><div class="fu-card"><div class="fu-head"><b>Oggi</b></div><small>Vista</small><div class="chips"><span class="chip on">Elenco</span><span class="chip">Oraria</span></div><div class="visit"><time>Ieri</time><div><b>Inviare planimetria a Marco Bianchi</b><span>task in ritardo · resta in cima finché non lo chiudi</span></div></div><div class="visit"><time>10:30</time><div><b>Visita: Via Solferino 7</b><span>appuntamento</span></div></div><div class="visit"><time>15 ott</time><div><b>Validità della proposta</b><span>scadenza</span></div></div></div></div>
-            <div><span class="n step">3 · Vedi come sta andando</span><div class="fu-card"><div class="fu-head"><b>Statistiche</b><span class="fu-tag">Ultimi 6 mesi</span></div><small>Andamento</small><div class="chips"><span class="chip">Trattative chiuse</span><span class="chip">Nuovi contatti</span><span class="chip">Nuovi immobili</span><span class="chip">Tempo medio di vendita</span></div><small>Opportunità a rischio</small><div class="chips"><span class="chip">Mandati in scadenza</span><span class="chip">Trattative ferme</span><span class="chip">Contatti da risentire</span></div></div></div>
+            <div><span class="n step">3 · Vedi come sta andando</span><div class="fu-card"><div class="fu-head"><b>Statistiche</b><span class="fu-tag">Ultimi 6 mesi</span></div><small>Andamento</small><div class="chips"><span class="chip">Trattative chiuse</span><span class="chip">Nuovi contatti</span><span class="chip">Nuovi immobili</span><span class="chip">Tempo medio di vendita</span></div><small>Opportunità a rischio</small><div class="chips"><span class="chip">Incarichi in scadenza</span><span class="chip">Trattative ferme</span><span class="chip">Contatti da risentire</span></div></div></div>
           </div>
         </div>
+        <div class="frow" data-panel="valutazioni">
+          <span class="n">Valutazioni</span><h3>Quanto vale questa casa? Te lo dice in pochi secondi.</h3><p>Dall'indirizzo alla zona OMI, dalle quotazioni dell'Agenzia delle Entrate al prezzo a cui pubblicarla, con il perché di ogni correzione.</p>
+          <a class="pill" href="#valutazioni">Guarda come funziona ↓</a>
+        </div>
         <div class="frow" data-panel="follow-up">
-          <span class="n">Follow-up</span><h3>Quello che rischia di essere dimenticato.</h3><p>Relon controlla note, visite, mandati, proposte e documenti, e ti propone la prossima azione spiegando sempre il perché.</p>
+          <span class="n">Follow-up</span><h3>Quello che rischia di essere dimenticato.</h3><p>Relon controlla note, visite, incarichi, proposte e documenti, e ti propone la prossima azione spiegando sempre il perché. Ne fai una, la segni come fatta, passi alla prossima.</p>
           <a class="pill" href="#follow-up">Guarda come funziona ↓</a>
         </div>
         <div class="frow" data-panel="prenotazioni">
@@ -363,17 +383,18 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           <h2>Com'è fatta l'app.</h2>
         </div>
         <div class="gallery">
-          <img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Schermata Home di Relon con riepilogo, agenda e note">
-          <img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Elenco delle sezioni di Relon">
-          <img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato del mandato">
+          <img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Home di Relon con il briefing della giornata e la prima cosa da fare">
+          <img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Sezioni di Relon con i numeri di ogni area e cosa richiede attenzione">
+          <img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato dell'incarico">
           <img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con dati principali e suggerimento">
+          <img src="assets/screens/valutazione.webp" width="780" height="1688" loading="lazy" alt="Valutazione di un immobile sulle quotazioni OMI con prezzo consigliato e motivi">
           <img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura">
           <img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza">
           <img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline">
           <img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con fasi e riepilogo">
           <img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare">
           <img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa">
-          <img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up suggerito con azioni rapide">
+          <img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up ordinati per importanza con Fatto e Rimanda">
           <img src="assets/screens/agenda.webp" width="780" height="1688" loading="lazy" alt="Agenda con appuntamenti, task e scadenze">
           <img src="assets/screens/statistiche.webp" width="780" height="1688" loading="lazy" alt="Statistiche con opportunità a rischio e Relon Insight">
         </div>
@@ -383,14 +404,14 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
         <div class="section-head">
           <span class="eyebrow">Anche da computer</span>
           <h2>In ufficio sullo schermo grande, fuori sul telefono.</h2>
-          <p class="lead">La stessa app, con barra laterale, schede affiancate e trattative da trascinare da una fase all'altra. Quello che salvi su un dispositivo compare da solo sugli altri.</p>
+          <p class="lead">La stessa app, con barra laterale, schede affiancate, ricerca con Ctrl+K e trattative da trascinare da una fase all'altra. Quello che salvi su un dispositivo compare da solo sugli altri.</p>
         </div>
-        <img src="assets/screens/desktop-trattative.webp" width="1440" height="900" loading="lazy" alt="Relon su computer: trattative in colonne per fase">
+        <img src="assets/screens/desktop-home.webp" width="1440" height="900" loading="lazy" alt="Relon su computer: il briefing della giornata, i suggerimenti e il portafoglio">
       </div>
 
       <div class="more">
         <div class="feature"><span class="n">News</span><h3>Mercato immobiliare</h3><p>Le notizie da Il Sole 24 Ore, Casa&amp;Clima e Wall Street Italia, da salvare e condividere.</p></div>
-        <div class="feature"><span class="n">Accesso</span><h3>Email o Google</h3><p>Entri con email e password oppure con il tuo account Google.</p></div>
+        <div class="feature"><span class="n">Accesso</span><h3>Email, Google o Apple</h3><p>Entri con email e password, con Google o con Apple. Sul computer basta inquadrare un QR col telefono.</p></div>
         <div class="feature"><span class="n">Scorciatoie</span><h3>Cerca con Ctrl+K</h3><p>Su computer trovi contatti, immobili, trattative e note da qualsiasi schermata.</p></div>
         <div class="feature"><span class="n">Lingua</span><h3>Italiano e inglese</h3><p>Cambi lingua dalle impostazioni quando vuoi.</p></div>
       </div>
@@ -402,7 +423,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <div class="section-head">
         <span class="eyebrow">Come funziona il follow-up</span>
         <h2>Dal segnale all'agenda, senza perdere nessuno per strada.</h2>
-        <p class="lead">Relon rilegge da solo quello che hai già inserito: note, visite, mandati, proposte, trattative, contatti e documenti. Quando trova qualcosa che rischia di sfuggire, te lo propone. Scegli un segnale per vedere il suggerimento.</p>
+        <p class="lead">Relon rilegge da solo quello che hai già inserito: note, visite, incarichi, proposte, trattative, contatti e documenti. Quando trova qualcosa che rischia di sfuggire, te lo propone, con in cima quello che conta di più. Scegli un segnale per vedere il suggerimento.</p>
       </div>
       <div class="flow-grid">
         <svg aria-hidden="true"></svg>
@@ -411,7 +432,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           <div class="signals">
             <button type="button" class="signal" aria-pressed="true" data-tag="Marco Bianchi" data-why="Nella nota del 6 ottobre hai scritto: «ricontattarlo venerdì pomeriggio». Non è ancora in agenda." data-src="Dalla nota del 6 ottobre"><b>Impegno da una nota</b><small>Una nota con una data, non ancora in agenda</small></button>
             <button type="button" class="signal" aria-pressed="false" data-tag="Via Solferino 7" data-why="Dopo la visita del 9 ottobre a Via Solferino 7 non risulta ancora nessun riscontro." data-src="Dalla visita del 9 ottobre"><b>Riscontro dopo la visita</b><small>Visita di almeno un giorno fa, e dopo nessuna attività o nota</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Corso Garibaldi 12" data-why="L'incarico di Corso Garibaldi 12 scade il 2 novembre, tra 20 giorni. Sarebbe utile ricontattare Sara Colombo." data-src="Dalla scheda di Corso Garibaldi 12"><b>Incarico in scadenza</b><small>Mancano 30 giorni o meno alla fine del mandato</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Corso Garibaldi 12" data-why="L'incarico di Corso Garibaldi 12 scade il 2 novembre, tra 20 giorni. Sarebbe utile ricontattare Sara Colombo." data-src="Dalla scheda di Corso Garibaldi 12"><b>Incarico in scadenza</b><small>Mancano 30 giorni o meno alla fine dell'incarico</small></button>
             <button type="button" class="signal" aria-pressed="false" data-tag="Via Manzoni 4" data-why="La proposta per Via Manzoni 4 scade il 15 ottobre: verifica con Luca Ferri come procedere." data-src="Dalla trattativa Via Manzoni 4"><b>Proposta in scadenza</b><small>Mancano 3 giorni o meno alla data di validità</small></button>
             <button type="button" class="signal" aria-pressed="false" data-tag="Viale Piave 21" data-why="La trattativa per Viale Piave 21 è ferma da 18 giorni: nessuna attività, nota o appuntamento." data-src="Dalla trattativa Viale Piave 21"><b>Trattativa ferma</b><small>Nessuna attività, nota o appuntamento da più di 14 giorni</small></button>
             <button type="button" class="signal" aria-pressed="false" data-tag="Giulia Ferrari" data-why="Non senti Giulia Ferrari da 9 giorni ed è un contatto caldo." data-src="Dalla scheda di Giulia Ferrari"><b>Contatto da risentire</b><small>Contatto caldo in silenzio da più di 7 giorni, tiepido da più di 21</small></button>
@@ -425,20 +446,71 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
             <p class="fu-why" data-f="why">Nella nota del 6 ottobre hai scritto: «ricontattarlo venerdì pomeriggio». Non è ancora in agenda.</p>
             <div class="fu-src" data-f="src">Dalla nota del 6 ottobre</div>
             <div class="fu-actions" aria-hidden="true"><span>Chiama</span><span>Messaggio</span><span>Crea task</span><span>Crea appuntamento</span></div>
-            <div class="fu-decide" aria-hidden="true"><span>← Rimanda</span><span>Ignora →</span></div>
+            <div class="fu-decide" aria-hidden="true"><span>← Rimanda</span><span>Fatto →</span></div>
           </div>
         </div>
       </div>
       <div class="more">
         <div class="feature"><span class="n">3 · Decidi tu</span><h3>Chiama o scrivi</h3><p>Il messaggio è già pronto per WhatsApp, SMS o email: lo modifichi e lo invii tu. Nulla parte in automatico.</p></div>
-        <div class="feature"><span class="n">Agenda</span><h3>Crea task o appuntamento</h3><p>Finisce in agenda, collegato al suggerimento da cui è nato, e il follow-up esce dalla coda.</p></div>
-        <div class="feature"><span class="n">Più tardi</span><h3>Rimanda</h3><p>A domani, tra 3 giorni o tra una settimana. Poi torna tra i suggerimenti.</p></div>
-        <div class="feature"><span class="n">Non serve</span><h3>Ignora</h3><p>Sparisce. Se la situazione cambia, per esempio con una nuova scadenza o un nuovo silenzio, Relon te lo ripropone.</p></div>
+        <div class="feature"><span class="n">Fatto →</span><h3>Segna e vai avanti</h3><p>Uno swipe a destra: l'ultimo contatto si aggiorna e in alto vedi quanti ne hai fatti oggi. A lista vuota, giornata a posto.</p></div>
+        <div class="feature"><span class="n">← Più tardi</span><h3>Rimanda</h3><p>Uno swipe a sinistra: a domani, tra 3 giorni o tra una settimana. Se non ti serve proprio, sparisce, e torna solo se la situazione cambia.</p></div>
+        <div class="feature"><span class="n">Dopo la chiamata</span><h3>Com'è andata?</h3><p>Chiami dall'app e, quando torni, Relon te lo chiede. Una riga, anche a voce, oppure «non risponde, riprovo domani».</p></div>
       </div>
     </div>
   </section>
 
-  <section id="prenotazioni">
+  <section id="valutazioni">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Valutazioni</span>
+        <h2>Quanto vale questa casa? Lo sai in pochi secondi.</h2>
+        <p class="lead" style="margin-top:18px;max-width:36em">Tocchi Valuta sull'immobile e Relon fa il resto: trova la zona OMI dall'indirizzo, parte dalle quotazioni ufficiali dell'Agenzia delle Entrate e le corregge con le caratteristiche della casa. Ti dà il valore, il prezzo a cui pubblicarla e il perché.</p>
+      </div>
+      <div class="book-grid">
+        <div>
+          <span class="n step">1 · Dall'indirizzo alla zona</span>
+          <div class="fu-card">
+            <div class="fu-head"><b>Via Tortona 18, Milano</b><span class="fu-tag">Zona rilevata</span></div>
+            <div class="field"><b>Zona OMI</b>Tortona, Solari, Savona</div>
+            <small>Dalla scheda dell'immobile</small>
+            <div class="chips"><span class="chip">Trilocale</span><span class="chip">95 m²</span><span class="chip">3° piano</span><span class="chip">Ristrutturato</span><span class="chip">Classe A2</span><span class="chip">Terrazzo</span></div>
+            <p>Niente da compilare: la stima parte dai dati che hai già.</p>
+          </div>
+        </div>
+        <div>
+          <span class="n step">2 · Il valore e il prezzo giusto</span>
+          <div class="fu-card">
+            <div class="fu-head"><b>Valore stimato</b><span class="fu-tag">OMI</span></div>
+            <span class="price">€ 602.000</span>
+            <p>da 535.000 a 669.000 € · <span class="up">prezzi in crescita, +5,3% in un anno</span></p>
+            <small>Affidabilità</small>
+            <div class="bar"><i style="width:97%"></i></div>
+            <small>Prezzo consigliato di pubblicazione</small>
+            <span class="price" style="font-size:26px;margin-top:0">€ 644.000</span>
+          </div>
+        </div>
+        <div>
+          <span class="n step">3 · Il perché, e il report</span>
+          <div class="fu-card">
+            <div class="fu-head"><b>Perché questa valutazione</b></div>
+            <div class="field"><b>+15,2%</b>Ristrutturato</div>
+            <div class="field"><b>+5%</b>Classe energetica A2</div>
+            <div class="field"><b>+3,8%</b>Terrazzo</div>
+            <small>Poi</small>
+            <div class="chips"><span class="chip on">Report PDF</span><span class="chip">Conferma valutazione</span><span class="chip">Ricalcola</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="more">
+        <div class="feature"><span class="n">Dati ufficiali</span><h3>Quotazioni OMI</h3><p>Dell'Agenzia delle Entrate, per tutta Italia, con l'andamento dell'ultimo anno.</p></div>
+        <div class="feature"><span class="n">Sopralluogo</span><h3>Anche prima dell'incarico</h3><p>Valuti una casa che non è ancora in Relon. Se l'incarico arriva, diventa un immobile con un tocco.</p></div>
+        <div class="feature"><span class="n">Trasparenza</span><h3>Ogni numero spiegato</h3><p>Affidabilità, correzioni e margine di pubblicazione seguono regole chiare, scritte in chiaro. Una stima, non una perizia.</p></div>
+        <div class="feature"><span class="n">Report</span><h3>PDF a tuo nome</h3><p>Pronto da lasciare al proprietario. Lo storico delle stime resta nella scheda dell'immobile.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="flow" id="prenotazioni">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Prenotazione visite</span>
@@ -494,11 +566,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <div>
         <span class="eyebrow">Portafoglio</span>
         <h2>Il tuo portafoglio, a colpo d'occhio.</h2>
-        <p class="lead" style="margin-top:20px">Ogni agente vede e gestisce solo i propri clienti, immobili e trattative. Scadenze dei mandati e documenti mancanti emergono da soli.</p>
+        <p class="lead" style="margin-top:20px">Ogni agente vede e gestisce solo i propri clienti, immobili e trattative. Scadenze degli incarichi e documenti mancanti emergono da soli.</p>
         <div class="stats">
           <div><b>7</b><span>tipi di follow-up</span></div>
           <div><b>5</b><span>fasi della trattativa</span></div>
-          <div><b>30 gg</b><span>avviso scadenza mandato</span></div>
+          <div><b>30 gg</b><span>avviso scadenza incarico</span></div>
         </div>
       </div>
       <div class="stage" id="city-3d" role="img" aria-label="Quartiere 3D con un immobile evidenziato"></div>
@@ -575,7 +647,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     panel.querySelector('h3').scrollIntoView({ block: 'nearest', behavior: still ? 'auto' : 'smooth' });
   };
   for (const n of nodes) n.addEventListener('click', () => pick(n.dataset.node, true));
-  pick('immobili');
+  pick('note');
 }
 </script>
 
@@ -609,6 +681,21 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   // Scorre da solo finché non lo tocchi.
   const auto = still ? 0 : setInterval(() => show((cur + 1) % signals.length), 3500);
   signals.forEach((s, i) => s.addEventListener('click', () => { clearInterval(auto); show(i); }));
+}
+</script>
+
+<script>
+// Note: le azioni scelte decidono il tasto Salva e l'avviso finale.
+{
+  const demo = document.getElementById('note-demo'), chips = [...demo.querySelectorAll('[data-done]')];
+  const set = (f, v) => demo.querySelector(`[data-f=${f}]`).textContent = v;
+  for (const c of chips) c.addEventListener('click', () => {
+    c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true');
+    const on = chips.filter(x => x.getAttribute('aria-pressed') === 'true').map(x => x.dataset.done);
+    set('save', on.length ? `Salva nota e ${on.length === 1 ? '1 azione' : on.length + ' azioni'}` : 'Salva nota');
+    set('done', on.length ? `Nota salvata con: ${on.join(', ')}` : 'Nota salvata');
+    demo.querySelector('.visit').hidden = !on.includes('appuntamento');
+  });
 }
 </script>
 
