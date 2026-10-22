@@ -235,7 +235,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   .store { flex: 1; }
   /* Prima il titolo, poi la grafica, più piccola */
   .hero { padding-top: 24px; gap: 8px; }
-  .hero .stage { order: 0; max-width: 300px; }
+  /* La casa subito sotto il titolo: il blocco di testo si apre e la grafica si infila dopo h1 */
+  .hero > div:first-child { display: contents; }
+  .hero .stage { order: 1; max-width: 300px; }
+  .hero .lead, .hero .stores { order: 2; }
+  .hero h1 { margin-bottom: 0; }
   /* La mappa diventa una fila di linguette; i collegamenti restano su computer */
   .sys { display: block; margin-bottom: 24px; }
   .sys > div:last-child, .sysmap svg { display: none; }
