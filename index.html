@@ -230,10 +230,30 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 }
 @media (max-width: 560px) {
   nav .links a:not(.pill) { display: none; }
-  .more { grid-template-columns: 1fr; }
-  .feature, .feature + .feature { padding: 28px 0 0; border-left: 0; }
-  .feature + .feature { border-top: 1px solid var(--hairline); }
+  section { padding-block: 64px; }
+  .section-head { margin-bottom: 32px; }
   .store { flex: 1; }
+  /* Prima il titolo, poi la grafica, più piccola */
+  .hero { padding-top: 24px; gap: 8px; }
+  .hero .stage { order: 0; max-width: 300px; }
+  /* La mappa diventa una fila di linguette; i collegamenti restano su computer */
+  .sys { display: block; margin-bottom: 24px; }
+  .sys > div:last-child, .sysmap svg { display: none; }
+  .sysmap { aspect-ratio: auto; display: flex; gap: 8px; overflow-x: auto; margin-inline: -16px; padding: 4px 16px 12px; scrollbar-width: none; }
+  .node, .node.hub { position: static; transform: none; flex: none; font-size: 15px; padding: 10px 16px; font-weight: 500; }
+  .node.near { border-color: var(--hairline); }
+  .rows { gap: 0; }
+  .frow { overflow: hidden; }
+  /* I tre passi si scorrono di lato, il prossimo si intravede */
+  .book-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 4px 16px 28px; scroll-padding-inline: 16px; scrollbar-width: none; }
+  .frow .book-grid { margin-inline: calc(-1 * clamp(20px, 4vw, 40px)); padding-inline: clamp(20px, 4vw, 40px); scroll-padding-inline: clamp(20px, 4vw, 40px); }
+  .book-grid > div { scroll-snap-align: start; }
+  .book-grid .fu-card { box-shadow: 0 16px 32px -24px rgba(57,50,112,.45); }
+  .more { grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 0; margin-top: 40px; }
+  .feature, .feature + .feature, .feature:nth-child(3) { padding: 20px 0; border-left: 0; }
+  .feature:nth-child(n+3) { border-top: 1px solid var(--hairline); }
+  .feature h3 { font-size: 17px; margin: 8px 0 6px; }
+  .feature p { font-size: 14px; line-height: 1.5; }
 }
 </style>
 </head>
@@ -631,7 +651,10 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     for (const n of nodes) {
       n.setAttribute('aria-pressed', n.dataset.node === id);
       n.classList.toggle('near', near.has(n.dataset.node));
-      if (n.dataset.node === id) title.textContent = n.textContent;
+      if (n.dataset.node === id) {
+        title.textContent = n.textContent;
+        map.scrollTo({ left: n.offsetLeft - 16, behavior: still || !byUser ? 'auto' : 'smooth' }); // solo su telefono, dove le sezioni sono una fila di linguette
+      }
     }
     for (const p of panels) p.hidden = p.dataset.panel !== id;
     if (!byUser) return;
