@@ -3,7 +3,7 @@
 @font-face { font-family: Inter; src: url(fonts/Inter-Regular.ttf); font-weight: 400; font-display: swap; }
 @font-face { font-family: Inter; src: url(fonts/Inter-Medium.ttf); font-weight: 500; font-display: swap; }
 
-:root { --ink: #232328; --indigo: #393270; --violet: #7A68C6; --porcelain: #F8F7FB; --stone: #6B6A78; --hairline: #E6E3EE; }
+:root { --ink: #16243D; --indigo: #0C2B51; --violet: #2E5FB8; --porcelain: #F3F5F9; --stone: #6B778C; --hairline: #E1E6EE; }
 * { box-sizing: border-box; margin: 0; }
 body { font: 400 16px/1.7 Inter, system-ui, sans-serif; color: var(--ink); background: var(--porcelain); -webkit-font-smoothing: antialiased; }
 a { color: var(--indigo); text-underline-offset: 2px; }

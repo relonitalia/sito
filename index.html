@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Relon — App CRM per agenti immobiliari</title>
 <meta name="description" content="Relon è l'app CRM per agenti immobiliari: valutazioni sulle quotazioni OMI, note dettate che diventano appuntamenti, follow-up e ogni mattina la giornata già pronta. In arrivo per iPhone e Android.">
-<meta name="theme-color" content="#393270">
+<meta name="theme-color" content="#0C2B51">
 <link rel="canonical" href="https://relon.it/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relon">
@@ -33,15 +33,15 @@
 @font-face { font-family: Inter; src: url(assets/fonts/Inter-Regular.ttf); font-weight: 400; font-display: swap; }
 @font-face { font-family: Inter; src: url(assets/fonts/Inter-Medium.ttf); font-weight: 500; font-display: swap; }
 
-/* Palette dal logo (assets/logo.png) */
+/* Palette dell'app (lib/core/theme/app_colors.dart): blu notte e blu */
 :root {
-  --ink: #232328;
-  --indigo: #393270;
-  --violet: #7A68C6;
-  --lilac: #B599F3;
-  --porcelain: #F8F7FB;
-  --stone: #6B6A78;
-  --hairline: #E6E3EE;
+  --ink: #16243D;
+  --indigo: #0C2B51;
+  --violet: #2E5FB8;
+  --lilac: #95B0E3;
+  --porcelain: #F3F5F9;
+  --stone: #6B778C;
+  --hairline: #E1E6EE;
   --wrap: min(1160px, 100% - 32px);
 }
 * { box-sizing: border-box; margin: 0; }
@@ -70,7 +70,7 @@ h1 em { font-style: normal; background: linear-gradient(90deg, var(--indigo), va
 .lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--stone); max-width: 30em; }
 .stage { position: relative; aspect-ratio: 1; width: 100%; }
 .stage canvas { width: 100% !important; height: 100% !important; display: block; }
-.stage::after { content: ""; position: absolute; left: 22%; right: 22%; bottom: 6%; height: 7%; background: radial-gradient(closest-side, rgba(57,50,112,.2), transparent); z-index: -1; }
+.stage::after { content: ""; position: absolute; left: 22%; right: 22%; bottom: 6%; height: 7%; background: radial-gradient(closest-side, rgba(12,43,81,.2), transparent); z-index: -1; }
 
 /* Store buttons */
 .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
@@ -100,7 +100,7 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .sysmap ellipse { fill: none; stroke: var(--hairline); stroke-width: 1.5; }
 .sysmap path { fill: none; stroke: transparent; stroke-width: 2; }
 .sysmap path.on { stroke: var(--violet); stroke-dasharray: 6 6; animation: wire 1s linear infinite; }
-.node { position: absolute; transform: translate(-50%, -50%); font: 500 15px/1 Inter, sans-serif; color: var(--ink); white-space: nowrap; background: #fff; border: 1px solid var(--hairline); border-radius: 999px; padding: 11px 16px; cursor: pointer; box-shadow: 0 8px 20px -14px rgba(57,50,112,.6); transition: background .2s, color .2s, border-color .2s; }
+.node { position: absolute; transform: translate(-50%, -50%); font: 500 15px/1 Inter, sans-serif; color: var(--ink); white-space: nowrap; background: #fff; border: 1px solid var(--hairline); border-radius: 999px; padding: 11px 16px; cursor: pointer; box-shadow: 0 8px 20px -14px rgba(12,43,81,.6); transition: background .2s, color .2s, border-color .2s; }
 .node.hub { padding: 16px 22px; font-weight: 700; }
 .node.near { border-color: var(--violet); }
 .node[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: #fff; }
@@ -120,7 +120,7 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .desktop { margin-top: clamp(72px, 10vw, 128px); }
 .desktop .section-head { margin-bottom: 36px; }
 .desktop .lead { margin-top: 18px; max-width: 36em; }
-.desktop > img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 32px 64px -36px rgba(57,50,112,.45); }
+.desktop > img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 32px 64px -36px rgba(12,43,81,.45); }
 .more { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); margin-top: clamp(72px, 10vw, 128px); }
 
 /* Follow-up: dal segnale all'agenda */
@@ -137,14 +137,14 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .signal { font: inherit; color: inherit; text-align: left; background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 14px; padding: 11px 16px; cursor: pointer; transition: border-color .3s, background .3s, box-shadow .3s; }
 .signal b { display: block; font-weight: 500; font-size: 16px; }
 .signal small { display: block; font-size: 14px; line-height: 1.4; color: var(--stone); }
-.signal[aria-pressed="true"] { background: #fff; border-color: var(--violet); box-shadow: 0 12px 24px -16px rgba(57,50,112,.6); }
+.signal[aria-pressed="true"] { background: #fff; border-color: var(--violet); box-shadow: 0 12px 24px -16px rgba(12,43,81,.6); }
 .signal:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
-.fu-card { background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 24px; padding: 24px; box-shadow: 0 28px 56px -28px rgba(57,50,112,.45); }
+.fu-card { background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 24px; padding: 24px; box-shadow: 0 28px 56px -28px rgba(12,43,81,.45); }
 .fu-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .fu-head b { font: 700 18px/1.2 Manrope, sans-serif; }
-.fu-tag { background: #ECE8FB; color: var(--indigo); font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
+.fu-tag { background: #E9EFFA; color: var(--indigo); font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
 .fu-why { margin: 14px 0; min-height: 6.4em; }
-.fu-src { background: #ECE8FB; color: var(--indigo); font-size: 14px; font-weight: 500; padding: 10px 14px; border-radius: 12px; }
+.fu-src { background: #E9EFFA; color: var(--indigo); font-size: 14px; font-weight: 500; padding: 10px 14px; border-radius: 12px; }
 .fu-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; font-size: 14px; font-weight: 500; text-align: center; }
 .fu-actions span { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 8px; }
 .fu-decide { display: flex; justify-content: space-between; margin-top: 16px; font-size: 14px; font-weight: 500; }
@@ -170,7 +170,7 @@ button.chip:focus-visible { outline: 3px solid var(--violet); outline-offset: 2p
 .field.todo { color: var(--stone); border-style: dashed; }
 .bar { height: 6px; border-radius: 3px; background: var(--hairline); margin-top: 12px; }
 .bar i { display: block; height: 100%; border-radius: 3px; background: var(--violet); }
-mark { background: #ECE8FB; color: var(--indigo); border-radius: 4px; padding: 0 3px; }
+mark { background: #E9EFFA; color: var(--indigo); border-radius: 4px; padding: 0 3px; }
 .btn { display: block; background: var(--indigo); color: #fff; text-align: center; font-size: 14px; font-weight: 500; border-radius: 12px; padding: 12px; margin-top: 16px; }
 .visit + .toast, .chips + .toast, .field + .toast { margin-top: 12px; }
 .toast { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--ink); color: #fff; font-size: 14px; font-weight: 500; border-radius: 12px; padding: 12px 14px; }
@@ -183,7 +183,7 @@ mark { background: #ECE8FB; color: var(--indigo); border-radius: 4px; padding: 0
 /* Briefing della Home: la card indaco dell'app */
 .fu-card.brief { background: var(--indigo); border-color: var(--indigo); color: #fff; }
 .frow .book-grid .fu-card.brief { background: var(--indigo); }
-.brief p, .brief small { color: #C9C2EE; }
+.brief p, .brief small { color: #C3D3EF; }
 .brief .field { background: rgba(255,255,255,.1); border-color: transparent; color: #fff; }
 .brief .btn { background: #fff; color: var(--indigo); }
 .flow .book-grid .fu-card { background: var(--porcelain); }
@@ -192,19 +192,19 @@ mark { background: #ECE8FB; color: var(--indigo); border-radius: 4px; padding: 0
 @media (prefers-reduced-motion: reduce) { .flow-grid path.on, .sysmap path.on, .book-grid > div + div::before { animation: none; } }
 
 /* Portfolio */
-.portfolio { background: #1C1838; color: #fff; }
+.portfolio { background: #071A31; color: #fff; }
 .portfolio .wrap { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 48px; }
-.portfolio .eyebrow, .portfolio .lead { color: #B3AED0; }
+.portfolio .eyebrow, .portfolio .lead { color: #A9B8CF; }
 .portfolio .stage { aspect-ratio: 4 / 3; }
 .portfolio .stage::after { display: none; }
 .hero .stage::after { bottom: 24%; }
 .stats { display: flex; gap: 40px; margin-top: 40px; }
 .stats b { display: block; font: 800 36px Manrope, sans-serif; color: var(--lilac); }
-.stats span { font-size: 14px; color: #B3AED0; }
+.stats span { font-size: 14px; color: #A9B8CF; }
 
 /* CTA */
 .cta { text-align: center; }
-.cta img { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 12px 32px -12px rgba(57,50,112,.35); margin-bottom: 28px; }
+.cta img { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 12px 32px -12px rgba(12,43,81,.35); margin-bottom: 28px; }
 .cta .lead { margin-inline: auto; margin-top: 16px; }
 .cta .stores { justify-content: center; }
 footer { border-top: 1px solid var(--hairline); padding-block: 28px; font-size: 14px; color: var(--stone); }
@@ -252,7 +252,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   .book-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 4px 16px 28px; scroll-padding-inline: 16px; scrollbar-width: none; }
   .frow .book-grid { margin-inline: calc(-1 * clamp(20px, 4vw, 40px)); padding-inline: clamp(20px, 4vw, 40px); scroll-padding-inline: clamp(20px, 4vw, 40px); }
   .book-grid > div { scroll-snap-align: start; }
-  .book-grid .fu-card { box-shadow: 0 16px 32px -24px rgba(57,50,112,.45); }
+  .book-grid .fu-card { box-shadow: 0 16px 32px -24px rgba(12,43,81,.45); }
   .more { grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 0; margin-top: 40px; }
   .feature, .feature + .feature, .feature:nth-child(3) { padding: 20px 0; border-left: 0; }
   .feature:nth-child(n+3) { border-top: 1px solid var(--hairline); }
@@ -283,7 +283,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div>
       <span class="eyebrow">CRM per agenti immobiliari</span>
       <h1>Ogni immobile.<br>Ogni cliente.<br><em>In tasca.</em></h1>
-      <p class="lead">Relon riunisce immobili, contatti, trattative, agenda e note in un'unica app pensata per chi lavora sul campo. Valuta le case sui dati OMI, trasforma una nota dettata in un appuntamento e ogni mattina ti dice da dove iniziare.</p>
+      <p class="lead">Relon riunisce immobili, contatti, trattative, agenda e note in un'unica app pensata per chi lavora sul campo. Valuta le case sui dati OMI, trasforma una nota dettata in un appuntamento, ti accompagna fino al rogito e ogni mattina ti dice da dove iniziare.</p>
       <div class="stores" data-stores></div>
     </div>
     <div class="stage" id="hero-3d" role="img" aria-label="Una casa in 3D che si trasforma in un grafo di dati"></div>
@@ -325,9 +325,10 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
             <li class="field" data-from="immobili" data-to="prenotazioni"><b>Immobili → Prenotazioni</b>Ogni immobile ha il suo link per prenotare le visite.</li>
             <li class="field" data-from="prenotazioni" data-to="agenda"><b>Prenotazioni → Agenda</b>La visita prenotata dal cliente arriva in agenda.</li>
             <li class="field" data-from="prenotazioni" data-to="contatti"><b>Prenotazioni → Contatti</b>Se telefono o email corrispondono, la visita è collegata al contatto.</li>
-            <li class="field" data-from="trattative" data-to="agenda"><b>Trattative → Agenda</b>Le scadenze della trattativa compaiono nel calendario.</li>
+            <li class="field" data-from="trattative" data-to="agenda"><b>Trattative → Agenda</b>Le scadenze e la data del rogito compaiono nel calendario.</li>
+            <li class="field" data-from="trattative" data-to="immobili"><b>Trattative → Immobili</b>Quando la trattativa si chiude, l'immobile diventa venduto o affittato.</li>
             <li class="field" data-from="immobili" data-to="follow-up"><b>Immobili → Follow-up</b>Incarico in scadenza o documenti mancanti generano un suggerimento.</li>
-            <li class="field" data-from="trattative" data-to="follow-up"><b>Trattative → Follow-up</b>Proposta in scadenza, trattativa ferma, visita senza riscontro, documenti del compromesso.</li>
+            <li class="field" data-from="trattative" data-to="follow-up"><b>Trattative → Follow-up</b>Proposta in scadenza, trattativa ferma, visita senza riscontro, documenti che mancano per il rogito.</li>
             <li class="field" data-from="contatti" data-to="follow-up"><b>Contatti → Follow-up</b>Un contatto caldo o tiepido che non senti da troppo tempo.</li>
             <li class="field" data-from="follow-up" data-to="agenda"><b>Follow-up → Agenda</b>Dal suggerimento crei un task o un appuntamento.</li>
             <li class="field" data-from="agenda" data-to="home"><b>Agenda → Home</b>Gli impegni di oggi e la prima cosa da fare.</li>
@@ -348,11 +349,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           </div>
         </div>
         <div class="frow" data-panel="immobili">
-          <span class="n">Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Crei la scheda, completi i documenti e Relon tiene d'occhio l'incarico. Filtri per vendita, affitto e stato.</p>
+          <span class="n">Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Acquisizione, Attivo, Chiuso. In cima alla scheda Relon ti dice sempre cosa manca e ti porta dove si risolve, senza mai bloccarti.</p>
           <div class="book-grid">
-            <div><span class="n step">1 · Crei la scheda</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Vendita</span></div><small>Dati</small><div class="chips"><span class="chip">Dati principali</span><span class="chip">Impianti</span><span class="chip">Classe energetica</span><span class="chip">Foto con copertina</span></div><small>Incarico</small><div class="chips"><span class="chip on">Esclusiva 6 mesi</span><span class="chip">Non esclusiva</span></div><div class="field"><b>Dal</b>2 maggio <b style='margin-left:10px'>al</b>2 novembre</div><div class="field"><b>Commissioni</b>acquirente e venditore</div></div></div>
-            <div><span class="n step">2 · Completi i documenti</span><div class="fu-card"><div class="fu-head"><b>Checklist documenti</b><span class="fu-tag">Vendita</span></div><p>Una checklist per la vendita e una per l'affitto.</p><div class="field"><b>✓</b>Visura catastale aggiornata</div><div class="field"><b>✓</b>Planimetria catastale</div><div class="field todo"><b>○</b>APE</div><div class="bar"><i style="width:66%"></i></div><small>Completezza: 2 su 3</small></div></div>
-            <div><span class="n step">3 · Relon controlla le scadenze</span><div class="fu-card"><div class="toast">Incarico in scadenza tra 20 giorni <span>Apri</span></div><p>L'avviso arriva quando mancano 30 giorni alla fine dell'incarico.</p><small>Dalla scheda partono anche</small><div class="chips"><span class="chip">Valutazione OMI</span><span class="chip">Link di prenotazione visite</span><span class="chip">Trattative</span><span class="chip">Follow-up</span></div></div></div>
+            <div><span class="n step">1 · Acquisizione</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">In acquisizione</span></div><p>Acquisizione incompleta – 2 elementi mancanti</p><div class="field"><b>✓</b>Documento d'identità del proprietario</div><div class="field"><b>✓</b>Incarico firmato</div><div class="field todo"><b>○</b>Atto di provenienza</div><div class="field todo"><b>○</b>APE</div><div class="bar"><i style="width:50%"></i></div><small>Se è in condominio aggiunge regolamento, verbali e amministratore</small></div></div>
+            <div><span class="n step">2 · Sul mercato</span><div class="fu-card"><div class="fu-head"><b>Metti sul mercato</b><span class="fu-tag">Attivo</span></div><div class="field"><b>✓</b>Foto con copertina</div><div class="field"><b>✓</b>Annuncio pubblicato il 12 ottobre</div><div class="field todo"><b>○</b>Privacy firmata dal proprietario</div><p>Puoi andare avanti anche con delle mancanze: restano in vista e nei promemoria.</p></div></div>
+            <div><span class="n step">3 · Relon controlla le scadenze</span><div class="fu-card"><div class="toast">APE scaduto <span>Sostituisci</span></div><p>Carichi un documento d'identità o un APE e Relon chiede fino a quando vale. Ti avvisa anche quando l'incarico sta per scadere.</p><small>Dalla scheda partono anche</small><div class="chips"><span class="chip">Valutazione OMI</span><span class="chip">Link di prenotazione visite</span><span class="chip">Trattative</span><span class="chip">Follow-up</span></div></div></div>
           </div>
         </div>
         <div class="frow" data-panel="contatti">
@@ -364,11 +365,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           </div>
         </div>
         <div class="frow" data-panel="trattative">
-          <span class="n">Trattative</span><h3>Dal primo interesse al rogito.</h3><p>Cinque fasi, con le scadenze e i documenti che servono lungo la strada. In testa trovi quante trattative sono aperte, il valore della pipeline e i giorni medi.</p>
+          <span class="n">Trattative</span><h3>Dalla proposta al rogito, passo per passo.</h3><p>La vendita va da Proposta a Rogito, l'affitto da Proposta a Registrazione. Per ogni fase Relon elenca i documenti e le persone che servono, e prepara il fascicolo per il notaio.</p>
           <div class="book-grid">
-            <div><span class="n step">1 · Segui le fasi</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Proposta</span></div><small>Fasi</small><div class="chips"><span class="chip">Attiva</span><span class="chip on">Proposta</span><span class="chip">Compromesso</span><span class="chip">Rogito</span><span class="chip">Chiusa</span></div><small>In testa all'elenco</small><div class="chips"><span class="chip">Trattative aperte</span><span class="chip">Valore della pipeline</span><span class="chip">Giorni medi</span></div></div></div>
-            <div><span class="n step">2 · Tieni le scadenze</span><div class="fu-card"><div class="fu-head"><b>Scadenze</b></div><div class="field"><b>15 ott</b>Validità della proposta</div><div class="field todo"><b>—</b>Caparra</div><div class="field todo"><b>—</b>Compromesso</div><div class="field todo"><b>—</b>Rogito</div><div class="field todo"><b>—</b>Sospensiva mutuo</div></div></div>
-            <div><span class="n step">3 · Tutto resta scritto</span><div class="fu-card"><div class="fu-head"><b>Diario attività</b></div><div class="chips"><span class="chip">Chiamata</span><span class="chip">Visita</span><span class="chip">WhatsApp</span><span class="chip">Email</span><span class="chip">Proposta</span><span class="chip">Documento</span></div><p>In ordine di tempo, per sapere sempre cosa è successo.</p><small>Documenti del compromesso</small><div class="field"><b>✓</b>Planimetria catastale aggiornata</div><div class="field todo"><b>○</b>APE definitivo</div><div class="field todo"><b>○</b>Estratto catastale</div></div></div>
+            <div><span class="n step">1 · Cosa manca per il notaio</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Proposta</span></div><div class="chips"><span class="chip on">Proposta</span><span class="chip">Rogito</span><span class="chip">Chiuso</span></div><div class="field"><b>✓</b>Documenti di venditore e acquirente</div><div class="field"><b>✓</b>Antiriciclaggio e privacy</div><div class="field todo"><b>○</b>Estratto di matrimonio dell'acquirente</div><div class="field todo"><b>○</b>Dichiarazione dell'amministratore</div></div></div>
+            <div><span class="n step">2 · Il fascicolo in un tocco</span><div class="fu-card"><div class="fu-head"><b>Prepara documenti per il notaio</b></div><p>Un file con le cartelle numerate per sezione e un indice: parti, contenuto e cosa manca.</p><span class="btn">Invia al notaio Ferri</span><div class="toast">Documentazione inviata al notaio ✓</div><small>La data del rogito va da sola in agenda</small></div></div>
+            <div><span class="n step">3 · Il giorno del rogito</span><div class="fu-card"><div class="fu-head"><b>Com'è andato il rogito?</b></div><div class="chips"><span class="chip on">Vendita conclusa</span><span class="chip">Rogito rinviato</span><span class="chip">Non concluso</span></div><p>Vendita conclusa: l'immobile diventa venduto da solo. Rinviato: scegli la nuova data e l'appuntamento si sposta.</p><small>Per l'affitto</small><div class="chips"><span class="chip">Garante</span><span class="chip">Buste paga</span><span class="chip">Prepara registrazione</span></div></div></div>
           </div>
         </div>
         <div class="frow" data-panel="note">
@@ -410,12 +411,12 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           <img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Home di Relon con il briefing della giornata e la prima cosa da fare">
           <img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Sezioni di Relon con i numeri di ogni area e cosa richiede attenzione">
           <img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato dell'incarico">
-          <img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con dati principali e suggerimento">
+          <img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con le fasi e cosa manca">
           <img src="assets/screens/valutazione.webp" width="780" height="1688" loading="lazy" alt="Valutazione di un immobile sulle quotazioni OMI con prezzo consigliato e motivi">
           <img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura">
           <img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza">
           <img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline">
-          <img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con fasi e riepilogo">
+          <img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con le fasi e cosa manca per il rogito">
           <img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare">
           <img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa">
           <img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up ordinati per importanza con Fatto e Rimanda">
@@ -454,7 +455,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
             <button type="button" class="signal" aria-pressed="false" data-tag="Via Manzoni 4" data-why="La proposta per Via Manzoni 4 scade il 15 ottobre: verifica con Luca Ferri come procedere." data-src="Dalla trattativa Via Manzoni 4"><b>Proposta in scadenza</b><small>Mancano 3 giorni o meno alla data di validità</small></button>
             <button type="button" class="signal" aria-pressed="false" data-tag="Viale Piave 21" data-why="La trattativa per Viale Piave 21 è ferma da 18 giorni: nessuna attività, nota o appuntamento." data-src="Dalla trattativa Viale Piave 21"><b>Trattativa ferma</b><small>Nessuna attività, nota o appuntamento da più di 14 giorni</small></button>
             <button type="button" class="signal" aria-pressed="false" data-tag="Giulia Ferrari" data-why="Non senti Giulia Ferrari da 9 giorni ed è un contatto caldo." data-src="Dalla scheda di Giulia Ferrari"><b>Contatto da risentire</b><small>Contatto caldo in silenzio da più di 7 giorni, tiepido da più di 21</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Via Roma 3" data-why="Per il compromesso di Via Roma 3 mancano ancora: APE definitivo, Estratto catastale." data-src="Dalla trattativa Via Roma 3"><b>Documenti mancanti</b><small>Trattativa al compromesso o al rogito, oppure immobile con una trattativa aperta</small></button>
+            <button type="button" class="signal" aria-pressed="false" data-tag="Via Roma 3" data-why="Per il rogito di Via Roma 3 mancano ancora: Dichiarazione dell'amministratore, Stato civile dell'acquirente." data-src="Dalla trattativa Via Roma 3"><b>Documenti mancanti</b><small>Quello che manca alla trattativa o all'immobile per la fase in cui sono</small></button>
           </div>
         </div>
         <div>
@@ -587,7 +588,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
         <p class="lead" style="margin-top:20px">Ogni agente vede e gestisce solo i propri clienti, immobili e trattative. Scadenze degli incarichi e documenti mancanti emergono da soli.</p>
         <div class="stats">
           <div><b>7</b><span>tipi di follow-up</span></div>
-          <div><b>5</b><span>fasi della trattativa</span></div>
+          <div><b>3</b><span>fasi, dalla proposta al rogito</span></div>
           <div><b>30 gg</b><span>avviso scadenza incarico</span></div>
         </div>
       </div>
@@ -741,7 +742,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-const INDIGO = 0x393270, LILAC = 0xB599F3, WHITE = 0xFFFFFF;
+const INDIGO = 0x0C2B51, LILAC = 0x95B0E3, WHITE = 0xFFFFFF;
 const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Renderer legato a un contenitore: resize automatico, render solo quando visibile.
@@ -809,7 +810,7 @@ function mount(el, camera, scene, tick) {
       .forEach(([, j]) => { const k = [Math.min(i, j), Math.max(i, j)].join(); if (!seen.has(k)) { seen.add(k); edges.push([i, j]); } });
   }
 
-  const palette = [INDIGO, 0x6F61B3, 0x8372CB, LILAC];
+  const palette = [INDIGO, 0x1F4C8A, 0x2E5FB8, LILAC];
   const sphere = new THREE.SphereGeometry(1, 24, 16);
   const nodes = target.map((_, i) => {
     const m = new THREE.Mesh(sphere, new THREE.MeshPhysicalMaterial({ color: i < house.length ? INDIGO : palette[1 + i % 3], roughness: 0.3, clearcoat: 1 }));
@@ -819,10 +820,10 @@ function mount(el, camera, scene, tick) {
     return m;
   });
   const rod = new THREE.CylinderGeometry(1, 1, 1, 10);
-  const rodMat = new THREE.MeshStandardMaterial({ color: 0x8F7FD6, roughness: 0.4 });
+  const rodMat = new THREE.MeshStandardMaterial({ color: 0x5C86CF, roughness: 0.4 });
   const links = edges.map(() => { const m = new THREE.Mesh(rod, rodMat); graph.add(m); return m; });
 
-  scene.add(new THREE.HemisphereLight(WHITE, 0xD9D3EE, 0.9));
+  scene.add(new THREE.HemisphereLight(WHITE, 0xD3DEEE, 0.9));
   const key = new THREE.DirectionalLight(WHITE, 2.2);
   key.position.set(4, 5, 6);
   scene.add(key);
@@ -876,13 +877,13 @@ function mount(el, camera, scene, tick) {
   const city = new THREE.Group();
   scene.add(city);
 
-  const ground = new THREE.Mesh(new THREE.CylinderGeometry(5.6, 5.6, 0.2, 64), new THREE.MeshStandardMaterial({ color: 0x2A2553, roughness: 0.9 }));
+  const ground = new THREE.Mesh(new THREE.CylinderGeometry(5.6, 5.6, 0.2, 64), new THREE.MeshStandardMaterial({ color: 0x0A2242, roughness: 0.9 }));
   ground.position.y = -0.1;
   ground.receiveShadow = true;
   city.add(ground);
 
-  const wallMat = new THREE.MeshStandardMaterial({ color: 0xF8F7FB, roughness: 0.7 });
-  const roofMat = new THREE.MeshStandardMaterial({ color: 0x4A4290, roughness: 0.6 });
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xF3F5F9, roughness: 0.7 });
+  const roofMat = new THREE.MeshStandardMaterial({ color: 0x1A4278, roughness: 0.6 });
   const accentMat = new THREE.MeshStandardMaterial({ color: LILAC, emissive: LILAC, emissiveIntensity: 0.3, roughness: 0.4 });
   const box = new THREE.BoxGeometry(1, 1, 1);
   const pyramid = new THREE.ConeGeometry(0.72, 0.55, 4);
@@ -907,7 +908,7 @@ function mount(el, camera, scene, tick) {
     if (isMine) mine = house;
   }
 
-  scene.add(new THREE.HemisphereLight(0xE4E0F5, INDIGO, 0.8));
+  scene.add(new THREE.HemisphereLight(0xDDE6F3, INDIGO, 0.8));
   const sun = new THREE.DirectionalLight(WHITE, 2.4);
   sun.position.set(6, 10, 3);
   sun.castShadow = true;
