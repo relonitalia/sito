@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Relon — App CRM per agenti immobiliari</title>
-<meta name="description" content="Relon è l'app CRM per agenti immobiliari: valutazioni sulle quotazioni OMI, note dettate che diventano appuntamenti, follow-up e ogni mattina la giornata già pronta. In arrivo per iPhone e Android.">
+<title>Relon — Il gestionale di nuova generazione per agenti immobiliari</title>
+<meta name="description" content="Relon è il gestionale per agenti immobiliari: immobili, contatti, trattative, agenda e documenti dall'acquisizione al rogito. E in più ti ricorda chi richiamare, trasforma le note dettate in appuntamenti e valuta le case sulle quotazioni OMI. In arrivo per iPhone e Android.">
 <meta name="theme-color" content="#0C2B51">
 <link rel="canonical" href="https://relon.it/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Relon">
 <meta property="og:url" content="https://relon.it/">
-<meta property="og:title" content="Relon — App CRM per agenti immobiliari">
-<meta property="og:description" content="Valutazioni sulle quotazioni OMI, note dettate che diventano appuntamenti, follow-up e agenda in un'unica app per agenti immobiliari.">
+<meta property="og:title" content="Relon — Il gestionale di nuova generazione per agenti immobiliari">
+<meta property="og:description" content="Immobili, contatti, trattative e agenda dall'acquisizione al rogito. Il gestionale che ti dice da dove iniziare, su telefono e computer.">
 <meta property="og:image" content="https://relon.it/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -22,7 +22,7 @@
 {"@context":"https://schema.org","@graph":[
   {"@type":"Organization","@id":"https://relon.it/#org","name":"Relon","url":"https://relon.it/","logo":"https://relon.it/assets/app-icon-1024.png","email":"info@relon.it"},
   {"@type":"WebSite","@id":"https://relon.it/#website","name":"Relon","url":"https://relon.it/","inLanguage":"it-IT","publisher":{"@id":"https://relon.it/#org"}},
-  {"@type":"MobileApplication","name":"Relon","operatingSystem":"iOS, Android","applicationCategory":"BusinessApplication","description":"App CRM per agenti immobiliari: immobili, contatti, trattative, agenda, note che agiscono, follow-up e valutazioni sulle quotazioni OMI.","image":"https://relon.it/assets/app-icon-1024.png","publisher":{"@id":"https://relon.it/#org"}}
+  {"@type":"MobileApplication","name":"Relon","operatingSystem":"iOS, Android","applicationCategory":"BusinessApplication","description":"Il gestionale per agenti immobiliari: immobili, contatti, trattative, agenda, note che agiscono, follow-up e valutazioni sulle quotazioni OMI.","image":"https://relon.it/assets/app-icon-1024.png","publisher":{"@id":"https://relon.it/#org"}}
 ]}
 </script>
 <link rel="icon" href="assets/favicon.png">
@@ -212,7 +212,7 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 
 @media (max-width: 900px) {
-  nav .links a[href="#computer"], nav .links a[href="#prenotazioni"], nav .links a[href="#portafoglio"] { display: none; }
+  nav .links a[href="#computer"], nav .links a[href="#prenotazioni"], nav .links a[href="#portafoglio"], nav .links a[href="#chi-siamo"] { display: none; }
   .hero, .portfolio .wrap { grid-template-columns: 1fr; }
   .hero { min-height: 0; padding-top: 32px; }
   .hero .stage { max-width: 440px; margin-inline: auto; order: -1; }
@@ -273,6 +273,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <a href="#follow-up">Follow-up</a>
       <a href="#prenotazioni">Prenotazioni</a>
       <a href="#portafoglio">Portafoglio</a>
+      <a href="#chi-siamo">Chi siamo</a>
       <a href="#scarica" class="pill">Scarica</a>
     </div>
   </div>
@@ -281,9 +282,9 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 <main>
   <header class="wrap hero">
     <div>
-      <span class="eyebrow">CRM per agenti immobiliari</span>
-      <h1>Ogni immobile.<br>Ogni cliente.<br><em>In tasca.</em></h1>
-      <p class="lead">Relon riunisce immobili, contatti, trattative, agenda e note in un'unica app pensata per chi lavora sul campo. Valuta le case sui dati OMI, trasforma una nota dettata in un appuntamento, ti accompagna fino al rogito e ogni mattina ti dice da dove iniziare.</p>
+      <span class="eyebrow">Il gestionale per agenti immobiliari</span>
+      <h1>Tu vendi case.<br>Al resto<br><em>pensa Relon.</em></h1>
+      <p class="lead">Immobili, contatti, trattative, agenda e documenti, dall'acquisizione al rogito. E in più Relon ogni mattina ti dice da dove iniziare, ti ricorda chi richiamare, trasforma una nota dettata in un appuntamento e valuta le case sui dati OMI.</p>
       <div class="stores" data-stores></div>
     </div>
     <div class="stage" id="hero-3d" role="img" aria-label="Una casa in 3D che si trasforma in un grafo di dati"></div>
@@ -596,6 +597,22 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     </div>
   </section>
 
+  <section id="chi-siamo">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Chi siamo</span>
+        <h2>Una startup italiana che rifà il gestionale da zero.</h2>
+        <p class="lead" style="margin-top:18px;max-width:36em">I gestionali immobiliari sono nati per la scrivania: schede da compilare, archivi da tenere in ordine. Relon nasce oggi, a Milano, per l'agente che passa la giornata tra visite, chiamate e rogiti. Un gestionale che non aspetta che tu lo aggiorni, ma lavora con te.</p>
+      </div>
+      <div class="more">
+        <div class="feature"><span class="n">Nato sul telefono</span><h3>Pensato per chi lavora fuori</h3><p>Prima il telefono, poi il computer: stessa app, stessi dati, sincronizzati in tempo reale. In ufficio sullo schermo grande, in strada in tasca.</p></div>
+        <div class="feature"><span class="n">Fa, non archivia</span><h3>Il lavoro lo fa lui</h3><p>Una nota dettata diventa un appuntamento, un prezzo nuovo aggiorna la scheda, una data diventa un promemoria. Tu decidi, Relon esegue.</p></div>
+        <div class="feature"><span class="n">Dati veri</span><h3>Numeri che puoi spiegare</h3><p>Valutazioni sulle quotazioni ufficiali OMI di tutta Italia, con il calcolo sempre in chiaro. Niente stime magiche.</p></div>
+        <div class="feature"><span class="n">Con gli agenti</span><h3>Cresce con chi lo usa</h3><p>Aggiorniamo Relon di continuo, partendo da quello che ci chiedono gli agenti. Scrivi a <a href="mailto:info@relon.it">info@relon.it</a>: ti risponde chi lo costruisce.</p></div>
+      </div>
+    </div>
+  </section>
+
   <section class="cta" id="scarica">
     <div class="wrap">
       <img src="assets/app-icon-1024.png" alt="Icona app Relon">
@@ -608,7 +625,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Relon</span>
+    <span>© 2026 Relon · Startup italiana, Milano</span>
     <span class="legal"><a href="/privacy">Privacy</a><a href="/tos">Termini</a><a href="mailto:info@relon.it">info@relon.it</a></span>
   </div>
 </footer>
