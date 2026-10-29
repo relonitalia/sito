@@ -68,9 +68,6 @@ nav .links a:not(.pill):hover { color: var(--ink); }
 h1 { font-size: clamp(40px, 6vw, 76px); line-height: 1.02; font-weight: 800; margin: 20px 0 22px; }
 h1 em { font-style: normal; background: linear-gradient(90deg, var(--indigo), var(--violet) 55%, var(--lilac)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lead { font-size: clamp(17px, 1.6vw, 19px); color: var(--stone); max-width: 30em; }
-.stage { position: relative; aspect-ratio: 1; width: 100%; }
-.stage canvas { width: 100% !important; height: 100% !important; display: block; }
-.stage::after { content: ""; position: absolute; left: 22%; right: 22%; bottom: 6%; height: 7%; background: radial-gradient(closest-side, rgba(12,43,81,.2), transparent); z-index: -1; }
 
 /* Store buttons */
 .stores { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
@@ -78,6 +75,7 @@ h1 em { font-style: normal; background: linear-gradient(90deg, var(--indigo), va
 a.store:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -10px rgba(0,0,0,.5); }
 .store[aria-disabled] { background: #9CA0A8; cursor: default; }
 .soon { flex-basis: 100%; font-size: 14px; font-weight: 500; color: var(--stone); }
+.soon a { color: var(--violet); text-decoration: underline; text-underline-offset: 3px; }
 .store:focus-visible, .pill:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
 .store svg { width: 26px; height: 26px; fill: currentColor; flex: none; }
 .store small { display: block; font-size: 11px; line-height: 1.2; opacity: .8; }
@@ -93,63 +91,20 @@ h2 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; font-weight: 800; m
 .feature p { font-size: 15px; color: var(--stone); }
 
 /* Mappa del sistema: le sezioni in cerchio, con i collegamenti di quella scelta */
-.sys { display: grid; grid-template-columns: 1.1fr 1fr; align-items: center; gap: clamp(32px, 5vw, 64px); margin-bottom: clamp(40px, 6vw, 64px); }
-.sys h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.12; font-weight: 800; }
-.sysmap { position: relative; aspect-ratio: 600 / 560; }
-.sysmap svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.sysmap ellipse { fill: none; stroke: var(--hairline); stroke-width: 1.5; }
-.sysmap path { fill: none; stroke: transparent; stroke-width: 2; }
-.sysmap path.on { stroke: var(--violet); stroke-dasharray: 6 6; animation: wire 1s linear infinite; }
-.node { position: absolute; transform: translate(-50%, -50%); font: 500 15px/1 Inter, sans-serif; color: var(--ink); white-space: nowrap; background: #fff; border: 1px solid var(--hairline); border-radius: 999px; padding: 11px 16px; cursor: pointer; box-shadow: 0 8px 20px -14px rgba(12,43,81,.6); transition: background .2s, color .2s, border-color .2s; }
-.node.hub { padding: 16px 22px; font-weight: 700; }
-.node.near { border-color: var(--violet); }
-.node[aria-pressed="true"] { background: var(--indigo); border-color: var(--indigo); color: #fff; }
-.node:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
-#edges { list-style: none; padding: 0; margin-top: 12px; }
-.frow { background: #fff; border: 1px solid var(--hairline); border-radius: 24px; padding: clamp(20px, 4vw, 40px); scroll-margin-block: 96px; }
-.frow .book-grid .fu-card { background: var(--porcelain); }
-.frow .pill { display: inline-block; }
 
 /* Schermate */
-.rows { display: grid; gap: clamp(72px, 10vw, 128px); }
-.frow h3 { scroll-margin-block: 140px;  font-size: clamp(26px, 3vw, 36px); line-height: 1.12; font-weight: 800; margin: 14px 0; }
-.frow > p { color: var(--stone); max-width: 36em; margin-bottom: 36px; }
 .n { font: 700 14px Manrope, sans-serif; color: var(--violet); }
-.gallery { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; margin-top: 36px; padding-bottom: 20px; }
-.gallery img { flex: none; width: 216px; height: auto; border: 6px solid var(--ink); border-radius: 30px; background: #fff; scroll-snap-align: start; }
-.desktop { margin-top: clamp(72px, 10vw, 128px); }
-.desktop .section-head { margin-bottom: 36px; }
-.desktop .lead { margin-top: 18px; max-width: 36em; }
-.desktop > img { display: block; width: 100%; height: auto; border: 1px solid var(--hairline); border-radius: 14px; box-shadow: 0 32px 64px -36px rgba(12,43,81,.45); }
 .more { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); margin-top: clamp(72px, 10vw, 128px); }
 
 /* Follow-up: dal segnale all'agenda */
 .flow { background: #fff; border-block: 1px solid var(--hairline); }
 .flow .lead { margin-top: 18px; max-width: 36em; }
-.flow-grid { position: relative; display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(64px, 10vw, 140px); }
-.flow-grid > div { min-width: 0; }
-.flow-grid svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.flow-grid path { fill: none; stroke: var(--hairline); stroke-width: 1.5; transition: stroke .3s; }
-.flow-grid path.on { stroke: var(--violet); stroke-width: 2; stroke-dasharray: 6 6; animation: wire 1s linear infinite; }
 @keyframes wire { to { stroke-dashoffset: -12; } }
 .step { display: block; margin-bottom: 16px; }
-.signals { position: relative; display: grid; gap: 8px; }
-.signal { font: inherit; color: inherit; text-align: left; background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 14px; padding: 11px 16px; cursor: pointer; transition: border-color .3s, background .3s, box-shadow .3s; }
-.signal b { display: block; font-weight: 500; font-size: 16px; }
-.signal small { display: block; font-size: 14px; line-height: 1.4; color: var(--stone); }
-.signal[aria-pressed="true"] { background: #fff; border-color: var(--violet); box-shadow: 0 12px 24px -16px rgba(12,43,81,.6); }
-.signal:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
 .fu-card { background: var(--porcelain); border: 1px solid var(--hairline); border-radius: 24px; padding: 24px; box-shadow: 0 28px 56px -28px rgba(12,43,81,.45); }
 .fu-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .fu-head b { font: 700 18px/1.2 Manrope, sans-serif; }
 .fu-tag { background: #E9EFFA; color: var(--indigo); font-size: 13px; font-weight: 500; padding: 4px 12px; border-radius: 999px; white-space: nowrap; }
-.fu-why { margin: 14px 0; min-height: 6.4em; }
-.fu-src { background: #E9EFFA; color: var(--indigo); font-size: 14px; font-weight: 500; padding: 10px 14px; border-radius: 12px; }
-.fu-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; font-size: 14px; font-weight: 500; text-align: center; }
-.fu-actions span { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 8px; }
-.fu-decide { display: flex; justify-content: space-between; margin-top: 16px; font-size: 14px; font-weight: 500; }
-.fu-decide span:first-child { color: var(--stone); }
-.fu-decide span:last-child { color: #23875A; }
 
 /* Prenotazione visite: agente -> cliente -> agenda */
 .book-grid { display: grid; grid-template-columns: repeat(3, 1fr); align-items: start; gap: clamp(32px, 5vw, 64px); }
@@ -182,25 +137,271 @@ mark { background: #E9EFFA; color: var(--indigo); border-radius: 4px; padding: 0
 .visit span { font-size: 13px; color: var(--stone); }
 /* Briefing della Home: la card indaco dell'app */
 .fu-card.brief { background: var(--indigo); border-color: var(--indigo); color: #fff; }
-.frow .book-grid .fu-card.brief { background: var(--indigo); }
 .brief p, .brief small { color: #C3D3EF; }
 .brief .field { background: rgba(255,255,255,.1); border-color: transparent; color: #fff; }
 .brief .btn { background: #fff; color: var(--indigo); }
 .flow .book-grid .fu-card { background: var(--porcelain); }
 .price { display: block; font: 800 clamp(30px, 3.4vw, 40px)/1.1 Manrope, sans-serif; color: var(--indigo); letter-spacing: -0.02em; margin-top: 14px; }
 .up { color: #23875A; font-weight: 500; }
-@media (prefers-reduced-motion: reduce) { .flow-grid path.on, .sysmap path.on, .book-grid > div + div::before { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .book-grid > div + div::before { animation: none; } }
 
-/* Portfolio */
-.portfolio { background: #071A31; color: #fff; }
-.portfolio .wrap { display: grid; grid-template-columns: 1fr 1.2fr; align-items: center; gap: 48px; }
-.portfolio .eyebrow, .portfolio .lead { color: #A9B8CF; }
-.portfolio .stage { aspect-ratio: 4 / 3; }
-.portfolio .stage::after { display: none; }
-.hero .stage::after { bottom: 24%; }
-.stats { display: flex; gap: 40px; margin-top: 40px; }
-.stats b { display: block; font: 800 36px Manrope, sans-serif; color: var(--lilac); }
-.stats span { font-size: 14px; color: #A9B8CF; }
+/* Chi siamo: una startup, raccontata da quello che esce */
+.about { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); align-items: start; }
+.facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 8px; }
+.facts li { background: #fff; border: 1px solid var(--hairline); border-radius: 18px; padding: 16px; font-size: 14px; color: var(--stone); line-height: 1.35; }
+.facts b { display: block; font: 800 24px Manrope, sans-serif; color: var(--indigo); margin-bottom: 4px; }
+.rel { background: #fff; border: 1px solid var(--hairline); border-radius: 24px; padding: 24px 26px; box-shadow: 0 28px 56px -32px rgba(12,43,81,.4); }
+.rel ol { list-style: none; padding: 0; margin-top: 14px; position: relative; }
+.rel ol::before { content: ""; position: absolute; left: 16px; top: 28px; bottom: 28px; width: 2px; background: repeating-linear-gradient(var(--lilac) 0 6px, transparent 6px 12px); }
+.rel li { position: relative; display: grid; grid-template-columns: 1fr; column-gap: 8px; padding: 10px 0 10px 24px; opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .5s; }
+.rel.on li { opacity: 1; transform: none; }
+.rel li { padding: 14px 0 14px 52px; }
+.rel li::before { display: none; }
+
+.rel time { position: absolute; left: 0; top: 12px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--violet); color: #fff; font: 800 15px Manrope, sans-serif; box-shadow: 0 0 0 5px rgba(46,95,184,.15); }
+.rel b { font: 700 18px Manrope, sans-serif; color: var(--ink); }
+.rel span { font-size: 15px; color: var(--stone); line-height: 1.45; margin-top: 2px; }
+.loop { margin: 4px 0 0 52px; font: 600 13px Manrope, sans-serif; color: var(--violet); }
+.rel-cta { display: inline-block; margin-top: 18px; font: 700 15px Manrope, sans-serif; color: var(--indigo); border-bottom: 2px solid var(--lilac); padding-bottom: 2px; transition: border-color .2s; }
+.rel-cta:hover { border-color: var(--violet); }
+.pill.big { display: inline-block; font-size: 17px; font-weight: 600; padding: 14px 28px; margin-top: 28px; transition: transform .2s, box-shadow .2s; }
+.pill.big:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -14px rgba(12,43,81,.7); }
+.cta .stores { margin-top: 24px; }
+.cta .soon { display: none; }
+@media (prefers-reduced-motion: reduce) { .rel li { transition: none; } }
+@media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .facts { grid-template-columns: 1fr; } .facts li { display: flex; align-items: baseline; gap: 10px; } .facts b { margin: 0; font-size: 20px; } .rel { padding: 20px; } }
+
+/* Follow-up: come nell'app, un suggerimento alla volta; Fatto o Rimanda e arriva il prossimo */
+.fu2 { display: grid; grid-template-columns: 1fr auto; gap: clamp(32px, 6vw, 96px); align-items: center; }
+.fu-from { display: block; font-size: 13px; font-weight: 500; color: var(--stone); margin-bottom: 10px; }
+.fu-sources .chip { transition: background .3s, color .3s, border-color .3s, transform .3s; }
+.fu-sources .chip.on { background: var(--violet); border-color: var(--violet); color: #fff; transform: translateY(-2px); }
+.phone.fu-phone { width: 330px; aspect-ratio: 9 / 16.4; }
+.fu-screen { position: absolute; inset: 50px 14px 14px; display: flex; flex-direction: column; gap: 10px; }
+.fu-h { font: 800 22px Manrope, sans-serif; color: var(--ink); }
+.fu-panel { display: flex; align-items: center; justify-content: space-between; gap: 10px; color: #fff; font: 700 14px/1.3 Manrope, sans-serif; border-radius: 16px; padding: 12px 14px; background: linear-gradient(120deg, #2C6E8E, #4A8FAA); }
+.fu-panel svg { width: 34px; height: 34px; flex: none; transform: rotate(-90deg); }
+.fu-panel circle { fill: none; stroke: rgba(255,255,255,.3); stroke-width: 4; }
+.fu-panel .arc { stroke: #fff; stroke-dasharray: 88; stroke-dashoffset: 88; transition: stroke-dashoffset .6s; }
+.fu-filter .chip { font-size: 11px; padding: 6px 9px; }
+.fu-slot { position: relative; flex: 1; }
+.fu-card2 { position: absolute; inset: 0 0 auto; background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 16px 30px -22px rgba(12,43,81,.55); transition: transform .55s cubic-bezier(.2,.8,.2,1), opacity .45s; }
+.fu-card2.in { transform: translateY(24px); opacity: 0; }
+.fu-card2.done { transform: translateX(118%) rotate(5deg); opacity: 0; }
+.fu-card2.later { transform: translateX(-118%) rotate(-5deg); opacity: 0; }
+.fu-card2 header { display: flex; flex-direction: column; color: #fff; padding: 11px 14px; background: linear-gradient(120deg, var(--c), color-mix(in srgb, var(--c) 70%, #fff)); font: 700 15px Manrope, sans-serif; }
+.fu-card2 header small { font: 400 12px Inter, sans-serif; opacity: .85; }
+.fu-card2 .bd { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.4; }
+.fu-card2 .who { align-self: flex-start; background: #E9EFFA; color: var(--indigo); border-radius: 999px; padding: 4px 10px; font-size: 12px; font-weight: 500; }
+.fu-card2 .from { background: #E7F2F4; color: var(--indigo); border-radius: 10px; padding: 7px 10px; font-size: 12px; font-weight: 500; display: flex; justify-content: space-between; }
+.fu-card2 .acts { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.fu-card2 .acts i { font: 500 11.5px Inter, sans-serif; font-style: normal; text-align: center; border-radius: 10px; padding: 9px 4px; background: #EEF2FA; color: var(--ink); }
+.fu-card2 .acts i:nth-child(3) { background: #EAF5EF; } .fu-card2 .acts i:nth-child(4) { background: #EEF0F3; }
+.fu-decide { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.fu-decide span { text-align: center; font: 600 13px Inter, sans-serif; border-radius: 14px; padding: 11px 6px; transition: transform .15s, filter .2s; }
+.fu-decide .later { background: #F1E9DD; color: #8A6A3D; } .fu-decide .done { background: #DCEFE6; color: #23875A; }
+.fu-decide span.press { transform: scale(.94); filter: brightness(.92); }
+
+/* Prenotazioni: tre telefoni, il link che passa, la visita che arriva */
+.bk-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 18px; }
+.bk-steps li { display: flex; align-items: center; gap: 10px; font: 600 15px Manrope, sans-serif; color: var(--stone); transition: color .3s; justify-content: center; }
+.bk-steps b { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--hairline); color: var(--stone); font-size: 13px; transition: background .3s, color .3s; }
+.bk-steps li.on { color: var(--ink); } .bk-steps li.on b { background: var(--violet); color: #fff; }
+.bk-row { display: grid; grid-template-columns: 1fr 70px 1fr 70px 1fr; align-items: center; justify-items: center; }
+.phone.sm { width: 250px; aspect-ratio: 9 / 13.6; border-width: 8px; border-radius: 36px; transition: transform .4s, box-shadow .4s; }
+.phone.sm.on { transform: translateY(-6px); box-shadow: 0 48px 80px -36px rgba(12,43,81,.7), 0 0 0 4px rgba(46,95,184,.18); }
+.phone.sm .phone-top span { font: 500 11px Inter, sans-serif; color: var(--stone); }
+.phone.client .phone-top { justify-content: center; } .phone.client .url { background: #fff; border: 1px solid var(--hairline); border-radius: 8px; padding: 4px 10px; font-size: 11px; color: var(--stone); }
+.bk-body { position: absolute; inset: 50px 12px 12px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; }
+.bk-body .chips { gap: 5px; } .bk-body .chip { font-size: 11px; padding: 6px 8px; transition: background .25s, color .25s, border-color .25s; }
+.bk-body .chip.on { background: var(--indigo); border-color: var(--indigo); color: #fff; }
+.bk-body .mini { font-size: 12px; padding: 8px 10px; white-space: nowrap; overflow: hidden; }
+.bk-body .btn { margin-top: auto; font-size: 13px; padding: 10px; transition: transform .15s, background .2s; }
+.bk-body .btn.press { transform: scale(.96); background: var(--violet); }
+.bk-title { font: 700 15px Manrope, sans-serif; }
+.bk-name span::after { content: "|"; animation: blink 1s steps(1) infinite; color: var(--violet); } @keyframes blink { 50% { opacity: 0; } }
+.bk-toast { opacity: 0; transform: translateY(-8px); transition: opacity .4s, transform .4s; } .bk-toast.on { opacity: 1; transform: none; }
+.mini.bk-new { opacity: .25; transition: opacity .4s, border-color .4s, box-shadow .4s; } .mini.bk-new.on { opacity: 1; border-color: var(--violet); box-shadow: 0 0 0 3px rgba(46,95,184,.15); }
+.bk-wire { position: relative; width: 100%; height: 2px; background: repeating-linear-gradient(90deg, var(--lilac) 0 6px, transparent 6px 12px); }
+.bk-msg { position: absolute; top: -17px; left: 0; width: 34px; height: 34px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 8px 18px -6px rgba(37,211,102,.7); opacity: 0; }
+.bk-msg svg { width: 20px; height: 20px; fill: #fff; }
+.bk-sheet { position: absolute; left: -12px; right: -12px; bottom: -12px; background: #fff; border-radius: 20px 20px 0 0; padding: 12px 14px 16px; box-shadow: 0 -12px 30px -16px rgba(12,43,81,.5); transform: translateY(105%); transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+.bk-sheet.on { transform: none; }
+.bk-sheet small { display: block; font-size: 11px; color: var(--stone); margin-bottom: 8px; }
+.bk-sheet div { display: flex; justify-content: space-around; }
+.bk-sheet span { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10.5px; color: var(--ink); border-radius: 10px; padding: 4px; transition: background .2s; }
+.bk-sheet i { width: 36px; height: 36px; border-radius: 50%; background: #E9EFFA; }
+.bk-sheet .wa i { background: #25D366; } .bk-sheet .wa.pick { background: rgba(37,211,102,.15); }
+.bk-chat { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; background: #ECE5DD; transition: opacity .4s; }
+.bk-chat.off { opacity: 0; pointer-events: none; }
+.bk-chat-top { display: flex; align-items: center; gap: 8px; background: #075E54; color: #fff; padding: 22px 12px 10px; font-size: 12px; }
+.bk-chat-top b { display: block; font: 600 13px Inter, sans-serif; } .bk-chat-top small { opacity: .8; font-size: 10px; }
+.bk-chat-top .av { width: 30px; height: 30px; border-radius: 50%; background: #9FC5B9; display: grid; place-items: center; font-weight: 700; }
+.bk-bubble { margin: 14px 10px; align-self: flex-start; max-width: 88%; background: #fff; border-radius: 0 12px 12px 12px; padding: 8px 9px 5px; font-size: 12px; line-height: 1.35; box-shadow: 0 1px 1px rgba(0,0,0,.1); opacity: 0; transform: translateY(8px); transition: opacity .35s, transform .35s; }
+.bk-bubble.on { opacity: 1; transform: none; }
+.bk-bubble time { display: block; text-align: right; font-size: 9.5px; color: #8696A0; margin-top: 2px; }
+.bk-preview { display: block; margin-top: 6px; background: #F0F2F5; border-left: 3px solid #25D366; border-radius: 6px; padding: 6px 8px; font-size: 11px; color: var(--stone); transition: background .2s; }
+.bk-preview b { display: block; color: var(--ink); font-size: 12px; } .bk-preview em { display: block; font-style: normal; color: #027EB5; margin-top: 2px; }
+.bk-preview.press { background: #DDE3EA; }
+.bk-dot { position: absolute; top: -6px; left: 0; width: 14px; height: 14px; border-radius: 50%; background: #23875A; box-shadow: 0 0 0 5px rgba(35,135,90,.2); opacity: 0; }
+@media (max-width: 1100px) { .phone.sm { width: 220px; } .bk-row { grid-template-columns: 1fr 40px 1fr 40px 1fr; } }
+@media (max-width: 900px) {
+  .fu2 { grid-template-columns: 1fr; } .phone.fu-phone { justify-self: center; width: min(320px, 86vw); }
+  .bk-row { display: block; } .bk-wire { display: none; } .phone.sm { display: none; margin: 0 auto; width: min(280px, 80vw); } .phone.sm.on { display: block; }
+  .bk-steps { grid-template-columns: 1fr; gap: 6px; } .bk-steps li { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) { .fu-card2, .bk-toast, .mini.bk-new, .phone.sm { transition: none; } .bk-name span::after { animation: none; } }
+
+/* L'app: telefoni in 3D su un fondo da progetto, poi il computer sincronizzato */
+.show { position: relative; overflow: hidden; color: #fff; border-radius: 32px; padding: clamp(32px, 5vw, 64px) clamp(20px, 4vw, 56px); background:
+  radial-gradient(60% 50% at 50% 38%, rgba(46,95,184,.45), transparent 70%),
+  linear-gradient(rgba(149,176,227,.07) 1px, transparent 1px) 0 0 / 32px 32px,
+  linear-gradient(90deg, rgba(149,176,227,.07) 1px, transparent 1px) 0 0 / 32px 32px,
+  #071A31; }
+.show .eyebrow { color: #A9B8CF; } .show .eyebrow::before { background: var(--lilac); }
+.show-head { text-align: center; } .show-head h2 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.1; margin: 14px auto 22px; max-width: 18em; text-wrap: balance; }
+.show-tabs { justify-content: center; }
+.show .chip { background: rgba(255,255,255,.06); border-color: rgba(149,176,227,.22); color: #C3D3EF; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+.show .chip:hover { border-color: var(--lilac); color: #fff; }
+.show .chip[aria-pressed="true"] { background: #fff; border-color: #fff; color: var(--indigo); }
+.cf { position: relative; height: clamp(420px, 44vw, 560px); margin-top: 28px; perspective: 1400px; outline: none; touch-action: pan-y; }
+.cf:focus-visible { box-shadow: 0 0 0 3px var(--lilac); border-radius: 20px; }
+.cf-track { position: absolute; inset: 0; transform-style: preserve-3d; }
+.cf-item { position: absolute; left: 50%; top: 0; width: clamp(190px, 18vw, 240px); margin: 0 0 0 calc(clamp(190px, 18vw, 240px) / -2); transition: transform .7s cubic-bezier(.2,.8,.2,1), opacity .5s, filter .5s; cursor: pointer; }
+.cf-item img { display: block; width: 100%; height: auto; border: 7px solid #0E2440; border-radius: 32px; background: #fff; box-shadow: 0 40px 70px -30px rgba(0,0,0,.7), 0 0 0 1px rgba(149,176,227,.25); }
+.cf-item::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: -26px; height: 24px; background: radial-gradient(closest-side, rgba(46,95,184,.55), transparent); filter: blur(4px); }
+.cf-arrow { position: absolute; top: 42%; width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(149,176,227,.3); background: rgba(7,26,49,.6); color: #fff; font: 400 28px/1 Inter, sans-serif; cursor: pointer; backdrop-filter: blur(6px); z-index: 200; transition: background .2s; }
+.cf-arrow:hover { background: var(--violet); } .cf-arrow.prev { left: 0; } .cf-arrow.next { right: 0; }
+.cf-arrow:focus-visible { outline: 3px solid var(--lilac); outline-offset: 2px; }
+.cf-cap { text-align: center; min-height: 52px; margin-top: 14px; color: #A9B8CF; font-size: 15px; }
+.cf-cap b { display: block; font: 700 18px Manrope, sans-serif; color: #fff; }
+.sync { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(32px, 5vw, 64px); align-items: center; margin-top: clamp(56px, 8vw, 96px); padding-top: clamp(40px, 6vw, 64px); border-top: 1px solid rgba(149,176,227,.15); }
+.sync h3 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.15; margin: 14px 0 12px; }
+.sync p { color: #A9B8CF; font-size: 16px; }
+.sync-stage { position: relative; perspective: 1600px; padding: 4% 0 6% 8%; }
+.browser { transform: rotateY(-14deg) rotateX(6deg); transform-origin: left center; border-radius: 14px; overflow: hidden; background: #0E2440; box-shadow: 0 50px 80px -40px rgba(0,0,0,.8), 0 0 0 1px rgba(149,176,227,.25); }
+.browser-bar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; background: #0E2440; }
+.browser-bar i { width: 9px; height: 9px; border-radius: 50%; background: rgba(149,176,227,.35); }
+.browser-bar span { margin-left: 10px; flex: 1; max-width: 260px; font: 500 11px Inter, sans-serif; color: #A9B8CF; background: rgba(255,255,255,.06); border-radius: 6px; padding: 4px 10px; }
+.browser img { display: block; width: 100%; height: auto; }
+.sync-phone { position: absolute; left: 0; bottom: 0; width: 24%; height: auto; border: 5px solid #0E2440; border-radius: 22px; background: #fff; box-shadow: 0 30px 50px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(149,176,227,.3); transform: rotateY(10deg); }
+@media (prefers-reduced-motion: reduce) { .cf-item { transition: none; } }
+@media (max-width: 560px) { .show { border-radius: 24px; margin-inline: -8px; } .show-tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; margin-inline: -20px; padding-inline: 20px; scrollbar-width: none; } .show-tabs .chip { flex: none; } .cf { height: 440px; } .cf-item { width: 200px; margin-left: -100px; } .cf-arrow { display: none; } .sync-stage { padding-left: 12%; } .sync-phone { width: 28%; } }
+
+/* Tutto collegato: le sezioni a griglia, Home al centro; gli esempi si accendono da soli */
+.connect { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(32px, 5vw, 72px); align-items: center; margin-bottom: clamp(72px, 10vw, 128px); }
+.connect .section-head { margin-bottom: 28px; }
+.links-cap { background: #fff; border: 1px solid var(--hairline); border-radius: 20px; padding: 22px 24px; box-shadow: 0 24px 48px -32px rgba(12,43,81,.45); min-height: 168px; }
+.links-cap .chain { display: block; font: 700 15px Manrope, sans-serif; color: var(--violet); }
+.links-cap p { font-size: 18px; line-height: 1.5; margin-top: 8px; color: var(--ink); text-wrap: pretty; }
+.links-dots { display: flex; gap: 8px; margin-top: 16px; }
+.links-dots button { width: 22px; height: 6px; border-radius: 3px; border: 0; background: var(--hairline); cursor: pointer; padding: 0; transition: background .3s, width .3s; }
+.links-dots button[aria-current="true"] { background: var(--violet); width: 36px; }
+.tiles { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.6vw, 18px); }
+.tiles > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0; }
+.tiles > svg path { fill: none; stroke: var(--violet); stroke-width: 6; stroke-linecap: round; stroke-dasharray: 300; }
+.tiles > svg path.soft { stroke: var(--lilac); stroke-width: 4; stroke-dasharray: 2 8; }
+.tile { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; aspect-ratio: 1; font: 600 15px/1.2 Inter, sans-serif; color: var(--ink); background: #fff; border: 1px solid var(--hairline); border-radius: 22px; cursor: pointer; transition: transform .3s, background .3s, color .3s, border-color .3s, box-shadow .3s; }
+.tile svg { position: static; width: 34px; height: 34px; fill: var(--lilac); transition: fill .3s; }
+.tile.hub { background: var(--porcelain); border-style: dashed; }
+.tile:hover { border-color: var(--violet); }
+.tile.lit, .tile.on { background: var(--indigo); border-color: var(--indigo); color: #fff; transform: translateY(-4px); box-shadow: 0 18px 32px -18px rgba(12,43,81,.7); }
+.tile.lit svg, .tile.on svg { fill: #fff; }
+.tile.on { background: var(--violet); border-color: var(--violet); }
+.tile[data-step]::after { content: attr(data-step); position: absolute; top: 10px; left: 10px; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: #fff; color: var(--indigo); font: 800 13px Manrope, sans-serif; }
+.tile:focus-visible { outline: 3px solid var(--violet); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
+@media (max-width: 900px) { .connect { grid-template-columns: 1fr; } .tiles { max-width: 460px; width: 100%; margin-inline: auto; order: -1; } .connect > div:first-child { display: contents; } .connect .section-head { order: -2; } }
+@media (max-width: 560px) { .tile { font-size: 13px; gap: 6px; border-radius: 16px; } .tile svg { width: 26px; height: 26px; } .links-cap p { font-size: 16px; } }
+
+/* Hero: una giornata con Relon, scena per scena */
+.day { display: grid; grid-template-columns: auto auto; justify-content: center; align-items: center; gap: clamp(20px, 3vw, 40px); }
+.day-rail { list-style: none; padding: 0; display: grid; gap: 6px; position: relative; }
+.day-rail::before { content: ""; position: absolute; left: 7px; top: 14px; bottom: 14px; width: 2px; background: var(--hairline); }
+.day-rail button { position: relative; display: block; text-align: left; font: 500 15px/1.3 Inter, sans-serif; color: var(--stone); background: none; border: 0; padding: 10px 12px 10px 30px; border-radius: 12px; cursor: pointer; transition: color .25s, background .25s; }
+.day-rail button::before { content: ""; position: absolute; left: 2px; top: 50%; width: 12px; height: 12px; margin-top: -6px; border-radius: 50%; background: var(--porcelain); border: 2px solid var(--hairline); transition: background .25s, border-color .25s; }
+.day-rail time { display: block; font: 700 13px Manrope, sans-serif; color: var(--lilac); transition: color .25s; }
+.day-rail [aria-current="true"] { color: var(--ink); background: #fff; box-shadow: 0 12px 24px -18px rgba(12,43,81,.6); }
+.day-rail [aria-current="true"]::before { background: var(--violet); border-color: var(--violet); }
+.day-rail [aria-current="true"] time { color: var(--violet); }
+.day-rail button:focus-visible { outline: 3px solid var(--violet); outline-offset: 2px; }
+.day-rail i { position: absolute; left: 30px; right: 12px; bottom: 5px; height: 2px; background: var(--violet); transform-origin: left; transform: scaleX(0); }
+.phone { position: relative; width: 300px; aspect-ratio: 9 / 16.6; background: var(--porcelain); border: 9px solid var(--ink); border-radius: 42px; box-shadow: 0 48px 80px -40px rgba(12,43,81,.6); overflow: hidden; }
+.phone-top { display: flex; justify-content: space-between; align-items: center; padding: 18px 18px 8px; }
+.phone-top img { height: 20px; width: auto; }
+.day-clock { font: 700 13px Manrope, sans-serif; color: var(--ink); font-variant-numeric: tabular-nums; }
+.scene { position: absolute; inset: 52px 14px 14px; display: flex; flex-direction: column; gap: 10px; opacity: 0; transform: translateY(14px); transition: opacity .45s, transform .45s; pointer-events: none; font-size: 14px; }
+.scene.on { opacity: 1; transform: none; }
+.scene > * { opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .4s; }
+.scene.on > * { opacity: 1; transform: none; }
+.scene.on > :nth-child(2) { transition-delay: .5s; } .scene.on > :nth-child(3) { transition-delay: .9s; } .scene.on > :nth-child(4) { transition-delay: 1.4s; } .scene.on > :nth-child(5) { transition-delay: 1.9s; } .scene.on > :nth-child(6) { transition-delay: 2.4s; } .scene.on > :nth-child(7) { transition-delay: 2.8s; }
+.scene .fu-card { padding: 16px; border-radius: 18px; box-shadow: 0 16px 32px -22px rgba(12,43,81,.5); }
+.scene .brief small { color: #C3D3EF; font-size: 12px; }
+.scene .hi { display: block; font: 800 22px/1.2 Manrope, sans-serif; margin: 4px 0 10px; }
+.tally { display: flex; gap: 14px; font-size: 13px; color: #C3D3EF; } .tally em { font: 800 20px Manrope, sans-serif; color: #fff; font-style: normal; margin-right: 3px; }
+.first { background: #fff; color: var(--ink); border-radius: 12px; padding: 10px 12px; margin-top: 12px; font-size: 13px; font-weight: 500; line-height: 1.35; } .scene .first small { display: block; color: var(--violet); font-size: 11px; }
+.mini { display: flex; gap: 10px; align-items: center; background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 10px 12px; font-size: 13px; }
+.mini time { font: 700 13px Manrope, sans-serif; color: var(--violet); }
+.mini.new { border-color: var(--violet); box-shadow: 0 0 0 3px rgba(46,95,184,.15); }
+.mic { align-self: center; width: 72px; height: 72px; border-radius: 50%; background: var(--indigo); display: grid; place-items: center; margin: 8px 0 4px; position: relative; }
+.mic span { width: 18px; height: 30px; border-radius: 9px; background: #fff; }
+.mic::after { content: ""; position: absolute; inset: -8px; border-radius: 50%; border: 2px solid var(--violet); animation: ag-ping 1.6s ease-out infinite; }
+.said { font-size: 15px; line-height: 1.45; min-height: 66px; color: var(--ink); }
+.cap { font-size: 12px; color: var(--stone); font-weight: 500; }
+.act { background: #fff; border: 1px solid var(--hairline); border-radius: 12px; padding: 9px 12px; font-size: 13px; line-height: 1.35; } .act b { display: block; font-size: 12px; color: var(--violet); }
+.scene .toast { font-size: 13px; padding: 10px 12px; }
+.toast.push { flex-direction: column; align-items: flex-start; gap: 2px; font-weight: 400; } .toast.push span { color: var(--lilac); font-weight: 500; }
+.val { font: 800 32px/1.1 Manrope, sans-serif; color: var(--indigo); font-variant-numeric: tabular-nums; margin-bottom: 4px; }
+.scene .row { display: flex; justify-content: space-between; background: #fff; border-radius: 10px; padding: 9px 12px; font-size: 13px; }
+.scene .row b { font: 700 13px Manrope, sans-serif; } .scene .row.gain b { color: #23875A; } .scene .row.loss b { color: #A6432D; }
+.draft { background: var(--porcelain); border-radius: 12px; padding: 9px 12px; font-size: 13px; color: var(--stone); margin-top: 10px; }
+.scene .fu-tag { font-size: 11px; padding: 3px 8px; }
+.scene .chips { margin-top: 10px; } .scene .chip { font-size: 12px; padding: 7px 10px; }
+.done { align-self: center; margin-top: 6px; font: 700 15px Manrope, sans-serif; color: #23875A; background: rgba(35,135,90,.1); border-radius: 999px; padding: 8px 16px; }
+@media (prefers-reduced-motion: reduce) { .scene, .scene > *, .mic::after { transition: none !important; animation: none !important; } }
+
+/* Valutazioni: la mappa intorno alla casa */
+.ag { display: grid; grid-template-columns: 1.25fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: center; --gain: #23875A; --loss: #A6432D; }
+.ag-map { position: relative; aspect-ratio: 1; background: radial-gradient(closest-side, #fff 0, #fff 62%, transparent 100%); border-radius: 50%; }
+.ag-map > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ag-ring { fill: none; stroke: var(--hairline); stroke-width: 1.5; stroke-dasharray: 3 6; }
+.ag-ring-l { font: 500 12px Inter, sans-serif; fill: var(--stone); }
+.ag-zone { fill: rgba(46,95,184,.06); stroke: var(--violet); stroke-width: 2; stroke-dasharray: 2400; stroke-dashoffset: 2400; transition: stroke-dashoffset 1.4s ease-out, fill .6s; }
+.ag-zone.on { stroke-dashoffset: 0; }
+.ag-block { fill: rgba(35,135,90,0); stroke: transparent; stroke-width: 2; transition: fill .6s, stroke .6s; }
+.ag-block.on { fill: rgba(35,135,90,.14); stroke: var(--gain); }
+.ag-edge { stroke-width: 2.5; stroke-linecap: round; stroke-dasharray: 400; stroke-dashoffset: 400; transition: stroke-dashoffset .7s ease-out; }
+.ag-edge.on { stroke-dashoffset: 0; }
+.ag-edge.gain { stroke: var(--gain); } .ag-edge.loss { stroke: var(--loss); }
+.ag-node { position: absolute; transform: translate(-50%, -50%) scale(.6); opacity: 0; transition: transform .45s cubic-bezier(.2,1.4,.4,1), opacity .3s; display: flex; align-items: center; gap: 8px; background: #fff; border: 1px solid var(--hairline); border-radius: 14px; padding: 7px 10px 7px 7px; box-shadow: 0 14px 28px -18px rgba(12,43,81,.55); white-space: nowrap; font: 500 14px/1.2 Inter, sans-serif; }
+.ag-node.on { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+.ag-node i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: #E9EFFA; color: var(--indigo); flex: none; }
+.ag-node i svg { width: 18px; height: 18px; fill: currentColor; }
+.ag-node small { display: block; font-size: 12px; color: var(--stone); }
+.ag-node b { font: 700 13px Manrope, sans-serif; padding: 3px 7px; border-radius: 8px; margin-left: 2px; }
+.ag-node.gain b { color: var(--gain); background: rgba(35,135,90,.1); }
+.ag-node.loss b { color: var(--loss); background: rgba(166,67,45,.1); }
+.ag-home { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; background: var(--indigo); color: #fff; box-shadow: 0 18px 36px -14px rgba(12,43,81,.7); }
+.ag-home svg { width: 30px; height: 30px; fill: currentColor; }
+.ag-home::after { content: ""; position: absolute; inset: -10px; border-radius: 26px; border: 2px solid var(--violet); opacity: 0; animation: ag-ping 2.4s ease-out infinite; }
+@keyframes ag-ping { 0% { opacity: .5; transform: scale(.9); } 100% { opacity: 0; transform: scale(1.6); } }
+.ag-zl { position: absolute; left: 50%; top: 4%; transform: translateX(-50%); font: 500 13px Inter, sans-serif; color: var(--violet); background: #fff; border: 1px solid #D6E1F4; border-radius: 999px; padding: 5px 12px; opacity: 0; transition: opacity .5s; white-space: nowrap; }
+.ag-zl.on { opacity: 1; }
+.ag-side .price { transition: color .3s; font-variant-numeric: tabular-nums; }
+.ag-side .price.gain { color: var(--gain); } .ag-side .price.loss { color: var(--loss); }
+.ag-list { list-style: none; padding: 0; margin-top: 10px; min-height: 236px; }
+.ag-list li { display: flex; justify-content: space-between; gap: 12px; font-size: 15px; padding: 9px 0; border-top: 1px solid var(--hairline); animation: ag-in .35s ease-out both; }
+.ag-list li b { font: 700 15px Manrope, sans-serif; font-variant-numeric: tabular-nums; }
+.ag-list li.gain b { color: var(--gain); } .ag-list li.loss b { color: var(--loss); }
+@keyframes ag-in { from { opacity: 0; transform: translateY(6px); } }
+.ag-side .legend { display: flex; gap: 16px; font-size: 13px; color: var(--stone); margin-top: 14px; }
+.ag-side .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--gain); }
+.ag-side .legend span + span::before { background: var(--loss); }
+@media (prefers-reduced-motion: reduce) { .ag-home::after { animation: none; } .ag *, .ag-list li { transition: none !important; animation: none !important; } }
+@media (max-width: 900px) { .ag { grid-template-columns: 1fr; } .ag-map { max-width: 560px; width: 100%; margin-inline: auto; } }
+@media (max-width: 560px) { .ag-node { font-size: 12px; gap: 5px; padding: 5px 7px 5px 5px; border-radius: 11px; } .ag-node i { width: 24px; height: 24px; border-radius: 7px; } .ag-node i svg { width: 14px; height: 14px; } .ag-node small { font-size: 10px; } .ag-node b { font-size: 11px; padding: 2px 5px; } .ag-home { width: 48px; height: 48px; border-radius: 15px; } .ag-home svg { width: 22px; height: 22px; } .ag-ring-l { display: none; } .ag-zl { font-size: 11px; } }
+
 
 /* CTA */
 .cta { text-align: center; }
@@ -212,19 +413,12 @@ footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wr
 footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 
 @media (max-width: 900px) {
-  nav .links a[href="#computer"], nav .links a[href="#prenotazioni"], nav .links a[href="#portafoglio"], nav .links a[href="#chi-siamo"] { display: none; }
-  .hero, .portfolio .wrap { grid-template-columns: 1fr; }
+  nav .links a[href="#computer"], nav .links a[href="#prenotazioni"], nav .links a[href="#chi-siamo"] { display: none; }
+  .hero, .sync { grid-template-columns: 1fr; }
   .hero { min-height: 0; padding-top: 32px; }
-  .hero .stage { max-width: 440px; margin-inline: auto; order: -1; }
-  .flow-grid { grid-template-columns: 1fr; gap: 40px; }
-  .flow-grid svg { display: none; }
-  .sys { grid-template-columns: 1fr; gap: 32px; }
-  .node { font-size: 12px; padding: 8px 10px; }
-  .node.hub { padding: 12px 16px; }
+  .day { order: -1; }
   .book-grid { grid-template-columns: 1fr; gap: 40px; }
   .book-grid > div + div::before { display: none; }
-  .signals { grid-auto-flow: column; grid-auto-columns: 232px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 4px 16px 12px; }
-  .signal { scroll-snap-align: center; }
   .more { grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .feature:nth-child(3) { padding-left: 0; border-left: 0; }
 }
@@ -237,20 +431,17 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   .hero { padding-top: 24px; gap: 8px; }
   /* La casa subito sotto il titolo: il blocco di testo si apre e la grafica si infila dopo h1 */
   .hero > div:first-child { display: contents; }
-  .hero .stage { order: 1; max-width: 300px; }
   .hero .lead, .hero .stores { order: 2; }
+  .day { order: 1; grid-template-columns: 1fr; justify-items: center; gap: 14px; }
+  .day-rail { display: flex; gap: 4px; overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+  .day-rail::before { display: none; }
+  .day-rail button { padding: 8px 10px; font-size: 13px; white-space: nowrap; }
+  .day-rail button::before { display: none; }
+  .phone { width: min(300px, 86vw); }
   .hero h1 { margin-bottom: 0; }
   /* La mappa diventa una fila di linguette; i collegamenti restano su computer */
-  .sys { display: block; margin-bottom: 24px; }
-  .sys > div:last-child, .sysmap svg { display: none; }
-  .sysmap { aspect-ratio: auto; display: flex; gap: 8px; overflow-x: auto; margin-inline: -16px; padding: 4px 16px 12px; scrollbar-width: none; }
-  .node, .node.hub { position: static; transform: none; flex: none; font-size: 15px; padding: 10px 16px; font-weight: 500; }
-  .node.near { border-color: var(--hairline); }
-  .rows { gap: 0; }
-  .frow { overflow: hidden; }
   /* I tre passi si scorrono di lato, il prossimo si intravede */
   .book-grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 84%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -16px; padding: 4px 16px 28px; scroll-padding-inline: 16px; scrollbar-width: none; }
-  .frow .book-grid { margin-inline: calc(-1 * clamp(20px, 4vw, 40px)); padding-inline: clamp(20px, 4vw, 40px); scroll-padding-inline: clamp(20px, 4vw, 40px); }
   .book-grid > div { scroll-snap-align: start; }
   .book-grid .fu-card { box-shadow: 0 16px 32px -24px rgba(12,43,81,.45); }
   .more { grid-template-columns: 1fr 1fr; column-gap: 16px; row-gap: 0; margin-top: 40px; }
@@ -272,9 +463,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <a href="#valutazioni">Valutazioni</a>
       <a href="#follow-up">Follow-up</a>
       <a href="#prenotazioni">Prenotazioni</a>
-      <a href="#portafoglio">Portafoglio</a>
       <a href="#chi-siamo">Chi siamo</a>
-      <a href="#scarica" class="pill">Scarica</a>
+      <a href="#scarica" class="pill">Diventa tester</a>
     </div>
   </div>
 </nav>
@@ -284,197 +474,153 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div>
       <span class="eyebrow">Il gestionale per agenti immobiliari</span>
       <h1>Tu vendi case.<br>Al resto<br><em>pensa Relon.</em></h1>
-      <p class="lead">Immobili, contatti, trattative, agenda e documenti, dall'acquisizione al rogito. E in più Relon ogni mattina ti dice da dove iniziare, ti ricorda chi richiamare, trasforma una nota dettata in un appuntamento e valuta le case sui dati OMI.</p>
+      <p class="lead">Dal primo caffè all'ultima chiamata: Relon ti dice da dove iniziare, fa quello che detti, porta le visite in agenda, valuta le case e ti ricorda chi richiamare. Immobili, contatti e trattative, dall'acquisizione al rogito.</p>
       <div class="stores" data-stores></div>
     </div>
-    <div class="stage" id="hero-3d" role="img" aria-label="Una casa in 3D che si trasforma in un grafo di dati"></div>
+    <div class="day" aria-label="Una giornata con Relon">
+      <ol class="day-rail">
+        <li><button type="button" data-scene="0"><time>08:30</time>Apri l'app</button></li>
+        <li><button type="button" data-scene="1"><time>10:15</time>Detti una nota</button></li>
+        <li><button type="button" data-scene="2"><time>13:00</time>Il cliente prenota</button></li>
+        <li><button type="button" data-scene="3"><time>16:00</time>Valuti una casa</button></li>
+        <li><button type="button" data-scene="4"><time>18:30</time>Chi richiamare</button></li>
+      </ol>
+      <div class="phone">
+        <div class="phone-top"><img src="assets/logo.png" alt="" width="84" height="22"><span class="day-clock">08:30</span></div>
+        <div class="scene" data-i="0">
+          <div class="fu-card brief"><small>Giovedì 29 ottobre</small><b class="hi">Buongiorno, Marco</b><div class="tally"><span><em>3</em> appuntamenti</span><span><em>5</em> cose da fare</span></div><div class="first"><small>Per prima cosa</small>Richiama Giulia Ferrari: la proposta scade domani</div></div>
+          <div class="mini"><time>10:30</time><span>Visita · Via Tortona 18</span></div>
+          <div class="mini"><time>15:00</time><span>Rogito · Corso Magenta 42</span></div>
+          <div class="act"><b>Relon ti suggerisce</b>L'incarico di Via Washington 55 scade tra 11 giorni</div>
+        </div>
+        <div class="scene" data-i="1">
+          <div class="mic"><span></span></div>
+          <p class="said" data-type="«Visita con i Rossi giovedì alle 18 per via Tortona, budget 400 mila»"></p>
+          <small class="cap">Relon ha capito</small>
+          <div class="act"><b>Appuntamento</b>Giovedì 18:00 · Rossi · Via Tortona 18</div>
+          <div class="act"><b>Budget</b>400.000 € sul contatto Rossi</div>
+          <div class="toast">Salvato, con 2 azioni</div>
+        </div>
+        <div class="scene" data-i="2">
+          <div class="toast push"><span>Nuova visita prenotata</span>Elena Rossi · Via Solferino 7 · 15:30</div>
+          <small class="cap">Oggi</small>
+          <div class="mini"><time>10:30</time><span>Visita · Via Tortona 18</span></div>
+          <div class="mini new"><time>15:30</time><span>Visita prenotata · Elena Rossi</span></div>
+          <div class="mini"><time>17:00</time><span>Chiamata · Sara Colombo</span></div>
+        </div>
+        <div class="scene" data-i="3">
+          <small class="cap">Via Savona 52, Milano · 95 m²</small>
+          <b class="val" data-to="329000">€ 309.000</b>
+          <div class="row gain"><span>Isolato più richiesto</span><b>+8%</b></div>
+          <div class="row gain"><span>Metro a 250 m</span><b>+5%</b></div>
+          <div class="row loss"><span>Ferrovia a 60 m</span><b>−6%</b></div>
+          <div class="row gain"><span>Parco a 120 m</span><b>+3%</b></div>
+          <div class="act"><b>Prezzo consigliato</b>€ 355.000 · report PDF pronto</div>
+        </div>
+        <div class="scene" data-i="4">
+          <div class="fu-card"><div class="fu-head"><b>Marco Bianchi</b><span class="fu-tag">Da risentire</span></div><p>Non lo senti da 9 giorni ed è un contatto caldo.</p><div class="draft">Ciao Marco, ti aggiorno sulla casa di via Tortona…</div><div class="chips"><span class="chip on">Invia su WhatsApp</span><span class="chip">Domani</span></div></div>
+          <div class="done">Giornata a posto</div>
+          <div class="act"><b>Oggi con Relon</b>3 visite · 2 note dettate · 1 valutazione · 6 persone risentite</div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <section id="funzionalita">
     <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Funzionalità</span>
-        <h2>Tutto il lavoro dell'agente, in un solo posto.</h2>
-        <p class="lead" style="margin-top:18px;max-width:36em">Quello che inserisci in una sezione alimenta le altre. Tocca una sezione per vedere a cosa è collegata e come funziona.</p>
-      </div>
-      <div class="sys">
-        <div class="sysmap">
-          <svg viewBox="0 0 600 560" aria-hidden="true"><ellipse cx="300" cy="280" rx="200" ry="225"/></svg>
-          <button type="button" class="node hub" data-node="home" aria-pressed="false" style="left:50.0%;top:50.0%">Home</button>
-          <button type="button" class="node" data-node="immobili" aria-pressed="false" style="left:50.0%;top:9.8%">Immobili</button>
-          <button type="button" class="node" data-node="valutazioni" aria-pressed="false" style="left:73.6%;top:21.6%">Valutazioni</button>
-          <button type="button" class="node" data-node="prenotazioni" aria-pressed="false" style="left:83.3%;top:50.0%">Prenotazioni</button>
-          <button type="button" class="node" data-node="agenda" aria-pressed="false" style="left:73.6%;top:78.4%">Agenda</button>
-          <button type="button" class="node" data-node="follow-up" aria-pressed="false" style="left:50.0%;top:90.2%">Follow-up</button>
-          <button type="button" class="node" data-node="note" aria-pressed="false" style="left:26.4%;top:78.4%">Note</button>
-          <button type="button" class="node" data-node="contatti" aria-pressed="false" style="left:16.7%;top:50.0%">Contatti</button>
-          <button type="button" class="node" data-node="trattative" aria-pressed="false" style="left:26.4%;top:21.6%">Trattative</button>
-        </div>
+      <div class="connect">
         <div>
-          <span class="n step">Collegamenti</span>
-          <h3 id="sys-title">Tutto il sistema</h3>
-          <ul id="edges">
-            <li class="field" data-from="note" data-to="agenda"><b>Note → Agenda</b>«Fissare la visita giovedì alle 18»: Relon propone l'appuntamento e lo crea quando salvi.</li>
-            <li class="field" data-from="note" data-to="contatti"><b>Note → Contatti</b>Riconosce il contatto. Un numero o una persona nuova nella nota finiscono in rubrica.</li>
-            <li class="field" data-from="note" data-to="immobili"><b>Note → Immobili</b>Riconosce l'immobile, e un nuovo prezzo scritto nella nota aggiorna la scheda.</li>
-            <li class="field" data-from="note" data-to="trattative"><b>Note → Trattative</b>Una proposta scritta nella nota aggiorna la trattativa, o la crea.</li>
-            <li class="field" data-from="note" data-to="follow-up"><b>Note → Follow-up</b>Una data scritta nella nota diventa un follow-up da confermare.</li>
-            <li class="field" data-from="immobili" data-to="valutazioni"><b>Immobili → Valutazioni</b>Valuta parte dai dati della scheda: indirizzo, superficie, piano, stato.</li>
-            <li class="field" data-from="valutazioni" data-to="immobili"><b>Valutazioni → Immobili</b>Una casa valutata al sopralluogo diventa un immobile con un tocco.</li>
-            <li class="field" data-from="immobili" data-to="trattative"><b>Immobili → Trattative</b>Ogni trattativa nasce su un immobile.</li>
-            <li class="field" data-from="contatti" data-to="trattative"><b>Contatti → Trattative</b>Acquirente e venditore sono tuoi contatti.</li>
-            <li class="field" data-from="immobili" data-to="prenotazioni"><b>Immobili → Prenotazioni</b>Ogni immobile ha il suo link per prenotare le visite.</li>
-            <li class="field" data-from="prenotazioni" data-to="agenda"><b>Prenotazioni → Agenda</b>La visita prenotata dal cliente arriva in agenda.</li>
-            <li class="field" data-from="prenotazioni" data-to="contatti"><b>Prenotazioni → Contatti</b>Se telefono o email corrispondono, la visita è collegata al contatto.</li>
-            <li class="field" data-from="trattative" data-to="agenda"><b>Trattative → Agenda</b>Le scadenze e la data del rogito compaiono nel calendario.</li>
-            <li class="field" data-from="trattative" data-to="immobili"><b>Trattative → Immobili</b>Quando la trattativa si chiude, l'immobile diventa venduto o affittato.</li>
-            <li class="field" data-from="immobili" data-to="follow-up"><b>Immobili → Follow-up</b>Incarico in scadenza o documenti mancanti generano un suggerimento.</li>
-            <li class="field" data-from="trattative" data-to="follow-up"><b>Trattative → Follow-up</b>Proposta in scadenza, trattativa ferma, visita senza riscontro, documenti che mancano per il rogito.</li>
-            <li class="field" data-from="contatti" data-to="follow-up"><b>Contatti → Follow-up</b>Un contatto caldo o tiepido che non senti da troppo tempo.</li>
-            <li class="field" data-from="follow-up" data-to="agenda"><b>Follow-up → Agenda</b>Dal suggerimento crei un task o un appuntamento.</li>
-            <li class="field" data-from="agenda" data-to="home"><b>Agenda → Home</b>Gli impegni di oggi e la prima cosa da fare.</li>
-            <li class="field" data-from="follow-up" data-to="home"><b>Follow-up → Home</b>«Relon ti suggerisce»: i follow-up più importanti.</li>
-            <li class="field" data-from="trattative" data-to="home"><b>Trattative → Home</b>Il valore in trattativa.</li>
-            <li class="field" data-from="immobili" data-to="home"><b>Immobili → Home</b>Gli immobili nel tuo portafoglio.</li>
-            <li class="field" data-from="contatti" data-to="home"><b>Contatti → Home</b>I contatti nel tuo portafoglio.</li>
-          </ul>
-        </div>
-      </div>
-      <div class="rows">
-        <div class="frow" data-panel="home">
-          <span class="n">Home</span><h3>Apri l'app, e sai da dove iniziare.</h3><p>Ogni mattina Relon ti prepara la giornata: quanti appuntamenti hai, cosa c'è da fare e da cosa conviene partire. Poi i suggerimenti e il tuo portafoglio.</p>
-          <div class="book-grid">
-            <div><span class="n step">1 · Il briefing</span><div class="fu-card brief"><div class="fu-head"><b>Buongiorno, Marco</b></div><p>Oggi hai 3 appuntamenti e 2 cose da fare.</p><small>Per prima cosa</small><div class="field">Richiamare Luca Moretti: la proposta scade dopodomani</div><span class="btn">Inizia da qui</span></div></div>
-            <div><span class="n step">2 · Relon ti suggerisce</span><div class="fu-card"><div class="fu-head"><b>Giulia Ferrari</b><span class="fu-tag">Da risentire</span></div><p>Non la senti da 9 giorni ed è un contatto caldo.</p><div class="chips"><span class="chip on">Prepara messaggio</span><span class="chip">Ricordamelo domani</span></div><small>Oggi</small><div class="visit"><time>10:30</time><div><b>Visita: Via Tortona 18</b><span>Marco Bianchi</span></div></div></div></div>
-            <div><span class="n step">3 · Il tuo portafoglio</span><div class="fu-card"><div class="fu-head"><b>Il tuo portafoglio</b></div><small>Valore in trattativa</small><div class="visit"><time>€ 2,2 mln</time><div><b>5 trattative aperte</b><span>dalla proposta al rogito</span></div></div><div class="chips"><span class="chip">8 immobili</span><span class="chip">9 contatti</span></div><p>E con la ricerca in cima trovi qualsiasi contatto, immobile o nota.</p></div></div>
+          <div class="section-head">
+            <span class="eyebrow">Tutto collegato</span>
+            <h2>Scrivi una volta. Relon lo porta dove serve.</h2>
+            <p class="lead" style="margin-top:18px">Quello che fai in una sezione aggiorna le altre, da solo. Ecco qualche esempio.</p>
+          </div>
+          <div class="links-cap" aria-live="polite">
+            <span class="chain" data-chain></span>
+            <p data-say></p>
+            <div class="links-dots"></div>
           </div>
         </div>
-        <div class="frow" data-panel="immobili">
-          <span class="n">Immobili</span><h3>Ogni immobile, dall'acquisizione alla chiusura.</h3><p>Acquisizione, Attivo, Chiuso. In cima alla scheda Relon ti dice sempre cosa manca e ti porta dove si risolve, senza mai bloccarti.</p>
-          <div class="book-grid">
-            <div><span class="n step">1 · Acquisizione</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">In acquisizione</span></div><p>Acquisizione incompleta – 2 elementi mancanti</p><div class="field"><b>✓</b>Documento d'identità del proprietario</div><div class="field"><b>✓</b>Incarico firmato</div><div class="field todo"><b>○</b>Atto di provenienza</div><div class="field todo"><b>○</b>APE</div><div class="bar"><i style="width:50%"></i></div><small>Se è in condominio aggiunge regolamento, verbali e amministratore</small></div></div>
-            <div><span class="n step">2 · Sul mercato</span><div class="fu-card"><div class="fu-head"><b>Metti sul mercato</b><span class="fu-tag">Attivo</span></div><div class="field"><b>✓</b>Foto con copertina</div><div class="field"><b>✓</b>Annuncio pubblicato il 12 ottobre</div><div class="field todo"><b>○</b>Privacy firmata dal proprietario</div><p>Puoi andare avanti anche con delle mancanze: restano in vista e nei promemoria.</p></div></div>
-            <div><span class="n step">3 · Relon controlla le scadenze</span><div class="fu-card"><div class="toast">APE scaduto <span>Sostituisci</span></div><p>Carichi un documento d'identità o un APE e Relon chiede fino a quando vale. Ti avvisa anche quando l'incarico sta per scadere.</p><small>Dalla scheda partono anche</small><div class="chips"><span class="chip">Valutazione OMI</span><span class="chip">Link di prenotazione visite</span><span class="chip">Trattative</span><span class="chip">Follow-up</span></div></div></div>
-          </div>
-        </div>
-        <div class="frow" data-panel="contatti">
-          <span class="n">Contatti</span><h3>Tutte le persone con cui lavori.</h3><p>Acquirenti, proprietari, conduttori, notai, commercialisti: ogni contatto entra una volta sola, con il suo consenso, e da lì sai sempre quando l'hai sentito.</p>
-          <div class="book-grid">
-            <div><span class="n step">1 · Lo inserisci o lo importi</span><div class="fu-card"><div class="fu-head"><b>Nuovo contatto</b></div><small>Da dove</small><div class="chips"><span class="chip">A mano</span><span class="chip">Dalla rubrica</span><span class="chip">Da file CSV</span></div><small>Consenso GDPR</small><div class="field"><b>✓</b>13 ottobre 2026, 10:42</div><p>Obbligatorio al primo inserimento, con data e ora.</p></div></div>
-            <div><span class="n step">2 · Lo descrivi</span><div class="fu-card"><div class="fu-head"><b>Giulia Ferrari</b><span class="fu-tag">Caldo</span></div><small>Etichette</small><div class="chips"><span class="chip">Acquirente</span><span class="chip">Conduttore</span></div><small>Esigenza dell'acquirente</small><div class="chips"><span class="chip">Budget</span><span class="chip">Zone</span><span class="chip">Tipologia</span><span class="chip">Superficie</span><span class="chip">Accessori</span><span class="chip">Urgenza</span></div><small>Documenti</small><div class="chips"><span class="chip">Carta d'identità</span><span class="chip">Codice fiscale</span></div></div></div>
-            <div><span class="n step">3 · Sai quando risentirlo</span><div class="fu-card"><div class="fu-head"><b>Ultimo contatto</b></div><div class="visit"><time>9 gg</time><div><b>Giulia Ferrari</b><span>contatto caldo</span></div></div><div class="toast">Contatto da risentire <span>Apri</span></div><p>Caldo dopo 7 giorni di silenzio, tiepido dopo 21: Relon te lo ricorda.</p></div></div>
-          </div>
-        </div>
-        <div class="frow" data-panel="trattative">
-          <span class="n">Trattative</span><h3>Dalla proposta al rogito, passo per passo.</h3><p>La vendita va da Proposta a Rogito, l'affitto da Proposta a Registrazione. Per ogni fase Relon elenca i documenti e le persone che servono, e prepara il fascicolo per il notaio.</p>
-          <div class="book-grid">
-            <div><span class="n step">1 · Cosa manca per il notaio</span><div class="fu-card"><div class="fu-head"><b>Via Solferino 7</b><span class="fu-tag">Proposta</span></div><div class="chips"><span class="chip on">Proposta</span><span class="chip">Rogito</span><span class="chip">Chiuso</span></div><div class="field"><b>✓</b>Documenti di venditore e acquirente</div><div class="field"><b>✓</b>Antiriciclaggio e privacy</div><div class="field todo"><b>○</b>Estratto di matrimonio dell'acquirente</div><div class="field todo"><b>○</b>Dichiarazione dell'amministratore</div></div></div>
-            <div><span class="n step">2 · Il fascicolo in un tocco</span><div class="fu-card"><div class="fu-head"><b>Prepara documenti per il notaio</b></div><p>Un file con le cartelle numerate per sezione e un indice: parti, contenuto e cosa manca.</p><span class="btn">Invia al notaio Ferri</span><div class="toast">Documentazione inviata al notaio ✓</div><small>La data del rogito va da sola in agenda</small></div></div>
-            <div><span class="n step">3 · Il giorno del rogito</span><div class="fu-card"><div class="fu-head"><b>Com'è andato il rogito?</b></div><div class="chips"><span class="chip on">Vendita conclusa</span><span class="chip">Rogito rinviato</span><span class="chip">Non concluso</span></div><p>Vendita conclusa: l'immobile diventa venduto da solo. Rinviato: scegli la nuova data e l'appuntamento si sposta.</p><small>Per l'affitto</small><div class="chips"><span class="chip">Garante</span><span class="chip">Buste paga</span><span class="chip">Prepara registrazione</span></div></div></div>
-          </div>
-        </div>
-        <div class="frow" data-panel="note">
-          <span class="n">Note</span><h3>Lo dici a voce. Relon lo fa.</h3><p>Tocca il microfono e parla come faresti con un collega. Relon riconosce contatto, immobile e date, e ti propone di fare lui quello che hai detto. Niente parte da solo: scegli tu cosa fare, e lo fa quando salvi.</p>
-          <div class="book-grid" id="note-demo">
-            <div><span class="n step">1 · Tocca e parla</span><div class="fu-card"><div class="fu-head"><b>Nuova nota</b><span class="fu-tag">Microfono</span></div><div class="field">«Sentito <mark>Marco Bianchi</mark>, fissare la seconda visita in <mark>via Tortona 18</mark> <mark>giovedì alle 18</mark>. Il numero della moglie <mark>Giulia Verdi</mark> è 333 812 4455.»</div><p>Pensata per quando sei in macchina o appena uscito da una visita.</p></div></div>
-            <div><span class="n step">2 · Vuoi che lo faccia io?</span><div class="fu-card"><div class="fu-head"><b>Relon ha capito</b></div><div class="field"><b>Contatto</b>Marco Bianchi</div><div class="field"><b>Immobile</b>Via Tortona 18</div><small>Tocca quello che vuoi</small><div class="chips"><button type="button" class="chip" aria-pressed="true" data-done="appuntamento">Appuntamento giovedì 18:00</button><button type="button" class="chip" aria-pressed="true" data-done="contatto">Nuovo contatto: Giulia Verdi</button></div><span class="btn" data-f="save">Salva nota e 2 azioni</span></div></div>
-            <div><span class="n step">3 · Fatto</span><div class="fu-card"><div class="toast"><em data-f="done" style="font-style:normal">Nota salvata con: appuntamento, contatto</em> <span>Annulla</span></div><div class="visit"><time>18:00</time><div><b>Visita: Via Tortona 18</b><span>giovedì · Marco Bianchi</span></div></div><p>La nota resta collegata alle schede di Marco e di via Tortona 18. Ci ripensi? Annulla riporta tutto com'era.</p><small>Relon capisce anche</small><div class="chips"><span class="chip">Chiamate</span><span class="chip">Promemoria</span><span class="chip">Proposte</span><span class="chip">Nuovo prezzo</span><span class="chip">Budget</span><span class="chip">Interessato o no</span></div></div></div>
-          </div>
-        </div>
-        <div class="frow" data-panel="agenda">
-          <span class="n">Agenda e statistiche</span><h3>Cosa fare oggi, e come sta andando.</h3><p>Quello che nasce nelle altre sezioni finisce in un unico calendario. Le statistiche mostrano i numeri del mese e cosa richiede attenzione.</p>
-          <div class="book-grid">
-            <div><span class="n step">1 · Tutto entra in agenda</span><div class="fu-card"><div class="fu-head"><b>Da dove arriva</b></div><div class="field"><b>→</b>Appuntamenti e task che crei tu</div><div class="field"><b>→</b>Scadenze delle trattative</div><div class="field"><b>→</b>Visite prenotate dai clienti</div><div class="field"><b>→</b>Follow-up e note confermati</div></div></div>
-            <div><span class="n step">2 · Un solo calendario</span><div class="fu-card"><div class="fu-head"><b>Oggi</b></div><small>Vista</small><div class="chips"><span class="chip on">Elenco</span><span class="chip">Oraria</span></div><div class="visit"><time>Ieri</time><div><b>Inviare planimetria a Marco Bianchi</b><span>task in ritardo · resta in cima finché non lo chiudi</span></div></div><div class="visit"><time>10:30</time><div><b>Visita: Via Solferino 7</b><span>appuntamento</span></div></div><div class="visit"><time>15 ott</time><div><b>Validità della proposta</b><span>scadenza</span></div></div></div></div>
-            <div><span class="n step">3 · Vedi come sta andando</span><div class="fu-card"><div class="fu-head"><b>Statistiche</b><span class="fu-tag">Ultimi 6 mesi</span></div><small>Andamento</small><div class="chips"><span class="chip">Trattative chiuse</span><span class="chip">Nuovi contatti</span><span class="chip">Nuovi immobili</span><span class="chip">Tempo medio di vendita</span></div><small>Opportunità a rischio</small><div class="chips"><span class="chip">Incarichi in scadenza</span><span class="chip">Trattative ferme</span><span class="chip">Contatti da risentire</span></div></div></div>
-          </div>
-        </div>
-        <div class="frow" data-panel="valutazioni">
-          <span class="n">Valutazioni</span><h3>Quanto vale questa casa? Te lo dice in pochi secondi.</h3><p>Dall'indirizzo alla zona OMI, dalle quotazioni dell'Agenzia delle Entrate al prezzo a cui pubblicarla, con il perché di ogni correzione.</p>
-          <a class="pill" href="#valutazioni">Guarda come funziona ↓</a>
-        </div>
-        <div class="frow" data-panel="follow-up">
-          <span class="n">Follow-up</span><h3>Quello che rischia di essere dimenticato.</h3><p>Relon controlla note, visite, incarichi, proposte e documenti, e ti propone la prossima azione spiegando sempre il perché. Ne fai una, la segni come fatta, passi alla prossima.</p>
-          <a class="pill" href="#follow-up">Guarda come funziona ↓</a>
-        </div>
-        <div class="frow" data-panel="prenotazioni">
-          <span class="n">Prenotazione visite</span><h3>Tu scegli gli orari. Il cliente prenota da solo.</h3><p>Ogni immobile ha il suo link: il cliente sceglie un orario libero e la visita arriva nella tua agenda.</p>
-          <a class="pill" href="#prenotazioni">Guarda come funziona ↓</a>
+        <div class="tiles">
+          <svg aria-hidden="true"></svg>
+          <button type="button" class="tile" data-tile="immobili" data-desc="Dall'acquisizione al rogito, con i documenti."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V9l5-3v15Zm6 0V3h7v18Zm8 0V10h4v11Z"/></svg>Immobili</button>
+          <button type="button" class="tile" data-tile="valutazioni" data-desc="Quanto vale una casa, in pochi secondi."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18v2H3Zm2-2v-6h3v6Zm5 0V8h3v10Zm5 0V4h3v14Z"/></svg>Valutazioni</button>
+          <button type="button" class="tile" data-tile="prenotazioni" data-desc="Il link con cui i clienti prenotano le visite."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20Zm-1 5v6l5 3 1-1.7-4-2.3V7Z"/></svg>Prenotazioni</button>
+          <button type="button" class="tile" data-tile="contatti" data-desc="Acquirenti, proprietari, notai: tutti in un posto."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm-8 9c0-4 3.6-7 8-7s8 3 8 7Z"/></svg>Contatti</button>
+          <button type="button" class="tile hub" data-tile="home" data-desc="La tua giornata: da dove iniziare."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 10.6c-.4.3-.1.9.4.9H5V20c0 .6.4 1 1 1h4v-6h4v6h4c.6 0 1-.4 1-1v-8.5h2.1c.5 0 .8-.6.4-.9z"/></svg>Home</button>
+          <button type="button" class="tile" data-tile="agenda" data-desc="Visite, chiamate e scadenze in un calendario."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2Zm-2 8v9h14v-9Z"/></svg>Agenda</button>
+          <button type="button" class="tile" data-tile="trattative" data-desc="Dalla proposta al rogito, passo per passo."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 2a7.5 7.5 0 0 0-7.2 9.6L2 16.9V22h5.1v-2.5h2.5V17h2.4l1.6-1.6A7.5 7.5 0 1 0 14.5 2Zm2 4a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/></svg>Trattative</button>
+          <button type="button" class="tile" data-tile="follow-up" data-desc="Chi richiamare, e perché."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a6 6 0 0 1 6 6v5l2 3v1H4v-1l2-3V8a6 6 0 0 1 6-6Zm-2.5 17h5a2.5 2.5 0 0 1-5 0Z"/></svg>Follow-up</button>
+          <button type="button" class="tile" data-tile="note" data-desc="Detti a voce, Relon la smista."><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a3.5 3.5 0 0 1 3.5 3.5v6a3.5 3.5 0 0 1-7 0v-6A3.5 3.5 0 0 1 12 2Zm-7 9.5h2a5 5 0 0 0 10 0h2a7 7 0 0 1-6 6.9V21h3v2H8v-2h3v-2.6a7 7 0 0 1-6-6.9Z"/></svg>Note</button>
         </div>
       </div>
 
-      <div class="desktop">
-        <div class="section-head">
-          <span class="eyebrow">Le schermate</span>
-          <h2>Com'è fatta l'app.</h2>
+      <div class="show" id="computer">
+        <div class="show-head">
+          <span class="eyebrow">L'app</span>
+          <h2>Ogni schermata, pensata per chi lavora in strada.</h2>
+          <div class="chips show-tabs"><button type="button" class="chip" data-go="0">Home</button><button type="button" class="chip" data-go="2">Immobili</button><button type="button" class="chip" data-go="4">Valutazione</button><button type="button" class="chip" data-go="7">Trattative</button><button type="button" class="chip" data-go="11">Follow-up</button><button type="button" class="chip" data-go="12">Agenda</button><button type="button" class="chip" data-go="9">Note</button></div>
         </div>
-        <div class="gallery">
-          <img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Home di Relon con il briefing della giornata e la prima cosa da fare">
-          <img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Sezioni di Relon con i numeri di ogni area e cosa richiede attenzione">
-          <img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato dell'incarico">
-          <img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con le fasi e cosa manca">
-          <img src="assets/screens/valutazione.webp" width="780" height="1688" loading="lazy" alt="Valutazione di un immobile sulle quotazioni OMI con prezzo consigliato e motivi">
-          <img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura">
-          <img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza">
-          <img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline">
-          <img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con le fasi e cosa manca per il rogito">
-          <img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare">
-          <img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa">
-          <img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up ordinati per importanza con Fatto e Rimanda">
-          <img src="assets/screens/agenda.webp" width="780" height="1688" loading="lazy" alt="Agenda con appuntamenti, task e scadenze">
-          <img src="assets/screens/statistiche.webp" width="780" height="1688" loading="lazy" alt="Statistiche con opportunità a rischio e Relon Insight">
+        <div class="cf" tabindex="0" aria-roledescription="carosello" aria-label="Schermate dell'app">
+          <div class="cf-track">
+            <figure class="cf-item" data-name="Home"><img src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="Home di Relon con il briefing della giornata e la prima cosa da fare"></figure>
+            <figure class="cf-item" data-name="Sezioni"><img src="assets/screens/sezioni.webp" width="780" height="1688" loading="lazy" alt="Sezioni di Relon con i numeri di ogni area e cosa richiede attenzione"></figure>
+            <figure class="cf-item" data-name="Immobili"><img src="assets/screens/immobili.webp" width="780" height="1688" loading="lazy" alt="Elenco immobili con foto, prezzo e stato dell'incarico"></figure>
+            <figure class="cf-item" data-name="Scheda immobile"><img src="assets/screens/immobile.webp" width="780" height="1688" loading="lazy" alt="Scheda di un immobile con le fasi e cosa manca"></figure>
+            <figure class="cf-item" data-name="Valutazione"><img src="assets/screens/valutazione.webp" width="780" height="1688" loading="lazy" alt="Valutazione di un immobile sulle quotazioni OMI con prezzo consigliato e motivi"></figure>
+            <figure class="cf-item" data-name="Contatti"><img src="assets/screens/contatti.webp" width="780" height="1688" loading="lazy" alt="Elenco contatti con etichette e temperatura"></figure>
+            <figure class="cf-item" data-name="Scheda contatto"><img src="assets/screens/contatto.webp" width="780" height="1688" loading="lazy" alt="Scheda contatto con prossima azione ed esigenza"></figure>
+            <figure class="cf-item" data-name="Trattative"><img src="assets/screens/trattative.webp" width="780" height="1688" loading="lazy" alt="Elenco trattative con valore della pipeline"></figure>
+            <figure class="cf-item" data-name="Scheda trattativa"><img src="assets/screens/trattativa.webp" width="780" height="1688" loading="lazy" alt="Scheda trattativa con le fasi e cosa manca per il rogito"></figure>
+            <figure class="cf-item" data-name="Note"><img src="assets/screens/note.webp" width="780" height="1688" loading="lazy" alt="Elenco note con follow-up da confermare"></figure>
+            <figure class="cf-item" data-name="Nota"><img src="assets/screens/nota.webp" width="780" height="1688" loading="lazy" alt="Dettaglio di una nota smistata su contatto, immobile e trattativa"></figure>
+            <figure class="cf-item" data-name="Follow-up"><img src="assets/screens/followup.webp" width="780" height="1688" loading="lazy" alt="Follow-up ordinati per importanza con Fatto e Rimanda"></figure>
+            <figure class="cf-item" data-name="Agenda"><img src="assets/screens/agenda.webp" width="780" height="1688" loading="lazy" alt="Agenda con appuntamenti, task e scadenze"></figure>
+            <figure class="cf-item" data-name="Statistiche"><img src="assets/screens/statistiche.webp" width="780" height="1688" loading="lazy" alt="Statistiche con opportunità a rischio e Relon Insight"></figure>
+          </div>
+          <button type="button" class="cf-arrow prev" aria-label="Schermata precedente">‹</button>
+          <button type="button" class="cf-arrow next" aria-label="Schermata successiva">›</button>
         </div>
-      </div>
-
-      <div class="desktop" id="computer">
-        <div class="section-head">
-          <span class="eyebrow">Anche da computer</span>
-          <h2>In ufficio sullo schermo grande, fuori sul telefono.</h2>
-          <p class="lead">La stessa app, con barra laterale, schede affiancate, ricerca con Ctrl+K e trattative da trascinare da una fase all'altra. Quello che salvi su un dispositivo compare da solo sugli altri.</p>
+        <p class="cf-cap" aria-live="polite"><b data-cf-name></b><span data-cf-alt></span></p>
+        <div class="sync">
+          <div>
+            <span class="eyebrow">Anche da computer</span>
+            <h3>In ufficio sullo schermo grande, fuori sul telefono.</h3>
+            <p>La stessa app, con barra laterale, schede affiancate, ricerca con Ctrl+K e trattative da trascinare. Quello che salvi su un dispositivo compare da solo sugli altri.</p>
+          </div>
+          <div class="sync-stage">
+            <div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>desktop.relon.it</span></div><img src="assets/screens/desktop-home.webp" width="1440" height="900" loading="lazy" alt="Relon su computer: il briefing della giornata, i suggerimenti e il portafoglio"></div>
+            <img class="sync-phone" src="assets/screens/home.webp" width="780" height="1688" loading="lazy" alt="">
+          </div>
         </div>
-        <img src="assets/screens/desktop-home.webp" width="1440" height="900" loading="lazy" alt="Relon su computer: il briefing della giornata, i suggerimenti e il portafoglio">
       </div>
 
     </div>
   </section>
 
   <section class="flow" id="follow-up">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Come funziona il follow-up</span>
-        <h2>Dal segnale all'agenda, senza perdere nessuno per strada.</h2>
-        <p class="lead">Relon rilegge da solo quello che hai già inserito: note, visite, incarichi, proposte, trattative, contatti e documenti. Quando trova qualcosa che rischia di sfuggire, te lo propone, con in cima quello che conta di più. Scegli un segnale per vedere il suggerimento.</p>
-      </div>
-      <div class="flow-grid">
-        <svg aria-hidden="true"></svg>
-        <div>
-          <span class="n step">1 · Relon nota un segnale</span>
-          <div class="signals">
-            <button type="button" class="signal" aria-pressed="true" data-tag="Marco Bianchi" data-why="Nella nota del 6 ottobre hai scritto: «ricontattarlo venerdì pomeriggio». Non è ancora in agenda." data-src="Dalla nota del 6 ottobre"><b>Impegno da una nota</b><small>Una nota con una data, non ancora in agenda</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Via Solferino 7" data-why="Dopo la visita del 9 ottobre a Via Solferino 7 non risulta ancora nessun riscontro." data-src="Dalla visita del 9 ottobre"><b>Riscontro dopo la visita</b><small>Visita di almeno un giorno fa, e dopo nessuna attività o nota</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Corso Garibaldi 12" data-why="L'incarico di Corso Garibaldi 12 scade il 2 novembre, tra 20 giorni. Sarebbe utile ricontattare Sara Colombo." data-src="Dalla scheda di Corso Garibaldi 12"><b>Incarico in scadenza</b><small>Mancano 30 giorni o meno alla fine dell'incarico</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Via Manzoni 4" data-why="La proposta per Via Manzoni 4 scade il 15 ottobre: verifica con Luca Ferri come procedere." data-src="Dalla trattativa Via Manzoni 4"><b>Proposta in scadenza</b><small>Mancano 3 giorni o meno alla data di validità</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Viale Piave 21" data-why="La trattativa per Viale Piave 21 è ferma da 18 giorni: nessuna attività, nota o appuntamento." data-src="Dalla trattativa Viale Piave 21"><b>Trattativa ferma</b><small>Nessuna attività, nota o appuntamento da più di 14 giorni</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Giulia Ferrari" data-why="Non senti Giulia Ferrari da 9 giorni ed è un contatto caldo." data-src="Dalla scheda di Giulia Ferrari"><b>Contatto da risentire</b><small>Contatto caldo in silenzio da più di 7 giorni, tiepido da più di 21</small></button>
-            <button type="button" class="signal" aria-pressed="false" data-tag="Via Roma 3" data-why="Per il rogito di Via Roma 3 mancano ancora: Dichiarazione dell'amministratore, Stato civile dell'acquirente." data-src="Dalla trattativa Via Roma 3"><b>Documenti mancanti</b><small>Quello che manca alla trattativa o all'immobile per la fase in cui sono</small></button>
-          </div>
+    <div class="wrap fu2">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Follow-up</span>
+          <h2>Chi richiamare, e perché.</h2>
+          <p class="lead">Relon rilegge da solo quello che hai già inserito. Quando qualcosa rischia di sfuggire te lo mette in cima, con il perché e il messaggio pronto. Tu fai Fatto, o Rimanda.</p>
         </div>
-        <div>
-          <span class="n step">2 · Ti propone l'azione e spiega il perché</span>
-          <div class="fu-card">
-            <div class="fu-head"><b data-f="kind">Impegno da una nota</b><span class="fu-tag" data-f="tag">Marco Bianchi</span></div>
-            <p class="fu-why" data-f="why">Nella nota del 6 ottobre hai scritto: «ricontattarlo venerdì pomeriggio». Non è ancora in agenda.</p>
-            <div class="fu-src" data-f="src">Dalla nota del 6 ottobre</div>
-            <div class="fu-actions" aria-hidden="true"><span>Chiama</span><span>Messaggio</span><span>Crea task</span><span>Crea appuntamento</span></div>
-            <div class="fu-decide" aria-hidden="true"><span>← Rimanda</span><span>Fatto →</span></div>
-          </div>
+        <small class="fu-from">Relon controlla</small>
+        <div class="chips fu-sources">
+          <span class="chip" data-src="nota">Note</span><span class="chip" data-src="visita">Visite</span><span class="chip" data-src="incarico">Incarichi</span><span class="chip" data-src="proposta">Proposte</span><span class="chip" data-src="trattativa">Trattative</span><span class="chip" data-src="contatto">Contatti</span><span class="chip" data-src="documenti">Documenti</span>
         </div>
       </div>
-      <div class="more">
-        <div class="feature"><span class="n">3 · Decidi tu</span><h3>Chiama o scrivi</h3><p>Il messaggio è già pronto per WhatsApp, SMS o email: lo modifichi e lo invii tu. Nulla parte in automatico.</p></div>
-        <div class="feature"><span class="n">Fatto →</span><h3>Segna e vai avanti</h3><p>Uno swipe a destra: l'ultimo contatto si aggiorna e in alto vedi quanti ne hai fatti oggi. A lista vuota, giornata a posto.</p></div>
-        <div class="feature"><span class="n">← Più tardi</span><h3>Rimanda</h3><p>Uno swipe a sinistra: a domani, tra 3 giorni o tra una settimana. Se non ti serve proprio, sparisce, e torna solo se la situazione cambia.</p></div>
-        <div class="feature"><span class="n">Dopo la chiamata</span><h3>Com'è andata?</h3><p>Chiami dall'app e, quando torni, Relon te lo chiede. Una riga, anche a voce, oppure «non risponde, riprovo domani».</p></div>
+      <div class="phone fu-phone" aria-label="Follow-up di Relon: un suggerimento alla volta, si chiude con Fatto o Rimanda">
+        <div class="phone-top"><img src="assets/logo.png" alt="" width="84" height="22"></div>
+        <div class="fu-screen">
+          <b class="fu-h">Follow-up</b>
+          <div class="fu-panel"><span data-fu-tally>Nessuno fatto oggi · 15 da fare</span><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="14"/><circle class="arc" cx="18" cy="18" r="14"/></svg></div>
+          <div class="chips fu-filter"><span class="chip on">Tutti 15</span><span class="chip">Contatti 4</span><span class="chip">Immobili 11</span></div>
+          <div class="fu-slot"></div>
+          <div class="fu-decide"><span class="later">← Rimanda</span><span class="done">Fatto →</span></div>
+        </div>
+      </div>
       </div>
     </div>
   </section>
@@ -484,48 +630,28 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <div class="section-head">
         <span class="eyebrow">Valutazioni</span>
         <h2>Quanto vale questa casa? Lo sai in pochi secondi.</h2>
-        <p class="lead" style="margin-top:18px;max-width:36em">Tocchi Valuta sull'immobile e Relon fa il resto: trova la zona OMI dall'indirizzo, parte dalle quotazioni ufficiali dell'Agenzia delle Entrate e le corregge con le caratteristiche della casa. Ti dà il valore, il prezzo a cui pubblicarla e il perché.</p>
+        <p class="lead" style="margin-top:18px;max-width:36em">Tocchi Valuta e Relon fa il resto: trova la zona OMI dall'indirizzo, guarda cosa c'è intorno alla casa (la metro, i parchi, la ferrovia, com'è l'isolato) e corregge le quotazioni ufficiali dell'Agenzia delle Entrate con tutto quello che sposta il prezzo. Ti dà il valore, il prezzo a cui pubblicarla e il perché.</p>
       </div>
-      <div class="book-grid">
-        <div>
-          <span class="n step">1 · Dall'indirizzo alla zona</span>
-          <div class="fu-card">
-            <div class="fu-head"><b>Via Tortona 18, Milano</b><span class="fu-tag">Zona rilevata</span></div>
-            <div class="field"><b>Zona OMI</b>Tortona, Solari, Savona</div>
-            <small>Dalla scheda dell'immobile</small>
-            <div class="chips"><span class="chip">Trilocale</span><span class="chip">95 m²</span><span class="chip">3° piano</span><span class="chip">Ristrutturato</span><span class="chip">Classe A2</span><span class="chip">Terrazzo</span></div>
-            <p>Niente da compilare: la stima parte dai dati che hai già.</p>
-          </div>
+      <div class="ag">
+        <div class="ag-map" role="img" aria-label="Mappa intorno alla casa: la zona OMI, l'isolato, la metro a 250 metri e il parco a 120 metri fanno salire il valore, la ferrovia a 60 metri e la strada veloce a 180 metri lo fanno scendere">
+          <svg viewBox="0 0 600 600" aria-hidden="true">
+            <circle class="ag-ring" cx="300" cy="300" r="140"/><circle class="ag-ring" cx="300" cy="300" r="200"/><circle class="ag-ring" cx="300" cy="300" r="260"/>
+            <path class="ag-zone" d="M118 170 L268 92 L430 118 L522 236 L500 402 L384 506 L214 492 L100 384 Z"/>
+            <text class="ag-ring-l" x="306" y="156">100 m</text><text class="ag-ring-l" x="306" y="96">200 m</text><text class="ag-ring-l" x="306" y="36">300 m</text>
+            <path class="ag-block" d="M246 262 L322 248 L352 300 L330 352 L262 350 L238 306 Z"/>
+            <g class="ag-edges"></g>
+          </svg>
+          <span class="ag-zl">Zona OMI · 3.250 €/m²</span>
+          <span class="ag-home"><svg viewBox="0 0 24 24"><path d="M12 3 2.5 10.6c-.4.3-.1.9.4.9H5V20c0 .6.4 1 1 1h4v-6h4v6h4c.6 0 1-.4 1-1v-8.5h2.1c.5 0 .8-.6.4-.9z"/></svg></span>
         </div>
-        <div>
-          <span class="n step">2 · Il valore e il prezzo giusto</span>
-          <div class="fu-card">
-            <div class="fu-head"><b>Valore stimato</b><span class="fu-tag">OMI</span></div>
-            <span class="price">€ 602.000</span>
-            <p>da 535.000 a 669.000 € · <span class="up">prezzi in crescita, +5,3% in un anno</span></p>
-            <small>Affidabilità</small>
-            <div class="bar"><i style="width:97%"></i></div>
-            <small>Prezzo consigliato di pubblicazione</small>
-            <span class="price" style="font-size:26px;margin-top:0">€ 644.000</span>
-          </div>
+        <div class="ag-side fu-card">
+          <div class="fu-head"><b>Valore stimato</b><span class="fu-tag">Trilocale · 95 m²</span></div>
+          <span class="price" data-ag-value>€ 309.000</span>
+          <p style="font-size:15px;color:var(--stone);margin-top:6px" data-ag-base>Si parte dalla zona OMI: 3.250&nbsp;€/m² ×&nbsp;95&nbsp;m²</p>
+          <ol class="ag-list" aria-live="polite"></ol>
+          <div class="legend"><span>Fa salire il valore</span><span>Lo fa scendere</span></div>
+          <div class="chips" style="margin-top:18px"><span class="chip">Prezzo consigliato</span><span class="chip">Report PDF</span><span class="chip">Anche prima dell'incarico</span></div>
         </div>
-        <div>
-          <span class="n step">3 · Il perché, e il report</span>
-          <div class="fu-card">
-            <div class="fu-head"><b>Perché questa valutazione</b></div>
-            <div class="field"><b>+15,2%</b>Ristrutturato</div>
-            <div class="field"><b>+5%</b>Classe energetica A2</div>
-            <div class="field"><b>+3,8%</b>Terrazzo</div>
-            <small>Poi</small>
-            <div class="chips"><span class="chip on">Report PDF</span><span class="chip">Conferma valutazione</span><span class="chip">Ricalcola</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="more">
-        <div class="feature"><span class="n">Dati ufficiali</span><h3>Quotazioni OMI</h3><p>Dell'Agenzia delle Entrate, per tutta Italia, con l'andamento dell'ultimo anno.</p></div>
-        <div class="feature"><span class="n">Sopralluogo</span><h3>Anche prima dell'incarico</h3><p>Valuti una casa che non è ancora in Relon. Se l'incarico arriva, diventa un immobile con un tocco.</p></div>
-        <div class="feature"><span class="n">Trasparenza</span><h3>Ogni numero spiegato</h3><p>Affidabilità, correzioni e margine di pubblicazione seguono regole chiare, scritte in chiaro. Una stima, non una perizia.</p></div>
-        <div class="feature"><span class="n">Report</span><h3>PDF a tuo nome</h3><p>Pronto da lasciare al proprietario. Lo storico delle stime resta nella scheda dell'immobile.</p></div>
       </div>
     </div>
   </section>
@@ -534,81 +660,80 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Prenotazione visite</span>
-        <h2>Tu scegli gli orari. Il cliente prenota da solo.</h2>
-        <p class="lead" style="margin-top:18px;max-width:36em">Ogni immobile ha il suo link di prenotazione. Il cliente lo apre dal telefono, senza app e senza registrarsi, e la visita arriva nella tua agenda. Prova a scegliere un orario.</p>
+        <h2>Tu scegli gli orari.<br>Il cliente prenota da solo.</h2>
+        <p class="lead">Ogni immobile ha il suo link. Il cliente lo apre dal telefono, senza app e senza registrarsi, e la visita arriva nella tua agenda.</p>
       </div>
-      <div class="book-grid">
-        <div>
-          <span class="n step">1 · Tu, dalla scheda dell'immobile</span>
-          <div class="fu-card">
-            <div class="fu-head"><b>Prenotazione visite</b><span class="fu-tag">Via Solferino 7</span></div>
-            <small>Giorni</small>
-            <div class="chips"><span class="chip on">Lun</span><span class="chip on">Mar</span><span class="chip on">Mer</span><span class="chip on">Gio</span><span class="chip on">Ven</span><span class="chip on">Sab</span><span class="chip">Dom</span></div>
-            <small>Fasce orarie</small>
-            <div class="chips"><span class="chip">09:00 – 13:00</span><span class="chip">15:00 – 19:00</span></div>
-            <small>Durata della visita</small>
-            <div class="chips"><span class="chip">15'</span><span class="chip on">30'</span><span class="chip">45'</span><span class="chip">60'</span></div>
-            <span class="btn">Salva e condividi il link</span>
+      <div class="bk">
+        <ol class="bk-steps"><li data-s="0"><b>1</b>Tu scegli gli orari</li><li data-s="1"><b>2</b>Il cliente prenota</li><li data-s="2"><b>3</b>Te la ritrovi in agenda</li></ol>
+        <div class="bk-row">
+          <div class="phone sm" data-s="0">
+            <div class="phone-top"><img src="assets/logo.png" alt="" width="84" height="22"><span>Via Solferino 7</span></div>
+            <div class="bk-body">
+              <small class="cap">Giorni</small>
+              <div class="chips bk-days"><span class="chip">Lun</span><span class="chip">Mar</span><span class="chip">Mer</span><span class="chip">Gio</span><span class="chip">Ven</span><span class="chip">Sab</span></div>
+              <small class="cap">Orari</small>
+              <div class="chips bk-hours"><span class="chip">09–13</span><span class="chip">15–19</span></div>
+              <small class="cap">Durata</small>
+              <div class="chips bk-len"><span class="chip">15'</span><span class="chip">30'</span><span class="chip">60'</span></div>
+              <span class="btn bk-share">Condividi il link</span>
+              <div class="bk-sheet"><small>Condividi con</small><div><span class="wa"><i></i>WhatsApp</span><span><i></i>SMS</span><span><i></i>Email</span></div></div>
+            </div>
+          </div>
+          <div class="bk-wire"><span class="bk-msg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm4.6 13.7c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1a14 14 0 0 1-1.4-.5 11 11 0 0 1-4.2-3.7 4.8 4.8 0 0 1-1-2.6 2.8 2.8 0 0 1 .9-2.1 1 1 0 0 1 .7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.3 0 .5l-.3.4-.4.4c-.1.1-.3.3-.1.6a8 8 0 0 0 1.5 1.9 7.4 7.4 0 0 0 2.2 1.3c.3.1.4.1.6-.1l.8-1c.2-.2.4-.2.6-.1l1.9.9c.3.1.5.2.5.3a2.4 2.4 0 0 1-.2 1.4Z"/></svg></span></div>
+          <div class="phone sm client" data-s="1">
+            <div class="bk-chat">
+              <div class="bk-chat-top"><span class="av">M</span><div><b>Marco · Agenzia</b><small>online</small></div></div>
+              <div class="bk-bubble">Ciao Elena, ecco il link per prenotare la visita:<span class="bk-preview"><b>Prenota una visita</b>Via Solferino 7, Milano<em>relon.it/v/solferino-7</em></span><time>10:02</time></div>
+            </div>
+            <div class="phone-top"><span class="url">relon.it/v/solferino-7</span></div>
+            <div class="bk-body">
+              <b class="bk-title">Via Solferino 7, Milano</b>
+              <small class="cap">Venerdì 16 ottobre · 30 minuti</small>
+              <div class="chips bk-slots"><span class="chip">09:00</span><span class="chip">09:30</span><span class="chip">10:30</span><span class="chip">11:00</span><span class="chip">12:00</span></div>
+              <div class="act bk-name"><b>Nome</b><span data-bk-name></span></div>
+              <span class="btn bk-confirm">Conferma la visita</span>
+            </div>
+          </div>
+          <div class="bk-wire"><span class="bk-dot"></span></div>
+          <div class="phone sm" data-s="2">
+            <div class="phone-top"><img src="assets/logo.png" alt="" width="84" height="22"><span>Venerdì</span></div>
+            <div class="bk-body">
+              <div class="toast push bk-toast"><span>Nuova visita prenotata</span>Elena Rossi · Via Solferino 7</div>
+              <small class="cap">Agenda</small>
+              <div class="mini"><time>09:00</time><span>Chiamata · Sara Colombo</span></div>
+              <div class="mini bk-new"><time>10:30</time><span>Visita · Elena Rossi</span></div>
+              <div class="mini"><time>15:00</time><span>Rogito · Corso Magenta 42</span></div>
+            </div>
           </div>
         </div>
-        <div>
-          <span class="n step">2 · Il cliente, dal link</span>
-          <div class="fu-card">
-            <div class="fu-head"><b>Via Solferino 7, Milano</b></div>
-            <p>Scegli il giorno e l'orario che preferisci. La visita dura 30 minuti.</p>
-            <small>venerdì 16 ottobre</small>
-            <div class="chips" id="slots"><button type="button" class="chip" aria-pressed="false">09:00</button><button type="button" class="chip" aria-pressed="false">09:30</button><button type="button" class="chip" aria-pressed="true">10:30</button><button type="button" class="chip" aria-pressed="false">11:00</button><button type="button" class="chip" aria-pressed="false">11:30</button><button type="button" class="chip" aria-pressed="false">12:00</button><button type="button" class="chip" aria-pressed="false">12:30</button></div>
-            <div class="field" style="margin-top:16px">Elena Rossi</div>
-            <div class="field">333 123 4567</div>
-            <span class="btn">Conferma la visita</span>
-          </div>
-        </div>
-        <div>
-          <span class="n step">3 · La visita è in agenda</span>
-          <div class="fu-card">
-            <div class="toast">Nuova visita prenotata <span>Apri</span></div>
-            <div class="visit"><time id="slot-out">10:30</time><div><b>Visita: Via Solferino 7 — Elena Rossi</b><span>venerdì 16 ottobre · 30 minuti</span></div></div>
-            <div class="chips"><span class="chip">Immobile collegato</span><span class="chip">Contatto collegato</span><span class="chip">Google Calendar</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="more">
-        <div class="feature"><span class="n">Orari</span><h3>Solo quelli liberi</h3><p>Il link mostra i prossimi 14 giorni. Gli orari in cui hai già un appuntamento in agenda non compaiono.</p></div>
-        <div class="feature"><span class="n">Sicurezza</span><h3>Niente doppie prenotazioni</h3><p>Due clienti non possono prendere lo stesso orario: il secondo vede che non è più disponibile.</p></div>
-        <div class="feature"><span class="n">Contatti</span><h3>Riconosce chi conosci già</h3><p>Se telefono o email corrispondono a un tuo contatto, la visita viene collegata alla sua scheda.</p></div>
-        <div class="feature"><span class="n">Controllo</span><h3>Link attivo, finché vuoi</h3><p>Lo disattivi dalla scheda dell'immobile. Se colleghi Google Calendar, le visite vengono copiate anche lì.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="portfolio" id="portafoglio">
-    <div class="wrap">
-      <div>
-        <span class="eyebrow">Portafoglio</span>
-        <h2>Il tuo portafoglio, a colpo d'occhio.</h2>
-        <p class="lead" style="margin-top:20px">Ogni agente vede e gestisce solo i propri clienti, immobili e trattative. Scadenze degli incarichi e documenti mancanti emergono da soli.</p>
-        <div class="stats">
-          <div><b>7</b><span>tipi di follow-up</span></div>
-          <div><b>3</b><span>fasi, dalla proposta al rogito</span></div>
-          <div><b>30 gg</b><span>avviso scadenza incarico</span></div>
-        </div>
-      </div>
-      <div class="stage" id="city-3d" role="img" aria-label="Quartiere 3D con un immobile evidenziato"></div>
-    </div>
-  </section>
 
   <section id="chi-siamo">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Chi siamo</span>
-        <h2>Una startup italiana che rifà il gestionale da zero.</h2>
-        <p class="lead" style="margin-top:18px;max-width:36em">I gestionali immobiliari sono nati per la scrivania: schede da compilare, archivi da tenere in ordine. Relon nasce oggi, a Milano, per l'agente che passa la giornata tra visite, chiamate e rogiti. Un gestionale che non aspetta che tu lo aggiorni, ma lavora con te.</p>
+    <div class="wrap about">
+      <div>
+        <div class="section-head">
+          <span class="eyebrow">Chi siamo</span>
+          <h2>Siamo una startup.<br>Si vede da quanto corriamo.</h2>
+          <p class="lead" style="margin-top:18px">Relon nasce a Milano, da un team piccolo che costruisce insieme agli agenti. Quello che ci chiedete spesso è nell'app pochi giorni dopo. Scrivici a <a href="mailto:info@relon.it" style="color:var(--violet)">info@relon.it</a>: ti risponde chi lo sviluppa.</p>
+        </div>
+        <ul class="facts">
+          <li><b>2026</b>Nata a Milano</li>
+          <li><b>1 app</b>iPhone, Android e computer</li>
+          <li><b>In test</b>con agenti veri</li>
+        </ul>
       </div>
-      <div class="more">
-        <div class="feature"><span class="n">Nato sul telefono</span><h3>Pensato per chi lavora fuori</h3><p>Prima il telefono, poi il computer: stessa app, stessi dati, sincronizzati in tempo reale. In ufficio sullo schermo grande, in strada in tasca.</p></div>
-        <div class="feature"><span class="n">Fa, non archivia</span><h3>Il lavoro lo fa lui</h3><p>Una nota dettata diventa un appuntamento, un prezzo nuovo aggiorna la scheda, una data diventa un promemoria. Tu decidi, Relon esegue.</p></div>
-        <div class="feature"><span class="n">Dati veri</span><h3>Numeri che puoi spiegare</h3><p>Valutazioni sulle quotazioni ufficiali OMI di tutta Italia, con il calcolo sempre in chiaro. Niente stime magiche.</p></div>
-        <div class="feature"><span class="n">Con gli agenti</span><h3>Cresce con chi lo usa</h3><p>Aggiorniamo Relon di continuo, partendo da quello che ci chiedono gli agenti. Scrivi a <a href="mailto:info@relon.it">info@relon.it</a>: ti risponde chi lo costruisce.</p></div>
+      <div class="rel">
+        <span class="n">Come lavoriamo</span>
+        <ol>
+          <li><time>1</time><b>Ci racconti come lavori</b><span>Una chiamata, un messaggio, una nota dall'app: ci dici cosa ti fa perdere tempo.</span></li>
+          <li><time>2</time><b>Lo costruiamo con te</b><span>Lo proviamo insieme a te e ad altri agenti, prima che arrivi a tutti.</span></li>
+          <li><time>3</time><b>Lo trovi nell'app</b><span>In pochi giorni, non tra un anno. Poi si ricomincia.</span></li>
+        </ol>
+        <div class="loop" aria-hidden="true">↻ e il giro ricomincia</div>
+        <a class="rel-cta" href="#scarica">Diventa tester →</a>
       </div>
     </div>
   </section>
@@ -616,8 +741,9 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   <section class="cta" id="scarica">
     <div class="wrap">
       <img src="assets/app-icon-1024.png" alt="Icona app Relon">
-      <h2>Scarica Relon.</h2>
-      <p class="lead">In arrivo per iPhone e Android.</p>
+      <h2>Diventa tester di Relon.</h2>
+      <p class="lead">Relon è in test su iPhone e Android. Scrivici: ti mandiamo l'invito e ci dici cosa migliorare.</p>
+      <a class="pill big" href="mailto:info@relon.it?subject=Voglio%20diventare%20tester%20di%20Relon">Scrivi a info@relon.it</a>
       <div class="stores" data-stores></div>
     </div>
   </section>
@@ -640,7 +766,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22.018 13.298l-3.919 2.218-3.515-3.493 3.543-3.521 3.891 2.202a1.49 1.49 0 0 1 0 2.594zM1.337.924a1.486 1.486 0 0 0-.112.568v21.017c0 .217.045.419.124.6l11.155-11.087L1.337.924zm12.207 10.065l3.258-3.238L3.45.195a1.466 1.466 0 0 0-.946-.179l11.04 10.973zm0 2.067l-11 10.933c.298.036.612-.016.906-.183l13.324-7.54-3.23-3.21z"/></svg>
     <span><small>Disponibile su</small><b>Google Play</b></span>
   </span>
-  <p class="soon">Prossimamente disponibile</p>
+  <p class="soon">In test: scrivi a <a href="mailto:info@relon.it?subject=Voglio%20diventare%20tester%20di%20Relon">info@relon.it</a> per diventare tester</p>
 </template>
 
 <script>
@@ -648,298 +774,305 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     el.append(document.getElementById('stores-tpl').content.cloneNode(true));
 </script>
 
-<script>
-// Mappa del sistema: gli archi nascono dall'elenco #edges; si vedono solo quelli della sezione scelta.
-{
-  const W = 600, H = 560, map = document.querySelector('.sysmap'), svg = map.querySelector('svg');
-  const nodes = [...map.querySelectorAll('.node')], pos = {};
-  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  for (const n of nodes) pos[n.dataset.node] = [parseFloat(n.style.left) * W / 100, parseFloat(n.style.top) * H / 100];
-  const edges = [...document.querySelectorAll('#edges li')].map(li => {
-    const { from, to } = li.dataset, a = pos[from], b = pos[to], mx = (a[0] + b[0]) / 2, my = (a[1] + b[1]) / 2;
-    const path = svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'path'));
-    path.setAttribute('d', `M${a} Q${mx + (mx - W / 2) * .4} ${my + (my - H / 2) * .4} ${b}`); // curva verso l'esterno, per non passare sopra Home
-    return { li, path, from, to };
-  });
-  const panels = [...document.querySelectorAll('[data-panel]')], title = document.getElementById('sys-title');
-  const pick = (id, byUser) => {
-    const near = new Set();
-    for (const e of edges) {
-      const on = e.from === id || e.to === id;
-      e.li.hidden = !on;
-      e.path.classList.toggle('on', on);
-      if (on) near.add(e.from).add(e.to);
-    }
-    for (const n of nodes) {
-      n.setAttribute('aria-pressed', n.dataset.node === id);
-      n.classList.toggle('near', near.has(n.dataset.node));
-      if (n.dataset.node === id) {
-        title.textContent = n.textContent;
-        map.scrollTo({ left: n.offsetLeft - 16, behavior: still || !byUser ? 'auto' : 'smooth' }); // solo su telefono, dove le sezioni sono una fila di linguette
-      }
-    }
-    for (const p of panels) p.hidden = p.dataset.panel !== id;
-    if (!byUser) return;
-    // Il flusso sotto cambia: lo si fa entrare e, se è fuori schermo, si scorre quel tanto che basta a mostrarne il titolo.
-    const panel = panels.find(p => !p.hidden);
-    if (!still) panel.animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }], { duration: 450, easing: 'ease-out' });
-    panel.querySelector('h3').scrollIntoView({ block: 'nearest', behavior: still ? 'auto' : 'smooth' });
-  };
-  for (const n of nodes) n.addEventListener('click', () => pick(n.dataset.node, true));
-  pick('note');
-}
-</script>
 
 <script>
-// Follow-up: il segnale scelto riempie la scheda; i fili collegano i segnali alla scheda.
+// Chi siamo: i passi del nostro metodo entrano uno alla volta quando la lista si vede.
 {
-  const grid = document.querySelector('.flow-grid'), svg = grid.querySelector('svg'), card = grid.querySelector('.fu-card');
-  const list = grid.querySelector('.signals'), signals = [...list.children];
-  const paths = signals.map(() => svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'path')));
+  const rel = document.querySelector('.rel'), items = [...rel.querySelectorAll('li')];
+  items.forEach((li, i) => li.style.transitionDelay = `${i * 120}ms`);
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { rel.classList.add('on'); o.disconnect(); } }, { threshold: .25 }).observe(rel);
+}
+</script>
+<script>
+// Follow-up: come nell'app, un suggerimento alla volta. Fatto o Rimanda, il conto sale, arriva il prossimo.
+{
+  const slot = document.querySelector('.fu-slot'), src = [...document.querySelectorAll('.fu-sources .chip')];
+  const tally = document.querySelector('[data-fu-tally]'), arc = document.querySelector('.fu-panel .arc');
+  const later = document.querySelector('.fu-decide .later'), doneBtn = document.querySelector('.fu-decide .done');
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const draw = () => {
-    const g = grid.getBoundingClientRect(), c = card.getBoundingClientRect();
-    const x2 = c.left - g.left, y2 = c.top - g.top + c.height / 2;
-    signals.forEach((s, i) => {
-      const r = s.getBoundingClientRect(), x1 = r.right - g.left, y1 = r.top - g.top + r.height / 2, m = (x1 + x2) / 2;
-      paths[i].setAttribute('d', `M${x1} ${y1}C${m} ${y1} ${m} ${y2} ${x2} ${y2}`);
-    });
+  // [fonte, tipo, quando, persona, frase, da dove, colore, come finisce]
+  const all = [
+    ['proposta', 'Proposta in scadenza', '31 ottobre', 'Marco Bianchi', 'La proposta per Via Tortona 18 scade il 31 ottobre: verifica con Marco Bianchi come procedere.', 'Dalla trattativa Via Tortona 18', '#9C6A4F', 'done'],
+    ['nota', 'Impegno da una nota', 'Venerdì 30 ottobre', 'Giulia Ferrari', 'Nella nota del 27 ottobre hai scritto «risentirla venerdì». Non è ancora in agenda.', 'Dalla nota del 27 ottobre', '#3E8C6A', 'done'],
+    ['visita', 'Riscontro dopo la visita', 'Visita del 26 ottobre', 'Andrea Conti', 'Dopo la visita in Via Solferino 7 non c\'è ancora nessun riscontro.', 'Dalla visita del 26 ottobre', '#3D5FA8', 'later'],
+    ['incarico', 'Incarico in scadenza', '10 novembre', 'Sara Colombo', 'L\'incarico di Corso Magenta 42 scade tra 11 giorni. Sarebbe utile risentire Sara Colombo.', 'Dalla scheda di Corso Magenta 42', '#9C6A4F', 'done'],
+    ['documenti', 'Documenti mancanti', 'Rogito del 20 novembre', 'Davide Greco', 'Per il rogito di Via Washington 55 mancano lo stato civile e la visura aggiornata.', 'Dalla trattativa Via Washington 55', '#2F7A93', 'done'],
+    ['contatto', 'Contatto da risentire', 'Sentito 9 giorni fa', 'Chiara Lombardi', 'Contatto caldo che non senti da 9 giorni. Il messaggio è già pronto.', 'Dalla scheda di Chiara Lombardi', '#5B5FA8', 'later'],
+    ['trattativa', 'Trattativa ferma', 'Ferma da 18 giorni', 'Luca Moretti', 'Nessuna attività su Viale Monza 120 da 18 giorni: una chiamata la rimette in moto.', 'Dalla trattativa Viale Monza 120', '#A3506E', 'done'],
+  ];
+  let i = 0, done = 0, left = 15, card = null;
+  const count = () => {
+    tally.textContent = `${done ? done + (done === 1 ? ' fatto' : ' fatti') : 'Nessuno fatto'} oggi · ${left} da fare`;
+    arc.style.strokeDashoffset = 88 - 88 * done / (done + left);
   };
-  let cur = 0;
+  const show = () => {
+    const f = all[i++ % all.length];
+    src.forEach(c => c.classList.toggle('on', c.dataset.src === f[0]));
+    card = slot.appendChild(document.createElement('div'));
+    card.className = 'fu-card2' + (still ? '' : ' in'); card.style.setProperty('--c', f[6]); card.dataset.end = f[7];
+    card.innerHTML = `<header>${f[1]}<small>${f[2]}</small></header><div class="bd"><span class="who">${f[3]}</span><span>${f[4]}</span><span class="from">${f[5]}<b>›</b></span><div class="acts"><i>Chiama</i><i>Messaggio</i><i>Crea task</i><i>Crea appuntamento</i></div></div>`;
+    requestAnimationFrame(() => requestAnimationFrame(() => card.classList.remove('in')));
+  };
+  const close = () => {
+    const c = card, end = c.dataset.end, btn = end === 'done' ? doneBtn : later;
+    btn.classList.add('press'); setTimeout(() => btn.classList.remove('press'), 220);
+    c.classList.add(end); setTimeout(() => c.remove(), 600);
+    if (end === 'done') { done++; left--; count(); }
+  };
+  count(); show();
+  if (!still) {
+    let t = 0;
+    const loop = () => { t = setTimeout(() => { close(); t = setTimeout(() => { show(); loop(); }, 280); }, 3000); };
+    new IntersectionObserver(([e]) => { clearTimeout(t); if (e.isIntersecting) loop(); }, { threshold: .3 }).observe(slot);
+  }
+}
+</script>
+<script>
+// Prenotazioni: tu apri giorni e orari e mandi il link su WhatsApp; il cliente lo apre, sceglie l'orario; la visita arriva in agenda.
+{
+  const bk = document.querySelector('.bk'), steps = [...bk.querySelectorAll('.bk-steps li')], phones = [...bk.querySelectorAll('.phone.sm')];
+  const q = sel => [...bk.querySelectorAll(sel)], one = sel => bk.querySelector(sel), still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const name = one('[data-bk-name]');
+  const press = el => { el.classList.add('press'); setTimeout(() => el.classList.remove('press'), 250); };
+  const step = i => { steps.forEach((s, j) => s.classList.toggle('on', j === i)); phones.forEach((p, j) => p.classList.toggle('on', j === i)); };
+  const travel = (el, ms) => el.animate([{ left: '0%', opacity: 1, transform: 'scale(.6)' }, { opacity: 1, transform: 'scale(1)', offset: .2 }, { left: 'calc(100% - 34px)', opacity: 1, transform: 'scale(1)' }, { opacity: 0 }], { duration: ms, easing: 'ease-in-out' });
+  const reset = () => {
+    q('.bk-body .chip').forEach(c => c.classList.remove('on')); name.textContent = '';
+    ['.bk-toast', '.bk-new', '.bk-sheet', '.bk-bubble'].forEach(c => one(c).classList.remove('on'));
+    one('.bk-sheet .wa').classList.remove('pick'); one('.bk-chat').classList.remove('off');
+  };
+  let timers = [];
+  const at = (ms, f) => timers.push(setTimeout(f, ms));
+  const play = () => {
+    timers.forEach(clearTimeout); timers = []; reset(); step(0);
+    q('.bk-days .chip').forEach((c, i) => at(300 + i * 150, () => c.classList.add('on')));
+    at(1300, () => q('.bk-hours .chip').forEach(c => c.classList.add('on')));
+    at(1700, () => q('.bk-len .chip')[1].classList.add('on'));
+    at(2300, () => press(one('.bk-share')));
+    at(2500, () => one('.bk-sheet').classList.add('on'));
+    at(3200, () => one('.bk-sheet .wa').classList.add('pick'));
+    at(3600, () => { one('.bk-sheet').classList.remove('on'); travel(one('.bk-msg'), 1200); });
+    at(4700, () => step(1));
+    at(5000, () => one('.bk-bubble').classList.add('on'));
+    at(6200, () => press(one('.bk-preview')));
+    at(6500, () => one('.bk-chat').classList.add('off'));
+    at(7200, () => q('.bk-slots .chip')[2].classList.add('on'));
+    'Elena Rossi'.split('').forEach((ch, i) => at(7700 + i * 70, () => name.textContent += ch));
+    at(8800, () => press(one('.bk-confirm')));
+    at(9000, () => travel(one('.bk-dot'), 900));
+    at(9900, () => step(2));
+    at(10200, () => one('.bk-toast').classList.add('on'));
+    at(10800, () => one('.bk-new').classList.add('on'));
+    at(14500, play);
+  };
+  const final = () => { step(2); one('.bk-chat').classList.add('off'); q('.bk-days .chip, .bk-hours .chip').forEach(c => c.classList.add('on')); q('.bk-len .chip')[1].classList.add('on'); q('.bk-slots .chip')[2].classList.add('on'); name.textContent = 'Elena Rossi'; one('.bk-toast').classList.add('on'); one('.bk-new').classList.add('on'); };
+  if (still) final();
+  else new IntersectionObserver(([e]) => { if (e.isIntersecting) play(); else timers.forEach(clearTimeout); }, { threshold: .3 }).observe(bk);
+}
+</script>
+<script>
+// L'app: le schermate girano da sole come un carosello in 3D; si sceglie toccando, con le frecce o scorrendo.
+{
+  const cf = document.querySelector('.cf'), items = [...cf.querySelectorAll('.cf-item')], n = items.length;
+  const name = document.querySelector('[data-cf-name]'), alt = document.querySelector('[data-cf-alt]');
+  const tabs = [...document.querySelectorAll('.show-tabs [data-go]')], still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let cur = 0, timer = 0, hover = false;
+  const narrow = () => innerWidth < 560;
+  const go = i => {
+    cur = (i + n) % n;
+    items.forEach((it, j) => {
+      let o = j - cur; if (o > n / 2) o -= n; if (o < -n / 2) o += n; // la strada più corta, il giro è chiuso
+      const a = Math.abs(o), step = narrow() ? 46 : 62;
+      it.style.transform = `translateX(${o * step}%) translateZ(${-a * 170}px) rotateY(${-Math.sign(o) * Math.min(a, 1) * 38}deg)`;
+      it.style.opacity = a > 3 ? 0 : 1 - a * .22;
+      it.style.filter = a ? `brightness(${1 - a * .18})` : 'none';
+      it.style.zIndex = 100 - a;
+      it.setAttribute('aria-hidden', a > 0);
+    });
+    const img = items[cur].querySelector('img');
+    name.textContent = items[cur].dataset.name; alt.textContent = img.alt;
+    // la linguetta segue il gruppo della schermata in vista
+    let on = tabs[0]; for (const t of tabs) if (+t.dataset.go <= cur) on = t;
+    tabs.forEach(t => t.setAttribute('aria-pressed', t === on));
+    clearTimeout(timer); if (!still && !hover) timer = setTimeout(() => go(cur + 1), 3200);
+  };
+  items.forEach((it, j) => it.addEventListener('click', () => go(j)));
+  tabs.forEach(t => t.addEventListener('click', () => go(+t.dataset.go)));
+  cf.querySelector('.prev').addEventListener('click', () => go(cur - 1));
+  cf.querySelector('.next').addEventListener('click', () => go(cur + 1));
+  cf.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') go(cur - 1); if (e.key === 'ArrowRight') go(cur + 1); });
+  let x0 = null;
+  cf.addEventListener('pointerdown', e => { x0 = e.clientX; });
+  cf.addEventListener('pointerup', e => { if (x0 !== null && Math.abs(e.clientX - x0) > 40) go(cur + (e.clientX < x0 ? 1 : -1)); x0 = null; });
+  cf.addEventListener('mouseenter', () => { hover = true; clearTimeout(timer); });
+  cf.addEventListener('mouseleave', () => { hover = false; go(cur); });
+  addEventListener('resize', () => go(cur));
+  // Gira solo quando si vede.
+  new IntersectionObserver(([e]) => { if (e.isIntersecting) go(cur); else clearTimeout(timer); }, { threshold: .3 }).observe(cf);
+  go(0);
+}
+</script>
+<script>
+// Tutto collegato: un esempio alla volta si accende da solo; una sezione toccata dice cosa fa e con chi parla.
+{
+  const box = document.querySelector('.tiles'), svg = box.querySelector('svg'), tiles = [...box.querySelectorAll('.tile')];
+  const chain = document.querySelector('[data-chain]'), say = document.querySelector('[data-say]'), dots = document.querySelector('.links-dots');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const T = Object.fromEntries(tiles.map(t => [t.dataset.tile, t]));
+  const flows = [
+    [['note', 'agenda', 'home'], 'Detti «visita con i Rossi giovedì alle 18»: diventa un appuntamento e te lo ritrovi nella giornata.'],
+    [['prenotazioni', 'agenda', 'contatti'], 'Il cliente prenota dal link dell\'immobile: la visita entra in agenda e si collega al suo contatto.'],
+    [['trattative', 'follow-up', 'home'], 'Una proposta sta per scadere: Relon te lo ricorda in Home, con il messaggio già pronto.'],
+    [['immobili', 'valutazioni'], 'Dalla scheda dell\'immobile la valutazione parte da sola: indirizzo, metri, piano, stato.'],
+    [['contatti', 'trattative', 'immobili'], 'Acquirente e venditore entrano nella trattativa. Al rogito l\'immobile passa a Chiuso da solo.'],
+  ];
+  const name = k => T[k].textContent.trim();
+  const center = t => { const b = box.getBoundingClientRect(), r = t.getBoundingClientRect(); return [r.left - b.left + r.width / 2, r.top - b.top + r.height / 2]; };
+  const wire = (a, b) => {
+    const [x1, y1] = center(T[a]), [x2, y2] = center(T[b]), mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    const p = svg.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'path'));
+    p.setAttribute('d', `M${x1} ${y1} Q${mx + (y2 - y1) * .18} ${my - (x2 - x1) * .18} ${x2} ${y2}`); // un poco curvo, per non passare sui nomi
+    return p;
+  };
+  const clear = () => { svg.textContent = ''; tiles.forEach(t => { t.classList.remove('on', 'lit'); delete t.dataset.step; }); };
+  let cur = 0, timer = 0, held = false;
+  const dot = flows.map((_, i) => { const d = dots.appendChild(document.createElement('button')); d.type = 'button'; d.setAttribute('aria-label', `Esempio ${i + 1}`); d.onclick = () => { held = true; show(i); }; return d; });
   const show = i => {
-    cur = i;
-    signals.forEach((s, j) => { s.setAttribute('aria-pressed', j === i); paths[j].classList.toggle('on', j === i); });
-    const s = signals[i], set = (f, v) => card.querySelector(`[data-f=${f}]`).textContent = v;
-    set('kind', s.querySelector('b').textContent);
-    for (const f of ['tag', 'why', 'src']) set(f, s.dataset[f]);
-    list.scrollTo({ left: s.offsetLeft - 16, behavior: still ? 'auto' : 'smooth' }); // solo su telefono, dove i segnali scorrono in orizzontale
-    if (!still) card.animate([{ opacity: .35, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 350, easing: 'ease-out' });
+    cur = i; clearTimeout(timer); clear();
+    const [steps, text] = flows[i];
+    chain.textContent = steps.map(name).join(' → '); say.textContent = text;
+    dot.forEach((d, j) => d.setAttribute('aria-current', j === i));
+    steps.forEach((k, j) => setTimeout(() => {
+      if (cur !== i) return;
+      T[k].classList.add('lit'); T[k].dataset.step = j + 1;
+      if (j > 0) { const w = wire(steps[j - 1], k); w.classList.add('on'); if (!still) w.animate([{ strokeDashoffset: 300 }, { strokeDashoffset: 0 }], { duration: 500, easing: 'ease-out' }); }
+    }, still ? 0 : j * 650));
+    if (!held && !still) timer = setTimeout(() => show((i + 1) % flows.length), 4600);
   };
-  new ResizeObserver(draw).observe(grid);
-  show(0);
-  // Scorre da solo finché non lo tocchi.
-  const auto = still ? 0 : setInterval(() => show((cur + 1) % signals.length), 3500);
-  signals.forEach((s, i) => s.addEventListener('click', () => { clearInterval(auto); show(i); }));
+  tiles.forEach(t => t.addEventListener('click', () => {
+    held = true; clearTimeout(timer); clear(); cur = -1;
+    t.classList.add('on');
+    chain.textContent = name(t.dataset.tile); say.textContent = t.dataset.desc;
+    dot.forEach(d => d.setAttribute('aria-current', false));
+    for (const [steps] of flows) steps.forEach((k, j) => { if (j && (k === t.dataset.tile || steps[j - 1] === t.dataset.tile)) { wire(steps[j - 1], k).classList.add('soft'); T[k].classList.add('lit'); T[steps[j - 1]].classList.add('lit'); } });
+    t.classList.remove('lit');
+  }));
+  new ResizeObserver(() => cur >= 0 ? show(cur) : 0).observe(box);
+  // Parte quando la sezione si vede.
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { show(0); o.disconnect(); } }, { threshold: .3 }).observe(box);
 }
 </script>
-
 <script>
-// Note: le azioni scelte decidono il tasto Salva e l'avviso finale.
+// Hero: la giornata con Relon. Le scene vanno da sole; un orario toccato le ferma lì.
 {
-  const demo = document.getElementById('note-demo'), chips = [...demo.querySelectorAll('[data-done]')];
-  const set = (f, v) => demo.querySelector(`[data-f=${f}]`).textContent = v;
-  for (const c of chips) c.addEventListener('click', () => {
-    c.setAttribute('aria-pressed', c.getAttribute('aria-pressed') !== 'true');
-    const on = chips.filter(x => x.getAttribute('aria-pressed') === 'true').map(x => x.dataset.done);
-    set('save', on.length ? `Salva nota e ${on.length === 1 ? '1 azione' : on.length + ' azioni'}` : 'Salva nota');
-    set('done', on.length ? `Nota salvata con: ${on.join(', ')}` : 'Nota salvata');
-    demo.querySelector('.visit').hidden = !on.includes('appuntamento');
-  });
-}
-</script>
-
-<script>
-// Prenotazioni: l'orario scelto dal cliente è quello che compare in agenda.
-{
-  const slots = [...document.querySelectorAll('#slots button')];
-  for (const b of slots) b.addEventListener('click', () => {
-    slots.forEach(s => s.setAttribute('aria-pressed', s === b));
-    document.getElementById('slot-out').textContent = b.textContent;
-  });
-}
-</script>
-
-<script type="importmap">
-{ "imports": {
-  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-} }
-</script>
-<script type="module">
-import * as THREE from 'three';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-
-const INDIGO = 0x0C2B51, LILAC = 0x95B0E3, WHITE = 0xFFFFFF;
-const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-// Renderer legato a un contenitore: resize automatico, render solo quando visibile.
-function mount(el, camera, scene, tick) {
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-  el.append(renderer.domElement);
-  scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
-
-  new ResizeObserver(() => {
-    const { clientWidth: w, clientHeight: h } = el;
-    renderer.setSize(w, h, false);
-    if (camera.isPerspectiveCamera) camera.aspect = w / h;
-    else { const a = w / h, s = camera.userData.size; Object.assign(camera, { left: -s * a, right: s * a, top: s, bottom: -s }); }
-    camera.updateProjectionMatrix();
-    renderer.render(scene, camera);
-  }).observe(el);
-
-  let visible = false;
-  new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(el);
-  renderer.setAnimationLoop(t => { if (visible && !still) { tick(t / 1000); renderer.render(scene, camera); } });
-}
-
-/* ---------- Hero: la casa che diventa un grafo ---------- */
-{
-  const el = document.getElementById('hero-3d');
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  camera.position.set(0, 0, 12);
-  scene.environmentIntensity = 0.3;
-
-  const graph = new THREE.Group();
-  scene.add(graph);
-
-  let seed = 11; // deterministico: stesso grafo a ogni caricamento
-  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-
-  // Casa in wireframe: 8 angoli + 2 estremi del colmo. Nodi e archi della casa restano nel grafo.
-  const W = 1.3, H = 1.3, R = 2.3;
-  const house = [[-W, 0, -W], [W, 0, -W], [W, 0, W], [-W, 0, W], [-W, H, -W], [W, H, -W], [W, H, W], [-W, H, W], [-W, R, 0], [W, R, 0]]
-    .map(([x, y, z]) => new THREE.Vector3(x, y - 1.15, z));
-  const edges = [[0, 1], [1, 2], [2, 3], [3, 0], [4, 5], [5, 6], [6, 7], [7, 4], [0, 4], [1, 5], [2, 6], [3, 7], [4, 8], [7, 8], [5, 9], [6, 9], [8, 9]];
-  const houseEdges = edges.length;
-
-  // Grafo: i 10 nodi della casa + 22 nuovi, su una sfera irregolare (fibonacci + rumore), ordine mescolato.
-  const N = 32, target = [];
-  for (let i = 0; i < N; i++) {
-    const y = 1 - (i + 0.5) / N * 2, r = Math.sqrt(1 - y * y), a = i * 2.39996;
-    target.push(new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r).multiplyScalar(1.5 + rand() * 1.1));
-  }
-  // ogni angolo della casa va verso il punto libero più vicino: archi corti, niente incroci
-  house.forEach((h, i) => {
-    let best = i;
-    for (let j = i; j < N; j++) if (target[j].distanceTo(h) < target[best].distanceTo(h)) best = j;
-    [target[i], target[best]] = [target[best], target[i]];
-  });
-
-  // I nuovi nodi nascono da un angolo della casa e si collegano ai 2 vicini più prossimi nel grafo.
-  const start = target.map((_, i) => (house[i] ?? house[i % house.length]).clone());
-  const seen = new Set(edges.map(e => e.join()));
-  for (let i = house.length; i < N; i++) {
-    target.map((p, j) => [p.distanceTo(target[i]), j]).filter(([, j]) => j !== i).sort((a, b) => a[0] - b[0]).slice(0, 2)
-      .forEach(([, j]) => { const k = [Math.min(i, j), Math.max(i, j)].join(); if (!seen.has(k)) { seen.add(k); edges.push([i, j]); } });
-  }
-
-  const palette = [INDIGO, 0x1F4C8A, 0x2E5FB8, LILAC];
-  const sphere = new THREE.SphereGeometry(1, 24, 16);
-  const nodes = target.map((_, i) => {
-    const m = new THREE.Mesh(sphere, new THREE.MeshPhysicalMaterial({ color: i < house.length ? INDIGO : palette[1 + i % 3], roughness: 0.3, clearcoat: 1 }));
-    m.userData.size = i < house.length ? 0.13 : 0.06 + rand() * 0.09;
-    m.userData.delay = rand();
-    graph.add(m);
-    return m;
-  });
-  const rod = new THREE.CylinderGeometry(1, 1, 1, 10);
-  const rodMat = new THREE.MeshStandardMaterial({ color: 0x5C86CF, roughness: 0.4 });
-  const links = edges.map(() => { const m = new THREE.Mesh(rod, rodMat); graph.add(m); return m; });
-
-  scene.add(new THREE.HemisphereLight(WHITE, 0xD3DEEE, 0.9));
-  const key = new THREE.DirectionalLight(WHITE, 2.2);
-  key.position.set(4, 5, 6);
-  scene.add(key);
-
-  const mouse = { x: 0, y: 0 };
-  addEventListener('pointermove', e => {
-    mouse.x = (e.clientX / innerWidth - 0.5) * 0.6;
-    mouse.y = (e.clientY / innerHeight - 0.5) * 0.4;
-  }, { passive: true });
-
-  // Ciclo di 11 s: casa (2.5 s) -> trasformazione -> grafo (3.5 s) -> ritorno.
-  const smooth = x => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
-  const phase = t => { const c = t % 11; return c < 2.5 ? 0 : c < 5 ? (c - 2.5) / 2.5 : c < 8.5 ? 1 : 1 - (c - 8.5) / 2.5; };
-  const pos = target.map(() => new THREE.Vector3()), prog = [], up = new THREE.Vector3(0, 1, 0), dir = new THREE.Vector3();
-
-  const frame = (t, p) => {
-    nodes.forEach((m, i) => {
-      prog[i] = smooth(p * 1.5 - m.userData.delay * 0.5); // ogni nodo parte con un piccolo ritardo
-      pos[i].lerpVectors(start[i], target[i], prog[i]);
-      m.position.copy(pos[i]);
-      m.scale.setScalar(m.userData.size * (i < house.length ? 1 : prog[i]));
-    });
-    links.forEach((m, e) => {
-      const [a, b] = edges[e], len = pos[a].distanceTo(pos[b]);
-      const r = e < houseEdges ? 0.035 - 0.013 * Math.min(prog[a], prog[b]) : 0.022 * Math.min(prog[a], prog[b]);
-      if (len < 1e-4 || r < 1e-4) { m.scale.setScalar(0); return; }
-      m.position.lerpVectors(pos[a], pos[b], 0.5);
-      m.quaternion.setFromUnitVectors(up, dir.subVectors(pos[b], pos[a]).divideScalar(len));
-      m.scale.set(r, len, r);
-    });
-    graph.rotation.y += (mouse.x + t * 0.25 - graph.rotation.y) * 0.08;
-    graph.rotation.x += (mouse.y + 0.25 - graph.rotation.x) * 0.05;
-    graph.position.y = Math.sin(t * 1.1) * 0.08;
+  const day = document.querySelector('.day'), rail = day.querySelector('.day-rail'), buttons = [...day.querySelectorAll('.day-rail button')], scenes = [...day.querySelectorAll('.scene')];
+  const clock = day.querySelector('.day-clock'), still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const said = day.querySelector('.said'), val = day.querySelector('.val');
+  const bars = buttons.map(b => b.appendChild(document.createElement('i')));
+  const LONG = 5200;
+  let cur = -1, timer = 0, typing = 0, paused = false, held = false;
+  const euro = v => '€ ' + (Math.round(v / 1000) * 1000).toLocaleString('it-IT');
+  const play = i => {
+    cur = i; clearTimeout(timer); clearInterval(typing);
+    buttons.forEach((b, j) => b.setAttribute('aria-current', j === i));
+    scenes.forEach((sc, j) => sc.classList.toggle('on', j === i));
+    clock.textContent = buttons[i].querySelector('time').textContent;
+    rail.scrollTo({ left: buttons[i].offsetLeft - 16, behavior: still ? 'auto' : 'smooth' }); // solo su telefono, dove gli orari sono una fila
+    bars.forEach(bar => { bar.getAnimations().forEach(a => a.cancel()); bar.style.transform = 'scaleX(0)'; }); // solo quella in corso si riempie
+    if (i === 1) { // la nota si scrive da sola, come dettata
+      const text = said.dataset.type; let n = still ? text.length : 0; said.textContent = text.slice(0, n);
+      if (!still) typing = setInterval(() => { said.textContent = text.slice(0, ++n); if (n >= text.length) clearInterval(typing); }, 28);
+    }
+    if (i === 3) { // il valore si sposta voce per voce
+      const steps = [309000, 333700, 350400, 329400, 339300];
+      if (still) val.textContent = euro(steps.at(-1));
+      else steps.forEach((v, k) => setTimeout(() => cur === 3 && (val.textContent = euro(v)), 500 + k * 480));
+    }
+    if (still || held) return;
+    bars[i].animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: LONG, easing: 'linear', fill: 'forwards' });
+    timer = setTimeout(() => { if (!paused) play((i + 1) % scenes.length); }, LONG);
   };
-
-  graph.rotation.set(0.25, 0.6, 0);
-  frame(0, still ? 1 : 0); // con reduced-motion resta fermo sul grafo
-  mount(el, camera, scene, t => frame(t, phase(t)));
-}
-
-/* ---------- Portafoglio: quartiere isometrico ---------- */
-{
-  const el = document.getElementById('city-3d');
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 100);
-  camera.userData.size = 4.6;
-  camera.position.set(10, 9, 10);
-  camera.lookAt(0, 0.4, 0);
-  scene.environmentIntensity = 0.25;
-
-  const city = new THREE.Group();
-  scene.add(city);
-
-  const ground = new THREE.Mesh(new THREE.CylinderGeometry(5.6, 5.6, 0.2, 64), new THREE.MeshStandardMaterial({ color: 0x0A2242, roughness: 0.9 }));
-  ground.position.y = -0.1;
-  ground.receiveShadow = true;
-  city.add(ground);
-
-  const wallMat = new THREE.MeshStandardMaterial({ color: 0xF3F5F9, roughness: 0.7 });
-  const roofMat = new THREE.MeshStandardMaterial({ color: 0x1A4278, roughness: 0.6 });
-  const accentMat = new THREE.MeshStandardMaterial({ color: LILAC, emissive: LILAC, emissiveIntensity: 0.3, roughness: 0.4 });
-  const box = new THREE.BoxGeometry(1, 1, 1);
-  const pyramid = new THREE.ConeGeometry(0.72, 0.55, 4);
-  pyramid.rotateY(Math.PI / 4);
-
-  let seed = 7; // deterministico: stesso quartiere a ogni caricamento
-  const rand = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-  let mine;
-  for (let x = -3; x <= 3; x++) for (let z = -3; z <= 3; z++) {
-    if (Math.hypot(x, z) > 3.6 || rand() < 0.3) continue;
-    const isMine = x === 0 && z === 0;
-    const h = isMine ? 1.9 : 0.5 + rand() * (rand() < 0.2 ? 1.8 : 0.8);
-    const house = new THREE.Group();
-    const walls = new THREE.Mesh(box, isMine ? accentMat : wallMat);
-    walls.scale.set(0.9, h, 0.9);
-    walls.position.y = h / 2;
-    const roof = new THREE.Mesh(pyramid, isMine ? accentMat : roofMat);
-    roof.position.y = h + 0.27;
-    for (const m of [walls, roof]) { m.castShadow = m.receiveShadow = true; house.add(m); }
-    house.position.set(x * 1.3, 0, z * 1.3);
-    city.add(house);
-    if (isMine) mine = house;
-  }
-
-  scene.add(new THREE.HemisphereLight(0xDDE6F3, INDIGO, 0.8));
-  const sun = new THREE.DirectionalLight(WHITE, 2.4);
-  sun.position.set(6, 10, 3);
-  sun.castShadow = true;
-  sun.shadow.mapSize.set(1024, 1024);
-  Object.assign(sun.shadow.camera, { left: -7, right: 7, top: 7, bottom: -7 });
-  sun.shadow.radius = 4;
-  scene.add(sun);
-
-  city.rotation.y = 0.3;
-  mount(el, camera, scene, t => {
-    city.rotation.y = 0.3 + t * 0.08;
-    mine.position.y = 0.15 + Math.sin(t * 2) * 0.12;
-  });
+  buttons.forEach((b, i) => b.addEventListener('click', () => { held = true; play(i); }));
+  day.addEventListener('mouseenter', () => { paused = true; bars[cur]?.getAnimations().forEach(a => a.pause()); clearTimeout(timer); });
+  day.addEventListener('mouseleave', () => { paused = false; if (!held && !still) play((cur + 1) % scenes.length); });
+  play(0);
 }
 </script>
+<script>
+// Valutazioni: Relon guarda intorno alla casa; ogni cosa che trova sposta il valore, in verde o in rosso.
+{
+  const root = document.querySelector('.ag'), map = root.querySelector('.ag-map'), edges = map.querySelector('.ag-edges');
+  const zone = map.querySelector('.ag-zone'), zl = map.querySelector('.ag-zl'), block = map.querySelector('.ag-block');
+  const value = root.querySelector('[data-ag-value]'), list = root.querySelector('.ag-list');
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const icon = {
+    metro: '<path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 14h2.2v-6.4l2.1 4.2h1.4l2.1-4.2V17H17V7h-2.3L12 12.4 9.3 7H7Z"/>',
+    park: '<path d="M12 2a6 6 0 0 1 5.6 8.2A5 5 0 0 1 14 18h-1v3a1 1 0 0 1-2 0v-3h-1a5 5 0 0 1-3.6-7.8A6 6 0 0 1 12 2Z"/>',
+    rail: '<path d="M7 2h10a3 3 0 0 1 3 3v10a3 3 0 0 1-2.2 2.9L20 21h-2.6l-2-3H8.6l-2 3H4l2.2-3.1A3 3 0 0 1 4 15V5a3 3 0 0 1 3-3Zm-1 4v4h12V6Zm2 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>',
+    road: '<path d="M9 2h2l-.3 4h2.6L13 2h2l3 20h-4.5l-.3-4h-2.4l-.3 4H6Zm2.5 6-.3 4h1.6l-.3-4Z"/>',
+    block: '<path d="M3 21V9l5-3v15Zm6 0V3h7v18Zm8 0V10h4v11Z"/>',
+  };
+  // dist in metri: il disegno li mette sui cerchi da 100, 200, 300 m.
+  const found = [
+    { k: 'block', name: 'Isolato più richiesto', sub: 'Dati ISTAT', pct: 8 },
+    { k: 'metro', name: 'Metro', sub: '250 m', pct: 5, a: -58, d: 250 },
+    { k: 'park', name: 'Parco', sub: '120 m', pct: 3, a: 170, d: 120 },
+    { k: 'rail', name: 'Ferrovia', sub: '60 m', pct: -6, a: 42, d: 60 },
+    { k: 'road', name: 'Strada veloce', sub: '180 m', pct: -3, a: 118, d: 180 },
+  ];
+  const base = 3250 * 95, euro = v => '€ ' + (Math.round(v / 1000) * 1000).toLocaleString('it-IT');
+  const signed = p => (p > 0 ? '+' : '−') + Math.abs(p) + '%';
+  const nodes = found.map(f => {
+    const n = map.appendChild(document.createElement('span'));
+    n.className = 'ag-node ' + (f.pct > 0 ? 'gain' : 'loss');
+    n.innerHTML = `<i><svg viewBox="0 0 24 24">${icon[f.k]}</svg></i><span>${f.name}<small>${f.sub}</small></span><b>${signed(f.pct)}</b>`;
+    if (f.a === undefined) { n.style.left = '33%'; n.style.top = '29%'; return { n }; }
+    const r = 100 + f.d * 0.53, x = 300 + r * Math.cos(f.a * Math.PI / 180), y = 300 + r * Math.sin(f.a * Math.PI / 180);
+    n.style.left = x / 6 + '%'; n.style.top = y / 6 + '%';
+    const e = edges.appendChild(document.createElementNS('http://www.w3.org/2000/svg', 'line'));
+    e.setAttribute('x1', 300); e.setAttribute('y1', 300); e.setAttribute('x2', x); e.setAttribute('y2', y);
+    e.setAttribute('class', 'ag-edge ' + (f.pct > 0 ? 'gain' : 'loss'));
+    return { n, e };
+  });
+  let shown = base, timers = [];
+  const tween = (to, cls) => {
+    value.classList.remove('gain', 'loss'); if (cls) value.classList.add(cls);
+    if (still) { shown = to; value.textContent = euro(to); return; }
+    const from = shown, t0 = performance.now();
+    const step = t => { const k = Math.min(1, (t - t0) / 600); shown = from + (to - from) * (1 - (1 - k) ** 3); value.textContent = euro(shown); if (k < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  };
+  const reset = () => {
+    timers.forEach(clearTimeout); timers = [];
+    [zone, zl, block].forEach(el => el.classList.remove('on'));
+    nodes.forEach(({ n, e }) => { n.classList.remove('on'); e?.classList.remove('on'); });
+    list.textContent = ''; shown = base; value.textContent = euro(base); value.classList.remove('gain', 'loss');
+  };
+  const play = () => {
+    reset();
+    const at = (ms, f) => timers.push(setTimeout(f, still ? 0 : ms));
+    at(200, () => { zone.classList.add('on'); zl.classList.add('on'); });
+    let v = base;
+    found.forEach((f, i) => at(1600 + i * 1300, () => {
+      const { n, e } = nodes[i];
+      if (f.k === 'block') block.classList.add('on');
+      e?.classList.add('on');
+      timers.push(setTimeout(() => n.classList.add('on'), still ? 0 : 350));
+      const li = list.appendChild(document.createElement('li'));
+      li.className = f.pct > 0 ? 'gain' : 'loss';
+      li.innerHTML = `<span>${f.name}${f.d ? ' a ' + f.sub : ''}</span><b>${signed(f.pct)}</b>`;
+      v *= 1 + f.pct / 100; tween(v, li.className);
+    }));
+    at(1600 + found.length * 1300 + 400, () => value.classList.remove('gain', 'loss'));
+    if (!still) at(1600 + found.length * 1300 + 6000, play); // ricomincia, finché la sezione è in vista
+  };
+  // Parte quando la sezione entra in vista, si ferma quando esce.
+  new IntersectionObserver(([en]) => { if (en.isIntersecting) play(); else timers.forEach(clearTimeout); }, { threshold: .35 }).observe(root);
+}
+</script>
+
+
+
+
 </body>
 </html>
