@@ -496,7 +496,59 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 .dx-pin.still { height: auto; } .dx-pin.still .dx-stage { position: relative; min-height: 760px; }
 @media (max-width: 900px) { .dx-copy { top: 76px; } .dx-say { min-height: 150px; } .dx-say h2 { font-size: 30px; } .dx-say p { font-size: 14.5px; margin-top: 8px; } .dx-logo { display: none; } .dx-token { font-size: 11px; padding: 4px 9px; } }
 </style>
-</head>
+<style>
+/* Poldo, il polpo di Relon, che racconta la pagina */
+.poldo-box{position:absolute;pointer-events:none;z-index:6}
+.poldo-box svg{display:block;width:100%;height:auto;overflow:visible}
+.poldo-box .pose{display:grid}.poldo-box .pose>svg{grid-area:1/1;opacity:0;transition:opacity .25s}.poldo-box .pose>svg.on{opacity:1;animation:poldo-cambia .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes poldo-cambia{from{transform:translateY(4px) scale(.94,.96)}}
+@media (prefers-reduced-motion:reduce){.poldo-box .pose>svg.on{animation:none}.poldo-say{transition:opacity .2s}}
+.poldo-say{position:absolute;background:#fff;color:#16243D;font:600 15px/1.4 Inter,sans-serif;text-align:left;padding:12px 16px;border-radius:16px;
+  box-shadow:0 18px 36px -18px rgba(12,43,81,.45);border:1px solid #E1E6EE;min-height:1.4em;margin:0;opacity:0;transform:translateY(8px) scale(.9);transition:opacity .25s,transform .45s cubic-bezier(.34,1.56,.64,1)}
+.poldo-say.on{opacity:1;transform:none}
+.poldo-say::after{content:"";position:absolute;width:16px;height:16px;background:#fff;border:1px solid #E1E6EE;border-width:0 1px 1px 0}
+.poldo-say b{color:#2E5FB8;font-weight:700}
+.poldo-say b.su{color:#23875A}.poldo-say b.giu{color:#A6432D} /* come la card del valore: verde sale, rosso scende */
+.poldo-say.dx{right:auto}
+.day{position:relative}
+.poldo-hero{right:-104px;bottom:-128px;width:245px}
+.poldo-hero .poldo-say{right:200px;bottom:142px;width:270px}
+.poldo-hero .poldo-say::after{right:-9px;bottom:22px;transform:rotate(-45deg)}
+.about .rel{position:relative}
+.poldo-about{right:6px;top:-150px;width:166px}
+.poldo-about .poldo-say{right:144px;top:30px;width:250px}
+.poldo-about .poldo-say::after{right:-9px;top:22px;transform:rotate(-45deg)}
+.cta .wrap{position:relative}
+.poldo-cta{left:calc(50% + 62px);top:-34px;width:136px}
+.poldo-cta .poldo-say{left:122px;top:26px;width:210px}
+.poldo-cta .poldo-say::after{left:-9px;top:22px;transform:rotate(135deg)}
+.ag{position:relative}
+.poldo-ag{left:calc(55.6% + 2px);top:calc(100% - 26px);width:150px}
+.poldo-ag .poldo-say{left:136px;top:44px;width:250px}
+.poldo-ag .poldo-say::after{left:-9px;top:22px;transform:rotate(135deg)}
+.poldo-dx{left:0;top:0;z-index:60;will-change:transform}
+.poldo-dx .poldo-say{left:52%;bottom:92%;width:250px}
+.poldo-dx .poldo-say::after{left:30px;bottom:-9px;transform:rotate(45deg)}
+.poldo-dx.sx .poldo-say{left:auto;right:50%;bottom:132%}
+.poldo-dx.sx .poldo-say::after{left:auto;right:30px}
+/* Telefono: Poldo piccolo a sinistra e il fumetto accanto, su una riga che fa parte della pagina */
+@media (max-width: 900px) {
+  .poldo-box{position:relative;inset:auto;display:flex;align-items:center;gap:12px;width:100%;max-width:360px;margin-inline:auto;transform:none!important}
+  .poldo-box>.pose,.poldo-box>svg{flex:0 0 92px;width:92px}
+  .poldo-box .poldo-say,.poldo-dx.sx .poldo-say{position:relative;inset:auto;width:auto;flex:1;font-size:14px;padding:10px 13px}
+  .poldo-box .poldo-say::after,.poldo-dx.sx .poldo-say::after{left:-9px;right:auto;top:50%;bottom:auto;margin-top:-8px;transform:rotate(135deg)}
+  .day-rail{order:1} .poldo-hero{order:2} .day .phone{order:3}
+  .poldo-about{margin:0 0 14px}
+  .poldo-cta{margin:14px auto 6px;max-width:330px}
+  .poldo-ag{order:1;margin:-6px auto 4px}
+  .ag-side{order:2}
+  .poldo-dx{position:absolute;left:16px;right:16px;top:var(--poldo-top,190px);width:auto!important;max-width:none}
+  .poldo-dx>.pose{flex-basis:76px;width:76px}
+  .dx-say p{display:none}
+  .dx-say{min-height:84px}
+}
+
+</style></head>
 <body>
 
 <nav>
@@ -523,7 +575,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       <p class="lead">Dal primo caffè all'ultima chiamata: Relon ti dice da dove iniziare, fa quello che detti, porta le visite in agenda, valuta le case e ti ricorda chi richiamare. Immobili, contatti e trattative, dall'acquisizione al rogito.</p>
       <div class="stores" data-stores></div>
     </div>
-    <div class="day" aria-label="Una giornata con Relon">
+    <div class="day" aria-label="Una giornata con Relon"><div class="poldo-box poldo-hero" aria-hidden="true"><div class="pose"><i data-poldo="saluta"></i>
+<i data-poldo="pensa"></i>
+<i data-poldo="chiavi"></i>
+<i data-poldo="conserte"></i>
+</div><p class="poldo-say"></p></div>
       <ol class="day-rail">
         <li><button type="button" data-scene="0"><time>08:30</time>Apri l'app</button></li>
         <li><button type="button" data-scene="1"><time>10:15</time>Detti una nota</button></li>
@@ -678,7 +734,10 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
         <h2>Quanto vale questa casa? Lo sai in pochi secondi.</h2>
         <p class="lead" style="margin-top:18px;max-width:36em">Tocchi Valuta e Relon fa il resto: trova la zona OMI dall'indirizzo, guarda cosa c'è intorno alla casa (la metro, i parchi, la ferrovia, com'è l'isolato) e corregge le quotazioni ufficiali dell'Agenzia delle Entrate con tutto quello che sposta il prezzo. Ti dà il valore, il prezzo a cui pubblicarla e il perché.</p>
       </div>
-      <div class="ag">
+      <div class="ag"><div class="poldo-box poldo-ag" aria-hidden="true" data-veloce><div class="pose"><i data-poldo="pensa"></i>
+<i data-poldo="saluta"></i>
+<i data-poldo="chiavi"></i>
+</div><p class="poldo-say"></p></div>
         <div class="ag-map" role="img" aria-label="Mappa intorno alla casa: la zona OMI, l'isolato, la metro a 250 metri e il parco a 120 metri fanno salire il valore, la ferrovia a 60 metri e la strada veloce a 180 metri lo fanno scendere">
           <svg viewBox="0 0 600 600" aria-hidden="true">
             <circle class="ag-ring" cx="300" cy="300" r="140"/><circle class="ag-ring" cx="300" cy="300" r="200"/><circle class="ag-ring" cx="300" cy="300" r="260"/>
@@ -770,7 +829,10 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
             <div><h2>E ti dice cosa manca.</h2><p>I dati che la scheda non ha, da aggiungere con un tocco. L'ultima parola è sempre tua.</p></div>
           </div>
         </div>
-        <div class="phone dx-phone">
+        <div class="poldo-box poldo-dx" aria-hidden="true"><div class="pose"><i data-poldo="pensa"></i>
+<i data-poldo="smista"></i>
+<i data-poldo="conserte"></i>
+</div><p class="poldo-say"></p></div><div class="phone dx-phone">
           <div class="phone-top"><img src="assets/logo.png" alt=""></div>
           <div class="dx-screen">
             <span class="dx-num">0</span>
@@ -805,7 +867,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
           <li><b>In test</b>con agenti veri</li>
         </ul>
       </div>
-      <div class="rel">
+      <div class="rel"><div class="poldo-box poldo-about" aria-hidden="true" data-say="Raccontaci cosa ti fa perdere tempo: <b>lo costruiamo insieme.</b>"><i data-poldo="saluta"></i>
+<p class="poldo-say"></p></div>
         <span class="n">Come lavoriamo</span>
         <ol>
           <li><time>1</time><b>Ci racconti come lavori</b><span>Una chiamata, un messaggio, una nota dall'app: ci dici cosa ti fa perdere tempo.</span></li>
@@ -819,7 +882,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
 
   <section class="cta" id="scarica">
     <div class="wrap">
-      <img src="assets/app-icon-1024.png" alt="Icona app Relon">
+      <img src="assets/app-icon-1024.png" alt="Icona app Relon"><div class="poldo-box poldo-cta" aria-hidden="true" data-say="Scrivici e <b>ti mando l'invito</b>. Ti aspetto!"><i data-poldo="festeggia"></i>
+<p class="poldo-say"></p></div>
       <h2>Diventa tester di Relon.</h2>
       <p class="lead">Relon è in test su iPhone e Android. Scrivici: ti mandiamo l'invito e ci dici cosa migliorare.</p>
       <a class="pill big" href="mailto:info@relon.it?subject=Voglio%20diventare%20tester%20di%20Relon">Scrivi a info@relon.it</a>
@@ -1132,7 +1196,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     const at = (ms, f) => timers.push(setTimeout(f, still ? 0 : ms));
     at(200, () => { zone.classList.add('on'); zl.classList.add('on'); });
     let v = base;
-    found.forEach((f, i) => at(1600 + i * 1300, () => {
+    const STEP = 1900; // il tempo perché Poldo dica la sua su ogni cosa trovata
+    found.forEach((f, i) => at(1600 + i * STEP, () => {
       const { n, e } = nodes[i];
       if (f.k === 'block') block.classList.add('on');
       e?.classList.add('on');
@@ -1142,8 +1207,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       li.innerHTML = `<span>${f.name}${f.d ? ' a ' + f.sub : ''}</span><b>${signed(f.pct)}</b>`;
       v *= 1 + f.pct / 100; tween(v, li.className);
     }));
-    at(1600 + found.length * 1300 + 400, () => value.classList.remove('gain', 'loss'));
-    if (!still) at(1600 + found.length * 1300 + 6000, play); // ricomincia, finché la sezione è in vista
+    at(1600 + found.length * STEP + 400, () => value.classList.remove('gain', 'loss'));
+    if (!still) at(1600 + found.length * STEP + 6000, play); // ricomincia, finché la sezione è in vista
   };
   // Parte quando la sezione entra in vista, si ferma quando esce.
   new IntersectionObserver(([en]) => { if (en.isIntersecting) play(); else timers.forEach(clearTimeout); }, { threshold: .35 }).observe(root);
@@ -1163,6 +1228,7 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   const says = [...stage.querySelectorAll('.dx-say > div')];
   const num = stage.querySelector('.dx-num'), of = stage.querySelector('.dx-of'), kindEl = stage.querySelector('[data-dx-kind]'), toEl = stage.querySelector('[data-dx-to]');
   const adds = [...stage.querySelectorAll('.dx-end div')];
+  const poldo = stage.querySelector('.poldo-dx'); let pw2 = 0, ph2 = 0, pox = 0, poy = 0;
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const towers = [
     { sec: 'Immobile', to: 'Via Washington 55', c: '#EFA06A' },
@@ -1220,9 +1286,11 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     sw = wide ? Math.min(112, W * .085) : 58;
     pw = wide ? Math.min(250, H * .29) : Math.min(160, H * .2);
     ph = pw * 14 / 9;
+    pw2 = pw * (wide ? 1.15 : .95); ph2 = pw2 * 372 / 308; poldo.style.width = `${pw2}px`;
     thick = wide ? 4.5 : 3;
     stage.style.setProperty('--w', `${sw}px`);
     stage.style.setProperty('--pw', `${pw}px`);
+    if (!wide) { const say = stage.querySelector('.dx-say'); stage.style.setProperty('--poldo-top', `${say.getBoundingClientRect().bottom - stage.getBoundingClientRect().top + 6}px`); }
     base = wide
       ? [[W * .55, H * .77], [W * .72, H * .77], [W * .89, H * .77]]
       : [[W * .17, H * .83], [W * .5, H * .83], [W * .83, H * .83]];
@@ -1237,11 +1305,15 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
     const move = ease(clamp((p - .46) / .06));
     return wide
       ? [lerp(W * .66, W * .26, move), lerp(H * .56, H - ph / 2 - 20, move)]
-      : [W * .5, lerp(H * .58, H * .5, move)];
+      : [W * .5, lerp(H * .62, H * .6, move)]; // su telefono più in basso, sotto la riga di Poldo
   }
   function draw(p, time) {
     const [px, py] = phoneAt(p);
     phone.style.transform = `translate(${px - pw / 2}px,${py - ph / 2}px)`;
+    // Poldo sta a destra del telefono, coi piedi alla stessa altezza
+    pox = px + pw / 2 - pw2 * .2; poy = py + ph / 2 - ph2 * .95;
+    poldo.style.transform = wide ? `translate(${pox}px,${poy}px)` : ''; // su telefono sta nella sua riga sotto il titolo
+    const hands = wide ? [[pox + pw2 * .14, poy + ph2 * .44], [pox + pw2 * .86, poy + ph2 * .44]] : [[px, py], [px, py]];
     let eaten = 0, last = null, placed = [0, 0, 0];
     for (const s of sheets) {
       const a = IN[0] + (IN[1] - IN[0] - .05) * s.n / N, tIn = clamp((p - a) / .05 / (wide ? 1 : 1));
@@ -1251,7 +1323,8 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
       let x, y, sc, rx, ry, rz, o = 1, tint = 0;
       if (tOut > 0) {
         const t = ease(tOut), [bx, by] = base[s.tower], ty = by - s.k * thick;
-        x = lerp(px, bx, t); y = lerp(py, ty, t) - Math.sin(t * Math.PI) * H * .14;
+        const [hx0, hy0] = hands[s.k % 2]; // lo lancia Poldo, un tentacolo per volta
+        x = lerp(hx0, bx, t); y = lerp(hy0, ty, t) - Math.sin(t * Math.PI) * H * .14;
         sc = lerp(.15, wide ? 1.05 : 1, t); rx = lerp(0, 60, t); ry = 0; rz = lerp(-90, 45, t); tint = t;
       } else if (tIn >= 1) {
         x = px; y = py; sc = .1; rx = ry = rz = 0; o = 0;
@@ -1310,5 +1383,89 @@ footer .legal { display: flex; gap: 20px; flex-wrap: wrap; }
   }).observe(pin);
 })();
 </script>
-</body>
+<script>
+// Poldo: le pose stanno in assets/poldo, scaricate una volta sola e messe al posto dei segnaposto.
+// Poi parla: scrive la frase nel fumetto e muove la bocca mentre scrive.
+(async () => {
+  const svgs = {};
+  await Promise.all([...document.querySelectorAll('i[data-poldo]')].map(async el => {
+    const p = el.dataset.poldo;
+    svgs[p] ??= fetch(`assets/poldo/${p}.svg`).then(r => r.text());
+    el.outerHTML = (await svgs[p]).replace('<svg ', `<svg data-p="${p}" `);
+  }));
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const say = (box, html, done = () => {}) => {
+    const bubble = box.querySelector('.poldo-say'), svgs = box.querySelectorAll('svg');
+    const svg = box.querySelector('svg.on') || svgs[0];
+    clearTimeout(box._t); svgs.forEach(s => s.classList.remove('parla'));
+    bubble.classList.remove('on'); void bubble.offsetWidth; bubble.classList.add('on');
+    // la frase si scrive già coi suoi colori: si svuotano i testi e si riempiono lettera per lettera
+    bubble.innerHTML = html;
+    if (still) return done();
+    const parts = [], walk = document.createTreeWalker(bubble, NodeFilter.SHOW_TEXT);
+    while (walk.nextNode()) parts.push([walk.currentNode, walk.currentNode.data]);
+    parts.forEach(([t]) => { t.data = ''; });
+    const full = parts.map(([, d]) => d).join('');
+    let n = 0;
+    const next = () => {
+      const ch = full[n++];
+      let left = n; for (const [t, d] of parts) { t.data = d.slice(0, Math.max(0, left)); left -= d.length; }
+      if (n >= full.length) { svg.classList.remove('parla'); return done(); }
+      // si ferma un attimo dopo la punteggiatura, a bocca chiusa, come chi parla davvero
+      const fast = 'veloce' in box.dataset; // dove le scene corrono, scrive più svelto
+      const pause = n >= full.length - 1 ? 0 : /[.!?]/.test(ch) ? (fast ? 140 : 320) : /[,:]/.test(ch) ? (fast ? 90 : 170) : 0;
+      svg.classList.toggle('parla', !pause);
+      box._t = setTimeout(next, pause || (fast ? 16 : 26) + Math.random() * (fast ? 10 : 22));
+    };
+    box._t = setTimeout(next, 'veloce' in box.dataset ? 30 : 180);
+  };
+  // Poldo finisce sempre la frase e la lascia leggere un attimo; se intanto la scena è cambiata
+  // dice quella nuova, e se ne sono passate più d'una salta all'ultima, per non restare indietro.
+  const speak = (box, pose, html, side) => {
+    if (box._busy) { box._next = [pose, html, side]; return; }
+    box._busy = true;
+    if (pose) box.querySelectorAll('svg').forEach(s => s.classList.toggle('on', s.dataset.p === pose));
+    box.classList.toggle('sx', side === 'sx'); // il fumetto va dove c'è spazio
+    say(box, html, () => setTimeout(() => {
+      box._busy = false;
+      const next = box._next; box._next = null;
+      if (next) speak(box, ...next);
+    }, still ? 0 : 'veloce' in box.dataset ? 450 : 900));
+  };
+  // segue le scene di una sezione: per ogni scena una posa e una frase
+  const follow = (box, scenes, lines, index = () => scenes.findIndex(sc => sc.classList.contains('on'))) => {
+    const show = () => {
+      const i = index(); if (i < 0 || box._i === i) return; box._i = i;
+      speak(box, ...lines[i]);
+    };
+    scenes.forEach(sc => new MutationObserver(show).observe(sc, { attributes: true, attributeFilter: ['class'] }));
+    show();
+  };
+  follow(document.querySelector('.poldo-hero'), [...document.querySelectorAll('.day .scene')], [
+    ['saluta', 'Ciao, sono <b>Poldo</b>! Ogni mattina ti dico da dove partire.'],
+    ['pensa', 'Tu detti, io capisco: <b>appuntamento e budget</b> li sistemo io.'],
+    ['chiavi', 'Il cliente prenota dal tuo link. <b>Te lo dico subito.</b>'],
+    ['pensa', 'Dammi l\'indirizzo: in pochi secondi <b>sai quanto vale.</b>'],
+    ['conserte', 'A fine giornata ti dico <b>chi richiamare, e perché.</b>'],
+  ]);
+  follow(document.querySelector('.poldo-dx'), [...document.querySelectorAll('.dx-say > div')], [
+    ['pensa', 'Che confusione! <b>Dammeli, ci penso io.</b>'],
+    ['smista', 'Li leggo uno per uno: <b>cos\'è e di chi è.</b>'],
+    ['smista', 'Questo all\'immobile, questo al contatto, <b>questo alla trattativa.</b>', 'sx'],
+    ['conserte', 'Fatto! <b>Mancano 3 dati</b> alle schede: li aggiungo?', 'sx'],
+  ]);
+  // valutazioni: commenta ogni cosa che la mappa trova intorno alla casa
+  const agZone = document.querySelector('.ag-zone'), agNodes = [...document.querySelectorAll('.ag-node')];
+  follow(document.querySelector('.poldo-ag'), [agZone, ...agNodes], [
+    ['pensa', 'Zona OMI: <b>3.250 €/m²</b>.'],
+    ['saluta', 'Isolato richiesto: <b class="su">+8%</b>!'],
+    ['saluta', 'Metro vicina: <b class="su">+5%</b>.'],
+    ['saluta', 'C\'è un parco: <b class="su">+3%</b>.'],
+    ['pensa', 'Ferrovia vicina: <b class="giu">−6%</b>.'],
+    ['chiavi', 'Strada veloce: <b class="giu">−3%</b>. Fatto!'],
+  ], () => agZone.classList.contains('on') ? agNodes.filter(n => n.classList.contains('on')).length : -1);
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { speak(e.target, null, e.target.dataset.say); io.unobserve(e.target); } }), { threshold: .6 });
+  document.querySelectorAll('.poldo-box[data-say]').forEach(b => io.observe(b));
+})();
+</script></body>
 </html>

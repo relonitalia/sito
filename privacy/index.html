@@ -22,7 +22,7 @@
 
 <main class="wrap">
   <h1>Privacy Policy</h1>
-  <p class="updated">Ultimo aggiornamento: 3 novembre 2026</p>
+  <p class="updated">Ultimo aggiornamento: 4 novembre 2026</p>
 
   <p>Questa informativa spiega quali dati personali tratta Relon, il gestionale per agenti immobiliari (iOS, Android e versione desktop su <a href="https://desktop.relon.it/">desktop.relon.it</a>), insieme al sito <a href="https://relon.it/">relon.it</a> e alle pagine pubbliche di prenotazione visite generate dall'app, perché li tratta e quali diritti hai. È resa ai sensi degli artt. 13 e 14 del Regolamento (UE) 2016/679 ("GDPR") e del D.Lgs. 196/2003.</p>
 
@@ -85,6 +85,11 @@
   <h3>Lettura dei documenti</h3>
   <p>Quando carichi un documento, l'app lo legge per capire di che tipo è e a chi si riferisce e per proporti i dati da aggiungere alla scheda. La lettura avviene sul tuo dispositivo: il testo di PDF e file Word viene letto direttamente, mentre foto e scansioni sono lette con ML Kit di Google sul telefono e con tesseract.js nel browser. Per questa lettura il file non viene inviato ai nostri server né ad altri fornitori: in Relon arriva solo se scegli di salvarlo, e i dati letti finiscono nelle schede solo se li confermi. Nel browser, la prima volta che serve, il programma di lettura viene scaricato dalla CDN jsDelivr, che riceve l'indirizzo IP e i dati tecnici della richiesta, non il documento. Nei dati diagnostici registriamo il tipo di documento riconosciuto, il numero di caratteri letti e i nomi dei campi trovati, mai il contenuto.</p>
 
+  <h3>Notifiche sul telefono</h3>
+  <p>Se le attivi, l'app ti avvisa quando un cliente prenota una visita e 30 minuti prima di ogni appuntamento. Il telefono ottiene da Google (Firebase Cloud Messaging) un identificativo del dispositivo e crea una chiave di cifratura: li conserviamo nei nostri server finché non spegni le notifiche, esci dall'account o lo elimini.</p>
+  <p>Per recapitare l'avviso, Google e, su iPhone, anche Apple ricevono l'identificativo del dispositivo, un codice dell'appuntamento e un testo generico con la data o l'ora. Nome, indirizzo e telefono del cliente non compaiono in questo testo. Su Android viaggiano cifrati con la chiave del tuo dispositivo, quindi Google non può leggerli: è il telefono ad aprirli e a comporre l'avviso. Su iPhone non vengono inviati. Un avviso non consegnato scade dopo un giorno al massimo.</p>
+  <p>Puoi spegnere le notifiche da <strong>Impostazioni → Notifiche</strong>. Quello che si vede a telefono bloccato dipende dalle impostazioni del telefono.</p>
+
   <h3>Valutazioni degli immobili</h3>
   <p>Per stimare un immobile l'app cerca le coordinate del suo indirizzo, per trovare la zona delle quotazioni OMI dell'Agenzia delle Entrate. L'indirizzo che valuti viene inviato dal tuo dispositivo ai servizi pubblici di geocodifica Nominatim (OpenStreetMap Foundation) e, se non lo trova, Photon (komoot GmbH), e la mappa della zona viene scaricata dai server di OpenStreetMap: questi servizi ricevono l'indirizzo cercato e il tuo indirizzo IP, ma non i dati del proprietario né altri dati dell'immobile. La stima viene calcolata sulle quotazioni OMI conservate nei nostri server.</p>
 
@@ -100,6 +105,7 @@
     <tr><th>Finalità</th><th>Base giuridica</th></tr>
     <tr><td>Creare e gestire l'account, fornire le funzioni dell'app, conservare i tuoi contenuti</td><td>Esecuzione del contratto (art. 6.1.b)</td></tr>
     <tr><td>Sincronizzazione con Google Calendar, accesso al microfono</td><td>Tua richiesta e autorizzazione, revocabile in qualsiasi momento (art. 6.1.a e 6.1.b)</td></tr>
+    <tr><td>Notifiche sul telefono</td><td>Tua richiesta e autorizzazione, revocabile da Impostazioni → Notifiche (art. 6.1.a e 6.1.b)</td></tr>
     <tr><td>Importazione dalla rubrica</td><td>Tua richiesta e autorizzazione, revocabile dalle impostazioni del telefono (art. 6.1.a e 6.1.b)</td></tr>
     <tr><td>Sicurezza, prevenzione degli abusi, log tecnici</td><td>Legittimo interesse (art. 6.1.f)</td></tr>
     <tr><td>Dati diagnostici e di utilizzo, avvisi interni sulle nuove registrazioni</td><td>Legittimo interesse a mantenere il servizio stabile e a migliorarlo (art. 6.1.f)</td></tr>
@@ -113,8 +119,8 @@
   <p>Non vendiamo né cediamo dati personali. Li condividiamo solo con i fornitori necessari al servizio, nominati responsabili o sub-responsabili del trattamento:</p>
   <ul>
     <li><strong>Supabase, Inc.</strong>: autenticazione, database e archiviazione dei file, su server situati nell'Unione europea (Stoccolma, Svezia);</li>
-    <li><strong>Google LLC</strong>: accesso con Google e Google Calendar, solo se li usi;</li>
-    <li><strong>Apple Inc.</strong>: accesso con Apple, solo se lo usi;</li>
+    <li><strong>Google LLC</strong>: accesso con Google, Google Calendar e recapito delle notifiche (Firebase Cloud Messaging), solo se li usi;</li>
+    <li><strong>Apple Inc.</strong>: accesso con Apple e recapito delle notifiche su iPhone, solo se li usi;</li>
     <li><strong>GitLab Inc.</strong> (GitLab Pages): hosting della versione desktop e della pagina di prenotazione;</li>
     <li><strong>GitHub, Inc.</strong> (GitHub Pages): hosting del sito relon.it;</li>
     <li><strong>Cloudflare, Inc.</strong>: gestione del dominio relon.it e intermediazione delle richieste al sito; esecuzione del nostro pannello di controllo interno e degli avvisi automatici, che leggono dal database i dati diagnostici e gli indirizzi email dei nuovi iscritti;</li>
